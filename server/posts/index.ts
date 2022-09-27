@@ -9,5 +9,5 @@ app.get("/", (_, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("Initialized on 3001");
+  console.log("Initialized on http://localhost:3001/");
 });

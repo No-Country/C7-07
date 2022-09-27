@@ -15,6 +15,5 @@
     "noImplicitReturns": true,
     "strict": true
   },
-  "include": ["login/**/*, posts/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["login/**/*, posts/**/*"]
 }

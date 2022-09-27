@@ -9,9 +9,7 @@
   "scripts": {
     "dev:login": "cd login && npm run dev",
     "dev:posts": "cd posts && npm run dev",
-    "dev": "concurrently \"npm:dev:login\" \"npm:dev:posts\"",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "concurrently \"npm:dev:login\" \"npm:dev:posts\""
   },
   "devDependencies": {
     "@types/express": "4.17.14",
