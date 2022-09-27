@@ -9,5 +9,5 @@ app.get("/", (_, res) => {
 });
 
 app.listen(8080, () => {
-  console.log("Initialized on 8080");
+  console.log("Initialized on http://localhost:8080/");
 });
