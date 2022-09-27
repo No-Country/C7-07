@@ -1,13 +1,19 @@
-import express from "express";
-
-const app = express();
-
-app.get("/", (_, res) => {
-  res.json({
-    greeting: "Hello world from 3001",
-  });
+import { IRoute, Server } from "../shared/server";
+import PostRoute from "./src/routes/posts";
+const server = new Server({
+  port: 3012,
+  host: "localhost",
+  envDir: "./.env",
+  prefix: "/api",
 });
 
-app.listen(3001, () => {
-  console.log("Initialized on http://localhost:3001/");
-});
+const routes: Array<IRoute> = [
+  {
+    url: "posts",
+    router: PostRoute,
+  },
+];
+
+server.routes(routes);
+
+server.listen();

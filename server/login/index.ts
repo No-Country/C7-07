@@ -1,13 +1,23 @@
-import express from "express";
-
-const app = express();
-
-app.get("/", (_, res) => {
-  res.json({
-    greeting: "Hello world from 8080",
-  });
+import { IRoute, Server } from "../shared/server";
+import LoginRoute from "./src/routes/login";
+const server = new Server({
+  port: 3011,
+  host: "localhost",
+  envDir: "./.env",
+  prefix: "/api",
 });
 
-app.listen(8080, () => {
-  console.log("Initialized on http://localhost:8080/");
-});
+const routes: Array<IRoute> = [
+  {
+    url: "login",
+    router: LoginRoute,
+  },
+  {
+    url: "logout",
+    router: LoginRoute,
+  },
+];
+
+server.routes(routes);
+
+server.listen();
