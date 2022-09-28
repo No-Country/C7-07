@@ -1,9 +1,12 @@
 import { IRoute, Server } from "../shared/server";
 import PostRoute from "./src/routes/posts";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "../.env" });
+
 const server = new Server({
-  port: 3012,
-  host: "localhost",
-  envDir: "./.env",
+  port: Number(process.env.POST_PORT),
+  host: process.env.HOST,
   prefix: "/api",
 });
 

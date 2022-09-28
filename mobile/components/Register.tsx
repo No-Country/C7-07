@@ -1,64 +1,67 @@
-import * as WebBrowser from 'expo-web-browser';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import * as WebBrowser from "expo-web-browser";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
-import Colors from '../constants/Colors';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import Colors from "../constants/Colors";
+import { MonoText } from "./StyledText";
+import { Text, View } from "./Themed";
 // CONSIGNAS
 // Campos: Nombres, Apellidos, correo, contraseña, paises que le gustaría visitar?, confirmar contraseña
 // Campos obligatorios: Todos
 // Contraseña mayor a 8 caracteres
 export default function Register() {
-    return (
-        <View>
-            <View style={styles.getStartedContainer}>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Nombre
-                </Text>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Apellido
-                </Text>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Correo
-                </Text>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Contraseña
-                </Text>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Confirmar contraseña
-                </Text>
-                <Text
-                    style={styles.getStartedText}
-                    lightColor="rgba(0,0,0,0.8)"
-                    darkColor="rgba(255,255,255,0.8)">
-                    Pais que te gustaría visitar:
-                </Text>
+  return (
+    <View>
+      <View style={styles.getStartedContainer}>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Nombre
+        </Text>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Apellido
+        </Text>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Correo
+        </Text>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Contraseña
+        </Text>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Confirmar contraseña
+        </Text>
+        <Text
+          style={styles.getStartedText}
+          lightColor="rgba(0,0,0,0.8)"
+          darkColor="rgba(255,255,255,0.8)"
+        >
+          Pais que te gustaría visitar:
+        </Text>
 
-                <View
-                    style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-                    darkColor="rgba(255,255,255,0.05)"
-                    lightColor="rgba(0,0,0,0.05)">
-
-                </View>
-
-
-            </View>
-            {/* 
+        <View
+          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+          darkColor="rgba(255,255,255,0.05)"
+          lightColor="rgba(0,0,0,0.05)"
+        ></View>
+      </View>
+      {/* 
             van a servir para algo
         <Text
           style={styles.getStartedText}
@@ -73,42 +76,42 @@ export default function Register() {
           </Text>
         </TouchableOpacity>
       </View> */}
-        </View>
-    );
+    </View>
+  );
 }
 
 function handleHelpPress() {
-    WebBrowser.openBrowserAsync(
-        'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
-    );
+  WebBrowser.openBrowserAsync(
+    "https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
+  );
 }
 
 const styles = StyleSheet.create({
-    getStartedContainer: {
-        alignItems: 'center',
-        marginHorizontal: 50,
-    },
-    homeScreenFilename: {
-        marginVertical: 7,
-    },
-    codeHighlightContainer: {
-        borderRadius: 3,
-        paddingHorizontal: 4,
-    },
-    getStartedText: {
-        fontSize: 17,
-        lineHeight: 24,
-        textAlign: 'center',
-    },
-    helpContainer: {
-        marginTop: 15,
-        marginHorizontal: 20,
-        alignItems: 'center',
-    },
-    helpLink: {
-        paddingVertical: 15,
-    },
-    helpLinkText: {
-        textAlign: 'center',
-    },
+  getStartedContainer: {
+    alignItems: "center",
+    marginHorizontal: 50,
+  },
+  homeScreenFilename: {
+    marginVertical: 7,
+  },
+  codeHighlightContainer: {
+    borderRadius: 3,
+    paddingHorizontal: 4,
+  },
+  getStartedText: {
+    fontSize: 17,
+    lineHeight: 24,
+    textAlign: "center",
+  },
+  helpContainer: {
+    marginTop: 15,
+    marginHorizontal: 20,
+    alignItems: "center",
+  },
+  helpLink: {
+    paddingVertical: 15,
+  },
+  helpLinkText: {
+    textAlign: "center",
+  },
 });

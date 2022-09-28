@@ -1,11 +1,7 @@
 import { Router } from "express";
+import firebaseLogin from "../controllers/firebaseLogin";
 
 const router = Router();
-
-router.get("/", (_, res) => {
-  return res.json({
-    msg: "from login (get)",
-  });
-});
+router.get("/firebase/:id", firebaseLogin);
 
 export default router;
