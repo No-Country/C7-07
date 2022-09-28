@@ -5,24 +5,18 @@
   "main": "index.js",
   "scripts": {
     "web:dev": "cd web && npm run dev",
-    "mobile:dev": "cd mobile && npm run start",
     "server:dev": "cd server && npm run dev",
     "server:add": "cd server && npm install",
     "web:add": "cd web && npm install",
-    "mobile:add": "cd mobile && npm install",
     "server:remove": "cd server && npm uninstall",
     "web:remove": "cd web && npm uninstall",
-    "mobile:remove": "cd mobile && npm uninstall",
     "lint:check:server": "npx eslint ./server",
     "lint:check:web": "npx eslint ./web",
-    "lint:check:mobile": "npx eslint ./mobile",
     "lint:fix:server": "npx eslint --fix ./server --ext .js,.ts,.json",
-    "lint:fix:web": "npx eslint --fix ./web --ext .js,.ts,.json,.jsx,.tsx",
-    "lint:fix:mobile": "npx eslint --fix ./mobile --ext .js,.ts,.json,.jsx,.tsx"
+    "lint:fix:web": "npx eslint --fix ./web --ext .js,.ts,.json,.jsx,.tsx"
   },
   "workspaces": [
     "server",
-    "mobile",
     "web"
   ],
   "author": "",
