@@ -4,5 +4,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only index.ts"
+  },
+  "dependencies": {
+    "mongoose": "^6.6.2"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97"
   }
 }
