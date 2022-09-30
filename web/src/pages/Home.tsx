@@ -7,13 +7,12 @@ import Tours from "../components/Tours/Tours";
 
 export const Home = () => {
   const [togglePosts, setTogglePosts] = useState(false);
-  const [casaIcon, setCasaIcon] = useState(false);
-  const [tourIcon, setTourIcon] = useState(false);
+  
 
   return (
     <Box h="100%" w="100%">
       {/* NavBar */}
-      <NavBar setCasaIcon={setCasaIcon} setTourIcon={setTourIcon}  setTogglePosts={setTogglePosts} />
+      <NavBar setTogglePosts={setTogglePosts} />
 
       {/* Posts */}
 
