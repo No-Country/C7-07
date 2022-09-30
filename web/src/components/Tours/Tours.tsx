@@ -1,10 +1,15 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import TourCard from "../TourCard/TourCard";
 
 function Tours() {
   return (
-    <Box h="100%" bg="red">
-      <Text>Tours</Text>
+    <Box bg="" py={5}>
+      <TourCard />
+      <TourCard />
+      <TourCard />
+      <TourCard />
+      <TourCard />
     </Box>
   );
 }
