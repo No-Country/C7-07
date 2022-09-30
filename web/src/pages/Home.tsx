@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react";
-import HomeIcon from "../icons/HomeIcon";
+import ComunidadIcon from "../icons/ComunidadIcon";
 import NavBar from "../components/NavBar/NavBar";
 import Posts from "../components/Posts/Posts";
 import Tours from "../components/Tours/Tours";

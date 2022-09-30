@@ -1,12 +1,20 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useState } from "react";
+
 import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react";
-import HomeIcon from "../../icons/HomeIcon";
+import casaDesactivada from "../../assets/img/casa_desactivado.png";
+import casaActivada from "../../assets/img/casa_activado.png";
+import montanaActivada from "../../assets/img/montana_activado.png";
+import montanaDesactivada from "../../assets/img/montana_desactivado.png";
+import menu from "../../assets/img/menu.png";
 
 interface Props {
   setTogglePosts: Dispatch<boolean>;
 }
 
 function NavBar({ setTogglePosts }: Props) {
+  const [casaIcon, setCasaIcon] = useState(false);
+  const [tourIcon, setTourIcon] = useState(true);
+
   return (
     <Box
       h="80px"
@@ -29,11 +37,20 @@ function NavBar({ setTogglePosts }: Props) {
         h="100%"
         onClick={() => {
           setTogglePosts(false);
+          if (casaIcon) {
+            setCasaIcon(false);
+            setTourIcon(true);
+          }
+          // setCasaIcon(true);
+          // setTourIcon(false);
         }}
       >
-        <HomeIcon />
+        {casaIcon ? (
+          <Image src={casaDesactivada} />
+        ) : (
+          <Image src={casaActivada} />
+        )}
       </Box>
-
       <Box
         display="flex"
         alignItems={"center"}
@@ -41,13 +58,20 @@ function NavBar({ setTogglePosts }: Props) {
         h="100%"
         onClick={() => {
           setTogglePosts(true);
+          if (tourIcon) {
+            setTourIcon(false);
+            setCasaIcon(true);
+          }
         }}
       >
-        <Image src="https://cdn.iconscout.com/icon/premium/png-128-thumb/mountain-1889743-1597817.png" />
+        {tourIcon ? (
+          <Image src={montanaDesactivada} />
+        ) : (
+          <Image src={montanaActivada} />
+        )}
       </Box>
-
       <Box display="flex" alignItems={"center"} w="40px" h="100%">
-        <Image src="https://cdn.iconscout.com/icon/premium/png-128-thumb/hamburger-menu-4318915-3613249.png" />
+        <Image src={menu} />
       </Box>
     </Box>
   );
