@@ -5,14 +5,33 @@
   "main": "index.js",
   "scripts": {
     "web:dev": "cd web && npm run dev",
-    "mobile:dev": "cd mobile && npm run start",
-    "server:dev": "cd server && npm run dev"
+    "server:dev": "cd server && npm run dev",
+    "server:add": "cd server && npm install",
+    "web:add": "cd web && npm install",
+    "server:remove": "cd server && npm uninstall",
+    "web:remove": "cd web && npm uninstall",
+    "lint:check:server": "npx eslint ./server",
+    "lint:check:web": "npx eslint ./web",
+    "lint:fix:server": "npx eslint --fix ./server --ext .js,.ts,.json",
+    "lint:fix:web": "npx eslint --fix ./web --ext .js,.ts,.json,.jsx,.tsx"
   },
   "workspaces": [
     "server",
-    "mobile",
     "web"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.38.1",
+    "@typescript-eslint/parser": "5.38.1",
+    "eslint": "8.24.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.31.8",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "prettier": "2.7.1",
+    "typescript": "4.8.3"
+  }
 }

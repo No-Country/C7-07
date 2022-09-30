@@ -1,0 +1,13 @@
+node_modules
+.md
+out
+dist
+build
+.vscode
+env
+.html
+public
+assets
+*.min.*
+*.d.*
+package-lock.json
