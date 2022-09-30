@@ -7,7 +7,6 @@ import Tours from "../components/Tours/Tours";
 
 export const Home = () => {
   const [togglePosts, setTogglePosts] = useState(false);
-  
 
   return (
     <Box h="100%" w="100%">
