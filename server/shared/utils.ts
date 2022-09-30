@@ -12,3 +12,15 @@ export default class Util {
     console.log("\x1b[33m%s\x1b[0m", msg);
   }
 }
+
+export class Email {
+  value: string;
+
+  constructor(value: string) {
+    this.value = value;
+  }
+  validate() {
+    const regex = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
+    return regex.test(this.value);
+  }
+}

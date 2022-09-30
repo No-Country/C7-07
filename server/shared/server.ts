@@ -1,10 +1,8 @@
 import express, { Express, Router } from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import Util from "./utils";
 import { AddressInfo } from "net";
 const Console = new Util();
-
 export interface IRoute {
   url: string;
   router: Router;
@@ -17,7 +15,7 @@ export class Server {
   envDir: string;
   prefix?: string;
 
-  constructor({ port, host, envDir, prefix = "/" }) {
+  constructor({ port, host, prefix = "/" }) {
     if (typeof port !== "number" || typeof host !== "string") {
       Console.red(
         `
@@ -32,14 +30,12 @@ export class Server {
     this.app = express();
     this.port = port;
     this.host = host;
-    this.envDir = envDir;
     this.prefix = prefix;
 
     this.middlewares();
   }
 
   private middlewares() {
-    dotenv.config({ path: this.envDir });
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors());

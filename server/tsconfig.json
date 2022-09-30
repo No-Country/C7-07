@@ -12,8 +12,7 @@
     "baseUrl": ".",
     "charset": "utf-8",
     "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "strict": true
+    "noImplicitReturns": true
   },
   "include": ["login/**/*, posts/**/*"],
   "exclude": ["dist"]
