@@ -15,7 +15,7 @@ const IMAGE =
 
 function TourCard() {
   return (
-    <Center  mt={50} bg="gray.100">
+    <Center mt={50} bg="gray.100">
       <Box
         role={"group"}
         p={3}
@@ -64,16 +64,15 @@ function TourCard() {
             1 Día
           </Text>
           <Stack direction={"row"} align={"center"}>
-          <Text color={"gray.500"} fontSize={"xl"}>
-            Desde
-          </Text>
+            <Text color={"gray.500"} fontSize={"xl"}>
+              Desde
+            </Text>
             <Text fontWeight={700} fontSize={"xl"}>
               39 USD
             </Text>
             <Text color={"gray.500"} fontSize={"xl"}>
-            por persona
-          </Text>
-            
+              por persona
+            </Text>
           </Stack>
         </Stack>
       </Box>
