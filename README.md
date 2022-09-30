@@ -2,5 +2,18 @@
 
 # C7-07
 
-My new branch `TU-101-Login`
-My new branch `TU-1-Registro`
+<h3>TU-2-Vista Inicio, Tours</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Desktop</th>
+            <th>Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href='https://postimg.cc/JtgkTGWG' target='_blank'><img src='https://i.postimg.cc/X7NkYCHc/TU-2-Vista-Inicio-Tours.png' border='0' alt='TU-2-Vista-Inicio-Tours'/></a></td>
+            <td><a href='https://postimg.cc/N2gBD8fW' target='_blank'><img src='https://i.postimg.cc/5yzyxncN/TU-2-Vista-Inicio-Tours-mobile.png' border='0' alt='TU-2-Vista-Inicio-Tours-mobile'/></a></td>
+        </tr>
+    </tbody>
+<table>
