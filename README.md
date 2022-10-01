@@ -2,7 +2,7 @@
 
 # C7-07
 
-<h3>TU-2-Vista Inicio, Tours</h3>
+<h3>TU-5-Vista de un Tour</h3>
 <table>
     <thead>
         <tr>
@@ -12,8 +12,8 @@
     </thead>
     <tbody>
         <tr>
-            <td><a href='https://postimg.cc/JtgkTGWG' target='_blank'><img src='https://i.postimg.cc/X7NkYCHc/TU-2-Vista-Inicio-Tours.png' border='0' alt='TU-2-Vista-Inicio-Tours'/></a></td>
-            <td><a href='https://postimg.cc/N2gBD8fW' target='_blank'><img src='https://i.postimg.cc/5yzyxncN/TU-2-Vista-Inicio-Tours-mobile.png' border='0' alt='TU-2-Vista-Inicio-Tours-mobile'/></a></td>
+            <td><a href='https://postimg.cc/LqGMn7J6' target='_blank'><img src='https://i.postimg.cc/fLRWgQZX/TU-5-Vista-de-un-Tour.png' border='0' alt='TU-5-Vista-de-un-Tour'/></a></td>
+            <td></td>
         </tr>
     </tbody>
 <table>
