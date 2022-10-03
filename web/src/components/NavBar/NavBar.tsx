@@ -6,6 +6,8 @@ import casaActivada from "../../assets/img/casa_activado.png";
 import montanaActivada from "../../assets/img/montana_activado.png";
 import montanaDesactivada from "../../assets/img/montana_desactivado.png";
 import menu from "../../assets/img/menu.png";
+import logoMain from "../../assets/img/logo_1_svg.svg";
+
 
 interface Props {
   setTogglePosts: Dispatch<boolean>;
@@ -25,9 +27,7 @@ function NavBar({ setTogglePosts }: Props) {
       gray"
     >
       <Box display="flex" alignItems={"center"} w="40px" h="40px">
-        <Text fontWeight="bold" color="purple">
-          Travis Space
-        </Text>
+        <Image src={logoMain}></Image>
       </Box>
 
       <Box
@@ -41,8 +41,6 @@ function NavBar({ setTogglePosts }: Props) {
             setCasaIcon(false);
             setTourIcon(true);
           }
-          // setCasaIcon(true);
-          // setTourIcon(false);
         }}
       >
         {casaIcon ? (

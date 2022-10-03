@@ -7,6 +7,7 @@ import {
   Text,
   Stack,
   Image,
+  Flex, Spacer,
 } from "@chakra-ui/react";
 import { Carousel } from "../Carousel/Carousel";
 
@@ -15,7 +16,7 @@ const IMAGE =
 
 function TourCard() {
   return (
-    <Center mt={50} bg="gray.100">
+    <Center mt={50} bg="gray.100" w={400}>
       <Box
         role={"group"}
         p={3}

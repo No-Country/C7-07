@@ -1,16 +1,31 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Wrap, WrapItem, Flex, Spacer} from "@chakra-ui/react";
 import TourCard from "../TourCard/TourCard";
 
 function Tours() {
   return (
-    <Box bg="" py={5}>
-      <TourCard />
-      <TourCard />
-      <TourCard />
-      <TourCard />
-      <TourCard />
-    </Box>
+    <Wrap  >
+      <Box bg="" py={5} h={1000}>
+        <Flex color='white'>
+        <WrapItem>
+          <TourCard />
+        </WrapItem>
+        <WrapItem>
+          <TourCard />
+        </WrapItem>
+        <WrapItem>
+          <TourCard />
+        </WrapItem>
+        <WrapItem>
+          <TourCard />
+        </WrapItem>
+        <WrapItem>
+          <TourCard />
+        </WrapItem>
+        </Flex>
+      </Box>    
+    </Wrap>
+      
   );
 }
 
