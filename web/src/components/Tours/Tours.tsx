@@ -5,11 +5,19 @@ import TourCard from "../TourCard/TourCard";
 function Tours() {
   return (
     <Box bg="" py={5}>
-      <TourCard />
-      <TourCard />
-      <TourCard />
-      <TourCard />
-      <TourCard />
+
+      <Box display='flex' flexWrap ='wrap' justifyContent={'space-around'}>
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+      </Box>
     </Box>
   );
 }
