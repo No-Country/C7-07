@@ -22,7 +22,18 @@ export const Home = () => {
         {Array(6)
           .fill("")
           .map((_, idx) => (
-            <Post key={idx} />
+            <Post
+              desc=""
+              media=""
+              metadata={{
+                comments: 20,
+                creationDate: "19:20",
+                likes: 21,
+                userLikeIt: true,
+              }}
+              user={{ name: "Ignacio Fedorenco", profile: "" }}
+              key={idx}
+            />
           ))}
       </Flex>
     </Box>

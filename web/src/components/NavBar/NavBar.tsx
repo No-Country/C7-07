@@ -6,7 +6,6 @@ import {
   ImageProps,
   List,
   ListItem,
-  Text,
   Link as ChakraLink,
   Button,
   LinkProps,
@@ -39,7 +38,7 @@ const LIST_ITEMS = [
   },
 
   {
-    name: "mountain",
+    name: "tours",
     props: {
       h: "100%",
       display: "flex",
