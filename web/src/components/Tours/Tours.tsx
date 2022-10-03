@@ -5,8 +5,7 @@ import TourCard from "../TourCard/TourCard";
 function Tours() {
   return (
     <Box bg="" py={5}>
-
-      <Box display='flex' flexWrap ='wrap' justifyContent={'space-around'}>
+      <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
         <TourCard />
         <TourCard />
         <TourCard />

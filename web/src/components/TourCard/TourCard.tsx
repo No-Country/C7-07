@@ -15,7 +15,7 @@ const IMAGE =
 
 function TourCard() {
   return (
-    <Center mt={50} bg="gray.100" w={['full', 'full','320px']} >
+    <Center mt={50} bg="gray.100" w={["full", "full", "320px"]}>
       <Box
         role={"group"}
         p={3}
@@ -26,7 +26,7 @@ function TourCard() {
         rounded={"lg"}
         pos={"relative"}
         zIndex={1}
-        overflow='hide'
+        overflow="hide"
       >
         <Box
           rounded={"lg"}
