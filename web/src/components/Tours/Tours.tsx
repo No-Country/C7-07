@@ -4,28 +4,20 @@ import TourCard from "../TourCard/TourCard";
 
 function Tours() {
   return (
-    <Wrap  >
-      <Box bg="" py={5} h={1000}>
-        <Flex color='white'>
-        <WrapItem>
-          <TourCard />
-        </WrapItem>
-        <WrapItem>
-          <TourCard />
-        </WrapItem>
-        <WrapItem>
-          <TourCard />
-        </WrapItem>
-        <WrapItem>
-          <TourCard />
-        </WrapItem>
-        <WrapItem>
-          <TourCard />
-        </WrapItem>
-        </Flex>
-      </Box>    
-    </Wrap>
-      
+    <Box bg="" py={5}>
+      <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+      </Box>
+    </Box>
   );
 }
 

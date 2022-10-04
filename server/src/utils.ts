@@ -1,4 +1,8 @@
-export default class Util {
+export default class Print {
+  repeat(msg: string, amount: number) {
+    return msg.repeat(amount);
+  }
+
   green(msg: string): void {
     console.log("\x1b[32m%s\x1b[0m", msg);
   }
