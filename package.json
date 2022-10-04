@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/node-16.17.0%20(LTS)-red)  ![](https://img.shields.io/badge/npm-8.19.2-orange)  ![](https://img.shields.io/badge/Typescript-4.8.3-lightgrey)  ![]()![]()![]()![]()",
   "main": "index.js",
   "scripts": { 
-    "server:fake:tours":"json-server --watch ./web/api_fake/tours_db_fake.json --port 3005",
+    "server:fake":"json-server --watch ./web/api_fake/api_fake.json --port 3005",
     "web:dev": "cd web && npm run dev",
     "server:dev": "cd server && npm run dev",
     "server:add": "cd server && npm install",
