@@ -7,14 +7,26 @@ import {
   Text,
   Stack,
   Image,
-  Flex, Spacer,
+  Flex,
+  Spacer,
 } from "@chakra-ui/react";
 import { Carousel } from "../Carousel/Carousel";
 
-const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
+interface Props {
+  id: number;
+  pais: string;
+  titulo: string;
+  precioPorPersonaUsd: number;
+  fotosPrincipales: Array<string>;
+}
 
-function TourCard() {
+function TourCard({
+  id,
+  pais,
+  titulo,
+  precioPorPersonaUsd,
+  fotosPrincipales,
+}: Props) {
   return (
     <Center mt={50} bg="gray.100" w={["full", "full", "320px"]}>
       <Box
@@ -52,15 +64,15 @@ function TourCard() {
           justifyContent="center"
           alignItems="center"
         >
-          <Carousel />
+          <Carousel fotosPrincipales={fotosPrincipales} />
         </Box>
 
         <Stack pt={3} align={"left"}>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            Machu Picchu
+            {titulo}
           </Heading>
           <Text color={"gray.500"} fontSize={"xl"}>
-            Puno, Perú
+            {pais}
           </Text>
           <Text color={"gray.500"} fontSize={"xl"}>
             1 Día
@@ -70,7 +82,7 @@ function TourCard() {
               Desde
             </Text>
             <Text fontWeight={700} fontSize={"xl"}>
-              39 USD
+              {precioPorPersonaUsd} USD
             </Text>
             <Text color={"gray.500"} fontSize={"xl"}>
               por persona

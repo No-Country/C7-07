@@ -1,93 +1,600 @@
 {
-    "tours":
-    [
+  "tours": [
+    {
+      "id": 1,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
         {
-            "id":1,
-            "titulo":"some content",
-            "descripcion":".....",
-            "departamento":1,
-            "pais":"Perú",
-            "experiencia":[
-                {
-                    "queHaras":[
-                        "11111111111111111",
-                        "22222222222222222",
-                        "33333333333333333"
-                    ],
-                    "queIncluye":[
-                        "Guia",
-                        "Degustacion gastronomica",
-                        "Agua",
-                        "Cata de vinos"
-                    ],
-                    "puntoDeEncuentro":"Vegas Ballon Rides: 4390 Polaris Ave."
-                }
-            ],
-            "agencia":[
-                {
-                    "titulo":"Vegas Ballon RIdes",
-                    "descripcion":""
-                }
-            ],
-            "precioPorPersona(USD)":39,
-            "fotosPrincipales":[
-                "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
-                "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
-                "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png"
-            ],
-            "paradas":[
-                {
-                    "id":1,
-                    "nombre":"Vinicunca",
-                    "direccion":"Las Lobelias 2209, La Florida, Santiago",
-                    "coordenadas":[-70.586622, -33.512547],
-                    "altura":3400,
-                    "detalles":{
-                        "puntoDeRecojo":true,
-                        "mirador":false,
-                        "trekking":false
-                    }
-                },
-                {
-                    "id":2,
-                    "nombre":"Vinicunca2",
-                    "direccion":"Las Lobelias 2209, La Florida, Santiago",
-                    "coordenadas":[-70.586622, -33.512547],
-                    "altura":3400,
-                    "detalles":{
-                        "puntoDeRecojo":true,
-                        "mirador":false,
-                        "trekking":false
-                    }
-                },
-                {
-                    "id":3,
-                    "nombre":"Vinicunca3",
-                    "direccion":"Las Lobelias 2209, La Florida, Santiago",
-                    "coordenadas":[-70.586622, -33.512547],
-                    "altura":3400,
-                    "detalles":{
-                        "puntoDeRecojo":true,
-                        "mirador":false,
-                        "trekking":false
-                    }
-                }
-            ]
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
         }
-        
-    ],
-    "agencias":
-    [
+      ],
+      "agencia": [
         {
-            "id":1,
-            "body":"agencia1",
-            "postID":2
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
         },
         {
-            "id":2,
-            "body":" agencia2",
-            "postID":2
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 2,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "Machu Picchu",
+      "descripcion": ".....",
+      "departamento": 1,
+      "pais": "Perú",
+      "experiencia": [
+        {
+          "queHaras": [
+            "11111111111111111",
+            "22222222222222222",
+            "33333333333333333"
+          ],
+          "queIncluye": [
+            "Guia",
+            "Degustacion gastronomica",
+            "Agua",
+            "Cata de vinos"
+          ],
+          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+        }
+      ],
+      "agencia": [
+        {
+          "titulo": "Vegas Ballon RIdes",
+          "descripcion": ""
+        }
+      ],
+      "precioPorPersonaUsd": 39,
+      "fotosPrincipales": [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      ],
+      "paradas": [
+        {
+          "id": 1,
+          "nombre": "Vinicunca",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Vinicunca2",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Vinicunca3",
+          "direccion": "Las Lobelias 2209, La Florida, Santiago",
+          "coordenadas": [-70.586622, -33.512547],
+          "altura": 3400,
+          "detalles": {
+            "puntoDeRecojo": true,
+            "mirador": false,
+            "trekking": false
+          }
+        }
+      ]
+    }
+  ],
+  "agencias": [
+    {
+      "id": 1,
+      "body": "agencia1",
+      "postID": 2
+    },
+    {
+      "id": 2,
+      "body": " agencia2",
+      "postID": 2
+    }
+  ]
 }
-
