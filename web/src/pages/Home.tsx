@@ -1,20 +1,15 @@
-import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { Post } from "../components/Posts/Post";
 import { PostForm } from "../components/Posts/Form";
 
 export const Home = () => {
   return (
-    <Box
-      paddingBlock={"12px"}
-      h="100vh"
-      marginInline={["12px"]}
-      textAlign="center"
-    >
+    <Box h="100vh" marginInline={["12px"]} textAlign="center">
       <Flex
         as="main"
         w={["full", "677px"]}
         flexDir="column"
+        paddingBlock={"12px 5rem"}
         marginInline="auto"
         gap="18px"
       >
