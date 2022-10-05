@@ -1,5 +1,3 @@
-import React, { MouseEvent } from "react";
-
 import {
   Box,
   Image,
@@ -58,9 +56,6 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
-  const handleChangeSection = (e: MouseEvent<HTMLAnchorElement>) => {
-    console.log(m);
-  };
 
   return (
     <Box h="80px" borderBottom="1px solid gray">
