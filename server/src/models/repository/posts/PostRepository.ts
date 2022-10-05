@@ -2,7 +2,7 @@ import { Model } from "mongoose";
 import { IPost } from "../../../interfaces/IPost";
 import { IPostsRepository } from "../../../interfaces/IRepository";
 import { Token } from "../../../interfaces/Token";
-import Print from "../../../utils";
+import Print from "../../../utils/Print";
 import { PostModel } from "./PostsModel";
 const print = new Print();
 

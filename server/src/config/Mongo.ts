@@ -1,5 +1,5 @@
 import { connect } from "mongoose";
-import Print from "../utils";
+import Print from "../utils/Print";
 
 const print = new Print();
 

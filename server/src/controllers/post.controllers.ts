@@ -3,7 +3,7 @@ import { IMessage } from "../interfaces/IMessage";
 import { IPost } from "../interfaces/IPost";
 import { RequestBody, UrlParams } from "../interfaces/IRequest";
 import PostRepository from "../models/repository/posts/PostRepository";
-import Print from "../utils";
+import Print from "../utils/Print";
 
 const print = new Print();
 
