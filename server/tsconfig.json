@@ -14,6 +14,6 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true
   },
-  "include": ["login/**/*", "posts/**/*"],
-  "exclude": ["dist"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
