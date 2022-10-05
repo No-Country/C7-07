@@ -1,7 +1,7 @@
 import express, { Application, Router } from "express";
 import cors from "cors";
 import { config as dotenvConfig, DotenvConfigOutput } from "dotenv";
-import Print from "./utils";
+import Print from "./utils/Print";
 
 const print = new Print();
 
