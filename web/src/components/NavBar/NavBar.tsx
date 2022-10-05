@@ -8,7 +8,12 @@ import {
   Button,
   LinkProps,
 } from "@chakra-ui/react";
-import { Link as RouterLink, Outlet, useLocation } from "react-router-dom";
+import {
+  Link as RouterLink,
+  Navigate,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 import noActiveHouse from "../../assets/img/casa_desactivado.png";
 import activeHouse from "../../assets/img/casa_activado.png";
 import activeMountain from "../../assets/img/montana_activado.png";
@@ -56,6 +61,8 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
+  console.log(m);
+  if (m.pathname === "/") return <Navigate to="/home" />;
 
   return (
     <Box h="80px" borderBottom="1px solid gray">
