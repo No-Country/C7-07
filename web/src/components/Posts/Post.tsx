@@ -9,28 +9,11 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { LoveIt } from "../../icons/LoveIt";
+import { IPost } from "../../interfaces/IPost";
 
-type MetadataProps = {
-  creationDate: string;
-  likes: number;
-  comments: number;
-  userLikeIt: boolean;
-};
-
-type User = {
-  name: string;
-  profile: string;
-};
-export interface PostProps {
-  user: Partial<User>;
-  metadata: Partial<MetadataProps>;
-  desc?: string;
-  media?: string;
-}
-
-type HeaderProps = Pick<PostProps["user"], "name" | "profile"> &
-  Pick<PostProps["metadata"], "creationDate"> &
-  Pick<PostProps, "desc">;
+type HeaderProps = Pick<IPost["user"], "name" | "profile"> &
+  Pick<IPost["metadata"], "creationDate"> &
+  Pick<IPost, "desc">;
 
 const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
   return (
@@ -66,7 +49,7 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
   );
 };
 
-const Body = ({ media }: { media: PostProps["media"] }) => {
+const Body = ({ media }: { media: IPost["media"] }) => {
   return (
     <Box w="100%" h="17.3125rem" bgColor="#C7C5C5">
       <Image src={media} />
@@ -78,7 +61,7 @@ const Data = ({
   comments,
   likes,
   userLikeIt,
-}: Omit<PostProps["metadata"], "creationDate">) => {
+}: Omit<IPost["metadata"], "creationDate">) => {
   return (
     <List display="flex" justifyContent="space-between" padding="13px">
       <ListItem display="flex" alignItems="center">
@@ -97,7 +80,7 @@ const Data = ({
 const Metadata = ({
   userLikeIt,
 }: {
-  userLikeIt: PostProps["metadata"]["userLikeIt"];
+  userLikeIt: IPost["metadata"]["userLikeIt"];
 }) => {
   return (
     <List display="flex" w="inherit" justifyContent="center">
@@ -136,7 +119,7 @@ export const Post = ({
     likes: undefined,
     userLikeIt: undefined,
   },
-}: PostProps) => {
+}: IPost) => {
   if (Object.values(user).some((v) => v === undefined)) return <></>;
   return (
     <Box as="section" w="auto" border="1px solid #C7C5C5" borderRadius="10px">
