@@ -2,13 +2,15 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Image,
   Input,
   Text,
   VStack,
+  HStack,
+  Divider,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -74,6 +76,26 @@ export const Login = () => {
             rounded="2xl"
             marginX="auto"
           >
+            <Button
+              type="button"
+              // onClick={() => signIn("google")}
+              leftIcon={<FaGoogle size={14} />}
+              variant="solid"
+              // borderColor="#ddd"
+              fontWeight={400}
+              colorScheme="red"
+              paddingY="1.1rem"
+              w="full"
+            >
+              Ingresa con Google
+            </Button>
+            <HStack w="full" alignItems="center" justifyContent="center">
+              <Divider bg="gray.700" opacity={1} />
+              <Text color="gray.400" fontWeight={300} fontSize="sm">
+                o
+              </Text>
+              <Divider bg="gray.700" opacity={1} />
+            </HStack>
             <Input
               placeholder="Correo electrónico o número de teléfono"
               fontSize={{ base: "xs", sm: "sm" }}
