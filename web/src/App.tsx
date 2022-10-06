@@ -11,10 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NavBar />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/tours" element={<TourCard />} />
-          </Route>
+          <Route path="/" element={<Home />} />
 
           <Route path="/ingresar" element={<LoginPage />} />
           <Route path="/registrar" element={<RegisterPage />} />
