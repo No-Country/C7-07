@@ -6,6 +6,7 @@ import {
   ListItem,
   List,
   Button,
+  Image,
 } from "@chakra-ui/react";
 import { LoveIt } from "../../icons/LoveIt";
 
@@ -16,22 +17,20 @@ type MetadataProps = {
   userLikeIt: boolean;
 };
 
+type User = {
+  name: string;
+  profile: string;
+};
 export interface PostProps {
-  user: {
-    name: string;
-    profile: string;
-  };
-  metadata: MetadataProps;
-  desc: string;
-  media: string;
+  user: Partial<User>;
+  metadata: Partial<MetadataProps>;
+  desc?: string;
+  media?: string;
 }
 
-interface HeaderProps {
-  name: string;
-  creationDate: string;
-  profile: string;
-  desc: string;
-}
+type HeaderProps = Pick<PostProps["user"], "name" | "profile"> &
+  Pick<PostProps["metadata"], "creationDate"> &
+  Pick<PostProps, "desc">;
 
 const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
   return (
@@ -51,7 +50,9 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
         borderRadius="full"
         bgColor="#796E6E"
         area="profile"
-      ></GridItem>
+      >
+        <Image src={profile} />
+      </GridItem>
 
       <GridItem as={Grid} area="metadata">
         <Grid gap="4px">
@@ -65,15 +66,19 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
   );
 };
 
-const Body = () => {
-  return <Box w="100%" h="17.3125rem" bgColor="#C7C5C5"></Box>;
+const Body = ({ media }: { media: PostProps["media"] }) => {
+  return (
+    <Box w="100%" h="17.3125rem" bgColor="#C7C5C5">
+      <Image src={media} />
+    </Box>
+  );
 };
 
 const Data = ({
   comments,
   likes,
   userLikeIt,
-}: Omit<MetadataProps, "creationDate">) => {
+}: Omit<PostProps["metadata"], "creationDate">) => {
   return (
     <List display="flex" justifyContent="space-between" padding="13px">
       <ListItem display="flex" alignItems="center">
@@ -89,7 +94,7 @@ const Data = ({
   );
 };
 
-const Others = ({
+const Metadata = ({
   userLikeIt,
 }: {
   userLikeIt: MetadataProps["userLikeIt"];
@@ -120,18 +125,19 @@ const Others = ({
 
 export const Post = ({
   user = {
-    name: "Ignacio Fedorenco",
-    profile: "",
+    name: undefined,
+    profile: undefined,
   },
-  desc = "Laguna Roja o Chocolate, Cusco - Perú",
-  media = "",
+  desc = undefined,
+  media = undefined,
   metadata = {
-    comments: 12,
-    creationDate: "09:21",
-    likes: 21,
-    userLikeIt: true,
+    comments: undefined,
+    creationDate: undefined,
+    likes: undefined,
+    userLikeIt: undefined,
   },
 }: PostProps) => {
+  if (Object.values(user).some((v) => v === undefined)) return <></>;
   return (
     <Box as="section" w="auto" border="1px solid #C7C5C5" borderRadius="10px">
       <Grid as="article" w="full" borderRadius={"10px"}>
@@ -144,7 +150,7 @@ export const Post = ({
           />
         </GridItem>
         <GridItem>
-          <Body />
+          <Body media={media} />
         </GridItem>
         <GridItem as="footer">
           <Data
@@ -153,7 +159,7 @@ export const Post = ({
             userLikeIt={metadata.userLikeIt}
           />
           <hr />
-          <Others userLikeIt={metadata.userLikeIt} />
+          <Metadata userLikeIt={metadata.userLikeIt} />
         </GridItem>
       </Grid>
     </Box>
