@@ -97,7 +97,7 @@ const Data = ({
 const Metadata = ({
   userLikeIt,
 }: {
-  userLikeIt: MetadataProps["userLikeIt"];
+  userLikeIt: PostProps["metadata"]["userLikeIt"];
 }) => {
   return (
     <List display="flex" w="inherit" justifyContent="center">

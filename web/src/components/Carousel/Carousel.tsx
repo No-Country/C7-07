@@ -2,47 +2,50 @@ import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
 
-export const images = [
-  "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
-  "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
-  "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png",
-];
+interface Props {
+  fotosPrincipales: Array<string>;
+}
 
-const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-};
+export const Carousel = ({ fotosPrincipales }: Props) => {
+  const images = fotosPrincipales;
 
-/**
- * Experimenting with distilling swipe offset and velocity into a single variable, so the
- * less distance a user has swiped, the more velocity they need to register as a swipe.
- * Should accomodate longer swipes and short flicks without having binary checks on
- * just distance thresholds and velocity > 0.
- */
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
+  const variants = {
+    enter: (direction: number) => {
+      return {
+        x: direction > 0 ? 100 : -100,
+        opacity: 0,
+        // display: "none",
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      // display: "block",
+    },
+    exit: (direction: number) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 100 : -100,
+        opacity: 0,
+        // display: "none",
+      };
+    },
+  };
 
-export const Carousel = () => {
+  /**
+   * Experimenting with distilling swipe offset and velocity into a single variable, so the
+   * less distance a user has swiped, the more velocity they need to register as a swipe.
+   * Should accomodate longer swipes and short flicks without having binary checks on
+   * just distance thresholds and velocity > 0.
+   */
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -57,6 +60,11 @@ export const Carousel = () => {
     setPage([page + newDirection, newDirection]);
   };
 
+  const drag = useBreakpointValue({
+    base: "x",
+    md: "none",
+  });
+
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
@@ -70,10 +78,13 @@ export const Carousel = () => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
+            opacity: { duration: 0.3 },
           }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
+          drag={drag}
+          dragConstraints={{
+            left: 0,
+            right: 0,
+          }}
           dragElastic={1}
           onDragEnd={(e: any, { offset, velocity }: any) => {
             const swipe = swipePower(offset.x, velocity.x);
