@@ -9,32 +9,16 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { LoveIt } from "../../icons/LoveIt";
-
-type MetadataProps = {
-  creationDate: string;
-  likes: number;
-  comments: number;
-  userLikeIt: boolean;
-};
-
-export interface PostProps {
-  user: {
-    name: string;
-    profile: string;
-  };
-  metadata: MetadataProps;
-  desc?: string;
-  media?: string;
-}
+import { IPost } from "../../interfaces/IPost";
 
 interface HeaderProps {
-  name: PostProps["user"]["name"];
-  creationDate: PostProps["metadata"]["creationDate"];
-  profile: PostProps["user"]["profile"];
-  desc: PostProps["desc"];
+  name: IPost["owner"]["name"];
+  creationDate: IPost["creationDate"];
+  profile: string;
+  description: IPost["description"];
 }
 
-const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
+const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
   return (
     <Grid
       gap="6px 9px"
@@ -53,16 +37,16 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
       <GridItem as={Grid} area="metadata">
         <Grid gap="4px">
           <Text fontSize="12">{name}</Text>
-          <Text fontSize="11">{creationDate}</Text>
+          <Text fontSize="11">{creationDate.toLocaleDateString()}</Text>
         </Grid>
       </GridItem>
 
-      <GridItem area="description">{desc}</GridItem>
+      <GridItem area="description">{description}</GridItem>
     </Grid>
   );
 };
 
-const Body = ({ media }: { media: PostProps["media"] }) => {
+const Body = ({ media }: { media: IPost["media"] }) => {
   return (
     <Box w="100%" h="17.3125rem" bgColor="#C7C5C5">
       <Image src={media} />
@@ -70,31 +54,29 @@ const Body = ({ media }: { media: PostProps["media"] }) => {
   );
 };
 
-const Data = ({
-  comments,
-  likes,
-  userLikeIt,
-}: Omit<MetadataProps, "creationDate">) => {
+type DataProps = {
+  amountComments: IPost["amountComments"];
+  amountReactions: IPost["amountReactions"];
+  userLikeIt?: boolean;
+};
+
+const Data = ({ amountComments, amountReactions, userLikeIt }: DataProps) => {
   return (
     <List display="flex" justifyContent="space-between" padding="13px">
       <ListItem display="flex" alignItems="center">
         <LoveIt fill={userLikeIt ? "#4ED972" : "#C7C5C5"} />
         <Text display="inline-block" marginLeft="5px">
-          {likes}
+          {amountReactions}
         </Text>
       </ListItem>
       <ListItem display="flex" alignItems="center">
-        <Text>{comments} Comments</Text>
+        <Text>{amountComments} Comments</Text>
       </ListItem>
     </List>
   );
 };
 
-const Others = ({
-  userLikeIt,
-}: {
-  userLikeIt: MetadataProps["userLikeIt"];
-}) => {
+const Others = ({ userLikeIt }: { userLikeIt: boolean }) => {
   return (
     <List display="flex" w="inherit" justifyContent="center">
       <ListItem
@@ -120,28 +102,22 @@ const Others = ({
 };
 
 export const Post = ({
-  user = {
-    name: "",
-    profile: "",
-  },
-  desc = undefined,
-  media = undefined,
-  metadata = {
-    comments: 12,
-    creationDate: "",
-    likes: 21,
-    userLikeIt: true,
-  },
-}: PostProps) => {
+  owner,
+  description,
+  media,
+  creationDate,
+  amountComments,
+  amountReactions,
+}: Omit<IPost, "id" | "comments" | "reactions">) => {
   return (
     <Box as="section" w="auto" border="1px solid #C7C5C5" borderRadius="10px">
       <Grid as="article" w="full" borderRadius={"10px"}>
         <GridItem as="header">
           <Header
-            creationDate={metadata.creationDate}
-            profile={user.profile}
-            desc={desc}
-            name={user.name}
+            creationDate={creationDate}
+            profile={""}
+            description={description}
+            name={owner.alias}
           />
         </GridItem>
         {media && (
@@ -151,12 +127,11 @@ export const Post = ({
         )}
         <GridItem as="footer">
           <Data
-            likes={metadata.likes}
-            comments={metadata.comments}
-            userLikeIt={metadata.userLikeIt}
+            amountReactions={amountReactions}
+            amountComments={amountComments}
           />
           <hr />
-          <Others userLikeIt={metadata.userLikeIt} />
+          <Others userLikeIt={false} />
         </GridItem>
       </Grid>
     </Box>
