@@ -1,0 +1,4 @@
+GET http://localhost:3001/login/auth
+		?email=josearmando88@gmail.com
+		&password=$pass123
+

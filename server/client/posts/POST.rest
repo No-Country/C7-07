@@ -1,0 +1,6 @@
+POST http://localhost:3001/users/post/633fe8aefa28c789e28dc15a
+
+{
+	"description": "Description",
+	"media": "",
+}

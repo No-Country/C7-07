@@ -1,0 +1,5 @@
+GET http://localhost:3001/users/
+
+###
+
+GET http://localhost:3001/users/6340b0fda3e0464b5a6207f9

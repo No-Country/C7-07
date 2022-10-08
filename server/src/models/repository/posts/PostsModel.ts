@@ -2,8 +2,8 @@ import { model, Schema } from "mongoose";
 import { IPost } from "../../../interfaces/IPost";
 
 const PostSchema = new Schema<IPost>({
-  title: {
-    type: String,
+  creationDate: {
+    type: Date,
   },
   description: {
     type: String,
@@ -11,10 +11,18 @@ const PostSchema = new Schema<IPost>({
   media: {
     type: String,
   },
-  reactions: [{ type: Schema.Types.ObjectId, ref: "Reaction" }],
-
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comments", default: [] }],
+  reactions: [{ type: Schema.Types.ObjectId, ref: "Reactions", default: [] }],
+  amountReactions: {
+    type: Number,
+    default: 0,
+  },
+  amountComments: {
+    type: Number,
+    default: 0,
+  },
   owner: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.Mixed,
     ref: "User",
     required: true,
   },

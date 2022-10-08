@@ -1,17 +1,18 @@
 import { Router } from "express";
 import {
-  getAllPostsByUserId,
-  getPostById,
   createPost,
+  getAllPostsByUserId,
   editPost,
-  deletePostByUserId,
-} from "../controllers/post.controllers";
+  getAllPosts,
+  getPostById,
+} from "../controllers/posts";
+
 const router = Router();
 
+router.get("/", getAllPosts);
 router.get("/:userId", getAllPostsByUserId);
 router.get("/:userId/:postId", getPostById);
 router.post("/:userId", createPost);
-router.put("/:userId/:postId", editPost);
-router.delete("/:userId/:postId", deletePostByUserId);
+router.put("/:userId", editPost);
 
 export default router;

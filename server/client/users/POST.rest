@@ -1,0 +1,10 @@
+POST http://localhost:3001/users/
+Content-Type: application/json
+
+{
+	"name": "Ignacio Fedorenco",
+	"email": "ignaciofedorenco2317@gmail.com",
+	"password": "$pass123",
+	"alias": "IgnFed",
+	"userType": "traveler"
+}
