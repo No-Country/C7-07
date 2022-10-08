@@ -9,7 +9,7 @@ const TourSchema = new Schema<ITour>(
     agency: [{ ref: "Agency", type: Schema.Types.ObjectId }],
     experience: [
       {
-        toDo: [{ type: Schema.Types.String }],
+        whatYouWillDo: [{ type: Schema.Types.String }],
         whatIncludes: [{ type: Schema.Types.String }],
         meetingPoint: Schema.Types.String,
       },

@@ -1,5 +1,5 @@
 type Experience = {
-  toDo: Array<String>;
+  whatYouWillDo: Array<String>;
   whatIncludes: Array<String>;
   meetingPoint: string;
 };
