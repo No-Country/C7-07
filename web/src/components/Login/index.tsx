@@ -97,7 +97,7 @@ export const Login = () => {
               <Divider bg="gray.700" opacity={1} />
             </HStack>
             <Input
-              placeholder="Correo electrónico o número de teléfono"
+              placeholder="Correo electrónico"
               fontSize={{ base: "xs", sm: "sm" }}
               _focus={{
                 boxShadow: "none",
@@ -120,7 +120,13 @@ export const Login = () => {
             >
               Iniciar sesión
             </Button>
-            <Text fontSize={{ base: "sm" }} fontWeight={500}>
+            <Text
+              fontSize={{ base: "sm" }}
+              cursor="pointer"
+              _hover={{ textDecoration: "underline" }}
+              fontWeight={500}
+              paddingY={{ base: "0.3rem", sm: "0.2rem" }}
+            >
               ¿Olvidaste tu contraseña?
             </Text>
             <Button
@@ -128,7 +134,7 @@ export const Login = () => {
               bg="#222C37"
               color="white"
               _hover={{
-                background: "#243241",
+                background: "#1b242e",
               }}
               size={{ base: "sm", sm: "md" }}
               fontSize="0.95rem"
