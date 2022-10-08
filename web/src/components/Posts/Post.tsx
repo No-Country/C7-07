@@ -6,6 +6,7 @@ import {
   ListItem,
   List,
   Button,
+  Image,
 } from "@chakra-ui/react";
 import { LoveIt } from "../../icons/LoveIt";
 
@@ -22,15 +23,15 @@ export interface PostProps {
     profile: string;
   };
   metadata: MetadataProps;
-  desc: string;
-  media: string;
+  desc?: string;
+  media?: string;
 }
 
 interface HeaderProps {
-  name: string;
-  creationDate: string;
-  profile: string;
-  desc: string;
+  name: PostProps["user"]["name"];
+  creationDate: PostProps["metadata"]["creationDate"];
+  profile: PostProps["user"]["profile"];
+  desc: PostProps["desc"];
 }
 
 const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
@@ -45,13 +46,9 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
       templateRows="35px 1fr"
       textAlign="start"
     >
-      <GridItem
-        w="35px"
-        h="35px"
-        borderRadius="full"
-        bgColor="#796E6E"
-        area="profile"
-      ></GridItem>
+      <GridItem w="35px" h="35px" borderRadius="full" area="profile">
+        <Image src={profile} />
+      </GridItem>
 
       <GridItem as={Grid} area="metadata">
         <Grid gap="4px">
@@ -65,8 +62,12 @@ const Header = ({ creationDate, name, profile, desc }: HeaderProps) => {
   );
 };
 
-const Body = () => {
-  return <Box w="100%" h="17.3125rem" bgColor="#C7C5C5"></Box>;
+const Body = ({ media }: { media: PostProps["media"] }) => {
+  return (
+    <Box w="100%" h="17.3125rem" bgColor="#C7C5C5">
+      <Image src={media} />
+    </Box>
+  );
 };
 
 const Data = ({
@@ -120,14 +121,14 @@ const Others = ({
 
 export const Post = ({
   user = {
-    name: "Ignacio Fedorenco",
+    name: "",
     profile: "",
   },
-  desc = "Laguna Roja o Chocolate, Cusco - Perú",
-  media = "",
+  desc = undefined,
+  media = undefined,
   metadata = {
     comments: 12,
-    creationDate: "09:21",
+    creationDate: "",
     likes: 21,
     userLikeIt: true,
   },
@@ -143,9 +144,11 @@ export const Post = ({
             name={user.name}
           />
         </GridItem>
-        <GridItem>
-          <Body />
-        </GridItem>
+        {media && (
+          <GridItem>
+            <Body media={media} />
+          </GridItem>
+        )}
         <GridItem as="footer">
           <Data
             likes={metadata.likes}
