@@ -30,7 +30,7 @@ export const editTour = async (req: Request, res: Response) => {
     title,
   } = req.body as PickedBody;
   try {
-    const tours = await Tour.editTour<Omit<ITour, "id">>(agencyId, tourId, {
+    const tour = await Tour.editTour<Omit<ITour, "id">>(agencyId, tourId, {
       apartament,
       country,
       description,
@@ -45,8 +45,8 @@ export const editTour = async (req: Request, res: Response) => {
       message: `Tours edited!`,
       code: 200,
       status: "OK",
-      data: tours,
-    } as IMessage<typeof tours>);
+      data: tour,
+    } as IMessage<typeof tour>);
   } catch (error) {
     res.status(500).json({
       message: error,

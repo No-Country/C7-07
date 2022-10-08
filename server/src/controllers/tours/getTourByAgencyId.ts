@@ -7,13 +7,13 @@ const Tour = new TourRepository();
 export const getTourByAgencyId = async (req: Request, res: Response) => {
   const { agencyId, tourId } = req.params;
   try {
-    const tours = await Tour.getTourByAgencyId(agencyId, tourId);
+    const tour = await Tour.getTourByAgencyId(agencyId, tourId);
     res.status(200).json({
       message: `Tour founed!`,
       code: 200,
       status: "OK",
-      data: tours,
-    } as IMessage<typeof tours>);
+      data: tour,
+    } as IMessage<typeof tour>);
   } catch (error) {
     res.status(500).json({
       message: error,
