@@ -1,5 +1,3 @@
-import React, { MouseEvent } from "react";
-
 import {
   Box,
   Image,
@@ -17,6 +15,7 @@ import activeMountain from "../../assets/img/montana_activado.png";
 import noActiveMountain from "../../assets/img/montana_desactivado.png";
 import menu from "../../assets/img/menu.png";
 import logoTravis from "../../assets/img/Logo_Travis.svg";
+import { MouseEvent } from "react";
 
 const LIST_ITEMS = [
   {

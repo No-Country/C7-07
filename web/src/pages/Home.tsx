@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { Post } from "../components/Posts/Post";
 import { PostForm } from "../components/Posts/Form";

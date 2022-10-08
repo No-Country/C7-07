@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { LoginPage } from "./pages/LoginPages";
 import { RegisterPage } from "./pages/RegisterPages";
 import NavBar from "./components/NavBar/NavBar";
-import TourCard from "./components/TourCard/TourCard";
+import Tours from "./components/Tours/Tours";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NavBar />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/tours" element={<TourCard />} />
+            <Route path="/tours" element={<Tours />} />
           </Route>
 
           <Route path="/ingresar" element={<LoginPage />} />
