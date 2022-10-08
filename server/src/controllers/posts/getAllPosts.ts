@@ -12,7 +12,7 @@ export const getAllPosts = async (req: Request, res: Response) => {
     print.blue(`${posts}`);
     res.status(200).json({
       code: 200,
-      message: "Post saved!",
+      message: `Post founded: ${posts?.length ?? 0} `,
       data: posts,
       status: "OK",
     } as IMessage);

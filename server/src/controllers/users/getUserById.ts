@@ -13,7 +13,7 @@ export const getUserById = async (req: Request, res: Response) => {
     const user = await User.getUserById(userId);
     res.status(200).json({
       code: 200,
-      message: "User founded",
+      message: user ? "User founded" : "No user founded",
       data: user,
       status: "OK",
     } as IMessage);

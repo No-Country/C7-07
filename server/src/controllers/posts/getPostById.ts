@@ -17,7 +17,7 @@ export const getPostById = async (req: Request, res: Response) => {
     const post = await PostRepository.getByPostId(userId, postId);
     res.status(200).json({
       code: 200,
-      message: "Post founded!",
+      message: post ? "Post founded!" : "No post founded!",
       data: post,
       status: "OK",
     } as IMessage);
