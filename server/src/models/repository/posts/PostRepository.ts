@@ -37,10 +37,13 @@ class PostReposiory implements IPostsRepository {
       return null;
     }
   }
-
-  async getAll(): Promise<IPost[] | null> {
+  async getAll<Ref, Props extends keyof Ref, Ret = Pick<Ref, Props>>(): Promise<
+    IPost<Ret>[] | null
+  > {
     try {
-      const posts = await this.post.find();
+      const posts = (await this.post
+        .find()
+        .populate("owner", ["name", "id"])) as IPost<Ret>[];
       return posts;
     } catch (err) {
       print.red(

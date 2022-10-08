@@ -1,7 +1,7 @@
 import { IReaction } from "./IReaction";
 import { IComment } from "./IComment";
 
-export interface IPost {
+export interface IPost<Ref = string> {
   description: string;
   creationDate: Date;
   reactions: Array<IReaction>;
@@ -9,5 +9,5 @@ export interface IPost {
   amountReactions: number;
   amountComments: number;
   media?: string;
-  owner: string;
+  owner: Ref;
 }

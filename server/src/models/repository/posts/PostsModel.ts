@@ -21,11 +21,12 @@ const PostSchema = new Schema<IPost>({
     type: Number,
     default: 0,
   },
-  owner: {
-    type: Schema.Types.Mixed,
-    ref: "User",
-    required: true,
-  },
+  owner: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 PostSchema.set("toJSON", {
