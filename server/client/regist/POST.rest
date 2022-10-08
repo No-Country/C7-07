@@ -1,0 +1,11 @@
+POST http://localhost:3001/login/regist
+Content-Type: application/json
+
+
+{
+	"name": "Jose Armando",
+	"alias": "JoseAtr",
+	"email": "josearmando88@gmail.com",
+	"password": "$pass123" ,
+	"userType": "business"
+}
