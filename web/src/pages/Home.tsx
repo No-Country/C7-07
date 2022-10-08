@@ -3,11 +3,10 @@ import { Post } from "../components/Posts/Post";
 import { PostForm } from "../components/Posts/Form";
 import { useFetch } from "../hooks/UseFetch";
 import { IPost } from "../interfaces/IPost";
+import { IMessage } from "../interfaces/IMessage";
 
 export const Home = () => {
-  const { call, abort, response, requestStatus } = useFetch<{
-    data: Array<IPost>;
-  }>({
+  const { call, abort, response, requestStatus } = useFetch<IMessage<IPost[]>>({
     url: "http://localhost:3001/posts/",
     inmediate: true,
   });
@@ -27,18 +26,15 @@ export const Home = () => {
         gap="18px"
       >
         <PostForm />
-        {response?.data?.map((_, idx) => (
+        {response?.data?.map((post, idx) => (
           <Post
-            desc=""
-            media=""
-            metadata={{
-              comments: 20,
-              creationDate: "19:20",
-              likes: 21,
-              userLikeIt: true,
-            }}
-            user={{ name: "Ignacio Fedorenco", profile: "" }}
-            key={idx}
+            key={`${post.owner}_${post.id}`}
+            owner={post.owner}
+            description={post.description}
+            media={post.media}
+            amountComments={post.amountComments}
+            amountReactions={post.amountReactions}
+            creationDate={post.creationDate}
           />
         ))}
       </Flex>
