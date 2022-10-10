@@ -12,9 +12,12 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Carousel } from "../Carousel/Carousel";
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, selectCount } from '../../features/counter/counterSlice'
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  decrement,
+  increment,
+  selectCount,
+} from "../../features/counter/counterSlice";
 
 interface Props {
   id: number;
@@ -31,10 +34,9 @@ function TourCard({
   precioPorPersonaUsd,
   fotosPrincipales,
 }: Props) {
+  const count = useSelector(selectCount);
 
-  const count = useSelector(selectCount)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <Center mt={50} bg="gray.100" w={["full", "full", "320px"]}>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import { Box, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 
 interface Props {
   fotosPrincipales: Array<string>;
@@ -14,23 +14,19 @@ export const Carousel = ({ fotosPrincipales }: Props) => {
   const variants = {
     enter: (direction: number) => {
       return {
-        x: direction > 0 ? 100 : -100,
-        opacity: 0,
-        // display: "none",
+        x: direction > 0 ? -10 : 10,
+        y: direction > 0 ? -5 : 5,
       };
     },
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1,
-      // display: "block",
     },
     exit: (direction: number) => {
       return {
         zIndex: 0,
-        x: direction < 0 ? 100 : -100,
-        opacity: 0,
-        // display: "none",
+        x: direction < 0 ? 10 : -10,
+        y: direction < 0 ? -5 : 5,
       };
     },
   };
@@ -78,7 +74,6 @@ export const Carousel = ({ fotosPrincipales }: Props) => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.3 },
           }}
           drag={drag}
           dragConstraints={{
@@ -118,11 +113,13 @@ export const Carousel = ({ fotosPrincipales }: Props) => {
         userSelect={"none"}
         cursor="pointer"
         fontWeight={"bold"}
-        fontSize="18px"
+        fontSize="20px"
         zIndex={2}
         right="10px"
       >
-        {"‣"}
+        <Text paddingBottom="3px" paddingLeft={"2px"}>
+          ‣
+        </Text>
       </Box>
 
       <Box
@@ -140,12 +137,14 @@ export const Carousel = ({ fotosPrincipales }: Props) => {
         userSelect={"none"}
         cursor="pointer"
         fontWeight={"bold"}
-        fontSize="18px"
+        fontSize="20px"
         zIndex={2}
         left="10px"
         transform="scale(-1)"
       >
-        {"‣"}
+        <Text paddingBottom="3px" paddingLeft={"2px"}>
+          ‣
+        </Text>
       </Box>
     </>
   );
