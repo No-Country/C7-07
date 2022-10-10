@@ -5,6 +5,7 @@ import { LoginPage } from "./pages/LoginPages";
 import { RegisterPage } from "./pages/RegisterPages";
 import NavBar from "./components/NavBar/NavBar";
 import Tours from "./components/Tours/Tours";
+import Perfil from "./components/Perfil/Perfil";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<NavBar />}>
             <Route path="/home" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/perfil" element={<Perfil />} />
           </Route>
 
           <Route path="/ingresar" element={<LoginPage />} />
