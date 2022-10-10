@@ -1,6 +1,6 @@
 type Experience = {
-  whatYouWillDo: Array<String>;
-  whatIncludes: Array<String>;
+  whatYouWillDo: Array<string>;
+  whatIncludes: Array<string>;
   meetingPoint: string;
 };
 
@@ -29,6 +29,6 @@ export interface ITour {
   experience: Array<Experience>;
   agency: Array<any>;
   personPriceUsd: string;
-  mainImages: Array<String>;
+  mainImages: Array<string>;
   stops: Array<Stop>;
 }
