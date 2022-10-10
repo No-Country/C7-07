@@ -5,7 +5,7 @@ import { IUser } from "./IUser";
 export interface IPost {
   id: string;
   description?: string;
-  creationDate: Date;
+  creationDate: Date | string;
   reactions: Array<IReaction>;
   comments: Array<IComment>;
   amountReactions: number;

@@ -19,7 +19,7 @@ interface HeaderProps {
 }
 
 const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
-  creationDate = new Date(creationDate).toDateString() as unknown as Date;
+  creationDate = new Date(creationDate).toDateString();
   return (
     <Grid
       gap="6px 9px"
