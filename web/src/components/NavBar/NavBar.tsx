@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   Link as ChakraLink,
-  Button,
   LinkProps,
 } from "@chakra-ui/react";
 import { Link as RouterLink, Outlet, useLocation } from "react-router-dom";
@@ -13,9 +12,8 @@ import noActiveHouse from "../../assets/img/casa_desactivado.png";
 import activeHouse from "../../assets/img/casa_activado.png";
 import activeMountain from "../../assets/img/montana_activado.png";
 import noActiveMountain from "../../assets/img/montana_desactivado.png";
-import menu from "../../assets/img/menu.png";
 import logoTravis from "../../assets/img/Logo_Travis.svg";
-import { MouseEvent } from "react";
+import MenuNavBar from "../MenuNavBar/MenuNavBar";
 
 const LIST_ITEMS = [
   {
@@ -57,9 +55,6 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
-  const handleChangeSection = (e: MouseEvent<HTMLAnchorElement>) => {
-    console.log(m);
-  };
 
   return (
     <Box h="80px" borderBottom="1px solid gray">
@@ -109,8 +104,14 @@ function NavBar() {
             </ChakraLink>
           ))}
         </ListItem>
-        <ListItem as={Button} bg="none" _hover={{ bg: "none" }} h="100%">
-          <Image src={menu} w="40px" />
+        <ListItem
+          bg="none"
+          display="flex"
+          alignItems="center"
+          _hover={{ bg: "none" }}
+          h="100%"
+        >
+          <MenuNavBar />
         </ListItem>
       </List>
       <Outlet />
