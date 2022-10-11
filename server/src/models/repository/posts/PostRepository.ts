@@ -132,8 +132,9 @@ class PostReposiory implements IPostsRepository {
     }
   }
 
-  async setLike(reaction: IReaction): Promise<boolean> {
+  async setLike(reaction: IReaction): Promise<boolean | string> {
     try {
+      let msg;
       const post = await this.post.findOne({
         id: reaction.post,
         owner: reaction.owner,
@@ -142,12 +143,14 @@ class PostReposiory implements IPostsRepository {
       if (post.reactions.includes(reaction.id)) {
         const reactionIdx = post.reactions.indexOf(reaction.id);
         post.reactions.splice(reactionIdx);
+        msg = "remove";
       } else {
         post.reactions.push(reaction);
+        msg = "add";
       }
       post.amountReactions = post.reactions.length;
       await post.save();
-      return true;
+      return msg;
     } catch (error) {
       print.red(error);
       return false;

@@ -11,7 +11,7 @@ export interface IPostsRepository extends IRepository {
   createPost(data: IPost): Promise<IPost | null>;
   editPost(postId: Token, data: IPost): Promise<IPost | null>;
   deleteOne(userId: Token, postId: Token): Promise<IPost | null>;
-  setLike(reaction: IReaction): Promise<boolean>;
+  setLike(reaction: IReaction): Promise<boolean | string>;
 }
 
 export type NewUser = Omit<IUser, "posts" | "reactions">;
@@ -22,9 +22,11 @@ export interface IUserRepository {
   createUser(data: NewUser): Promise<IUser | null>;
   editUser(userId: Token, data: NewUser): Promise<NewUser | null>;
   deleteOne(userId: Token): Promise<IUser | null>;
-  setLike(reaction: IReaction): Promise<boolean>;
+  setLike(reaction: IReaction): Promise<boolean | string>;
 }
 
 export interface IReactionRepository {
   create(userId: Token, postId: Token): Promise<IReaction | null>;
+  getOne(userId: string, postId: string): Promise<IReaction | null>;
+  deleteOne(userId: string, postId: string): Promise<IReaction | null>;
 }

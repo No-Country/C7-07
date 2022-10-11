@@ -27,4 +27,16 @@ export class ReactionRepository implements IReactionRepository {
       return null;
     }
   }
+
+  async deleteOne(userId: string, postId: string): Promise<IReaction> {
+    try {
+      const reaction = await this._repository.findOneAndDelete({
+        owner: userId,
+        post: postId,
+      });
+      return reaction;
+    } catch (error) {
+      return null;
+    }
+  }
 }

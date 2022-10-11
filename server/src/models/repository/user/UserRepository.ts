@@ -134,17 +134,20 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  async setLike(reaction: IReaction): Promise<boolean> {
+  async setLike(reaction: IReaction): Promise<boolean | string> {
     try {
+      let msg;
       const user = await this._repository.findById(reaction.owner);
       if (user.reactions.includes(reaction.id)) {
         const reactionIdx = user.reactions.indexOf(reaction.id);
         user.reactions.splice(reactionIdx);
+        msg = "remove";
       } else {
         user.reactions.push(reaction);
+        msg = "add";
       }
       await user.save();
-      return true;
+      return msg;
     } catch (error) {
       print.red(error);
       return false;
