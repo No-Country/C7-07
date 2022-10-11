@@ -1,4 +1,4 @@
-import { Model, PopulateOption, PopulateOptions } from "mongoose";
+import { Model, PopulateOptions } from "mongoose";
 import { IReaction } from "src/interfaces/IReaction";
 import { RequestBodyCreatePost } from "src/interfaces/IRequest";
 import { IPost } from "../../../interfaces/IPost";
