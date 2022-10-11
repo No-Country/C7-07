@@ -39,11 +39,6 @@ class PostReposiory implements IPostsRepository {
     try {
       const posts = (await this.post.find().populate([
         {
-          path: "owner",
-          model: "User",
-          select: ["name", "alias"],
-        },
-        {
           path: "reactions",
           model: "Reaction",
           select: "owner",
@@ -51,6 +46,7 @@ class PostReposiory implements IPostsRepository {
       ] as PopulateOptions[])) as IPost<Ret>[];
       return posts;
     } catch (err) {
+      console.log(err);
       print.red(
         `\rError:\n + ${print.repeat(
           "-",

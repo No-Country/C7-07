@@ -1,23 +1,25 @@
 import { Request, Response } from "express";
+import { IUser } from "../../interfaces/IUser";
 import { IMessage } from "../../interfaces/IMessage";
-import { NewUser } from "../../interfaces/IRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
 import Print from "../../utils/Print";
 
-const User = new UserRepository();
 const print = new Print();
 
-export const editUser = async (req: Request, res: Response) => {
-  const { userId } = req.params;
-  const { alias, name, userType, email, password } = req.body as NewUser;
+export const editUser = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
+  const { userType, id } = req.payload;
+  const payload = req.body;
   try {
-    const user = await User.editUser(userId, {
-      alias,
-      name,
-      userType,
-      email,
-      password,
-    });
+    const user = await (userType === "traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).edit(id, payload);
     res.status(200).json({
       code: 200,
       message: "User edited",

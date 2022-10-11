@@ -1,15 +1,20 @@
 import { Request, Response } from "express";
 import { IMessage } from "../../interfaces/IMessage";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
 import Print from "../../utils/Print";
 
-const User = new UserRepository();
 const print = new Print();
 
 export const getUserById = async (req: Request, res: Response) => {
   const { userId } = req.params;
+
   try {
-    const user = await User.getUserById(userId);
+    const user =
+      (await TravelerRepository.getById(userId)) ||
+      (await AgencyRepository.getById(userId));
     res.status(200).json({
       code: 200,
       message: user ? "User founded" : "No user founded",

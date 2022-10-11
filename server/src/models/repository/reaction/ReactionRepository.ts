@@ -16,12 +16,12 @@ export class ReactionRepository implements IReactionRepository {
     }
   }
 
-  async getOne(userId: string, postId: string): Promise<IReaction | null> {
+  async getOne(obj: {
+    userId?: string;
+    postId?: string;
+  }): Promise<IReaction | null> {
     try {
-      const reaction = await this._repository.findOne({
-        owner: userId,
-        post: postId,
-      });
+      const reaction = await this._repository.findOne(obj);
       return reaction;
     } catch (error) {
       return null;

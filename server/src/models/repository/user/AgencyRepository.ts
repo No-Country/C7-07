@@ -1,49 +1,32 @@
 import { Model, PopulateOptions } from "mongoose";
-import { UserModel } from "./UserModel";
-import { IUser } from "../../../interfaces/IUser";
-import { IUserRepository, NewUser } from "../../../interfaces/IRepository";
+import { IUserRepository } from "../../../interfaces/IRepository";
+import { IBusiness } from "../../../interfaces/IUser";
+import { BusinessModel } from "./AgencyModel";
 import Print from "../../../utils/Print";
-import { Token } from "src/interfaces/Token";
-import { IReaction } from "src/interfaces/IReaction";
+import { IReaction } from "../../../interfaces/IReaction";
+import { IPost } from "../../../interfaces/IPost";
 
 const print = new Print();
 
-export class UserRepository implements IUserRepository {
-  private _repository: Model<IUser> = UserModel;
-  populateFields: PopulateOptions | PopulateOptions[] | undefined;
+class AgencyRepository implements IUserRepository<IBusiness> {
+  private _repository: Model<IBusiness> = BusinessModel;
+  populateFields: PopulateOptions | PopulateOptions[] | undefined = undefined;
 
-  async createUser({
-    name,
-    email,
-    alias,
-    password,
-    userType,
-  }: NewUser): Promise<IUser | null> {
+  async getAll(): Promise<IBusiness[]> {
     try {
-      const user = new this._repository({
-        name,
-        email,
-        alias,
-        password,
-        posts: [],
-        reactions: [],
-        userType,
-      });
-      await user.save();
-      return user || null;
+      const users = await this._repository.find();
+      return users;
     } catch (e) {
-      print.blue(e);
       print.red(
         `\rError:\n + ${print.repeat(
           "-",
           10
-        )} Method: createUser in UserRepository ${print.repeat("-", 10)}\n`
+        )} Method: getAllUsers in UserRepository ${print.repeat("-", 10)}\n`
       );
-      if (e) throw e;
       return null;
     }
   }
-  async getUserById(userId: string): Promise<IUser | null> {
+  async getById(userId: string): Promise<IBusiness> {
     try {
       const user = await this._repository.findById(userId);
       if (user && this.populateFields) user.populate(this.populateFields);
@@ -58,10 +41,10 @@ export class UserRepository implements IUserRepository {
       return null;
     }
   }
-
-  async getOne<Type>(fields: Type): Promise<IUser | null> {
+  async getOne(fields: Partial<IBusiness>): Promise<IBusiness> {
     try {
       const user = await this._repository.findOne(fields);
+      if (user && this.populateFields) user.populate(this.populateFields);
       return user;
     } catch (e) {
       print.red(
@@ -73,11 +56,34 @@ export class UserRepository implements IUserRepository {
       return null;
     }
   }
-
-  async editUser(userId: string, data: NewUser): Promise<NewUser | null> {
+  async create<NewEntity = IBusiness>(data: NewEntity): Promise<IBusiness> {
     try {
-      await this._repository.findByIdAndUpdate<NewUser>(userId, data);
-      return data;
+      const user = new this._repository(data);
+      await user.save();
+      return user || null;
+    } catch (e) {
+      print.blue(e);
+      print.red(
+        `\rError:\n + ${print.repeat(
+          "-",
+          10
+        )} Method: createUser in UserRepository ${print.repeat("-", 10)}\n`
+      );
+      if (e) throw e;
+      return null;
+    }
+  }
+  async edit<NewEntity = IBusiness>(
+    userId: string,
+    data: Partial<NewEntity>
+  ): Promise<IBusiness> {
+    try {
+      const updatedUser = await this._repository.findByIdAndUpdate<IBusiness>(
+        userId,
+        data,
+        { new: true }
+      );
+      return updatedUser;
     } catch (e) {
       print.red(
         `\rError:\n + ${print.repeat(
@@ -89,22 +95,7 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  async getAllUsers(): Promise<IUser[] | null> {
-    try {
-      const users = await this._repository.find();
-      return users;
-    } catch (e) {
-      print.red(
-        `\rError:\n + ${print.repeat(
-          "-",
-          10
-        )} Method: getAllUsers in UserRepository ${print.repeat("-", 10)}\n`
-      );
-      return null;
-    }
-  }
-
-  async deleteOne(userId: string): Promise<IUser | null> {
+  async deleteOne(userId: string): Promise<IBusiness> {
     try {
       const user = await this._repository.findByIdAndDelete(userId);
       return user;
@@ -119,24 +110,7 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  async setPost(userId: Token, postId: Token): Promise<boolean> {
-    try {
-      const user = await this._repository.findById(userId);
-      user.posts.push(postId);
-      await user.save();
-      return true;
-    } catch (e) {
-      print.red(
-        `\rError:\n + ${print.repeat(
-          "-",
-          10
-        )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
-      );
-      return null;
-    }
-  }
-
-  async setLike(reaction: IReaction): Promise<boolean | string> {
+  async setLike(reaction: IReaction): Promise<string | boolean> {
     try {
       let msg;
       const user = await this._repository.findById(reaction.owner);
@@ -155,4 +129,19 @@ export class UserRepository implements IUserRepository {
       return false;
     }
   }
+  async setPost(
+    userId: string,
+    post: IPost<string>
+  ): Promise<string | boolean> {
+    try {
+      const user = await this._repository.findById(userId);
+      user.posts.push(post.id);
+      await user.save();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }
+
+export default new AgencyRepository();

@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { verifyToken } from "../middlewares/verifyToken";
+
 import {
   createPost,
   getAllPostsByUserId,
@@ -8,15 +10,16 @@ import {
   setLike,
   deletePostByUserId,
 } from "../controllers/posts";
+import { setPayload } from "../middlewares/setPayload";
 
 const router = Router();
 
-router.get("/", getAllPosts);
-router.get("/:userId", getAllPostsByUserId);
-router.get("/:userId/:postId", getPostById);
-router.post("/:userId", createPost);
-router.post("/like/:userId/:postId", setLike);
-router.put("/:userId", editPost);
-router.delete("/:userId/:postId", deletePostByUserId);
+router.get("/", verifyToken, setPayload, getAllPosts);
+router.get("/:userId", verifyToken, setPayload, getAllPostsByUserId);
+router.get("/:userId/:postId", verifyToken, setPayload, getPostById);
+router.post("/", verifyToken, setPayload, createPost);
+router.post("/like/:postId", verifyToken, setPayload, setLike);
+router.put("/", verifyToken, setPayload, editPost);
+router.delete("/:postId", verifyToken, setPayload, deletePostByUserId);
 
 export default router;

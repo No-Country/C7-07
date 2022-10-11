@@ -1,26 +1,36 @@
 import { Request, Response } from "express";
 import PostRepository from "../../models/repository/posts/PostRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
 import { ReactionRepository } from "../../models/repository/reaction/ReactionRepository";
 import { IMessage } from "../../interfaces/IMessage";
+import { IUser } from "../../interfaces/IUser";
 
-const User = new UserRepository();
 const Reaction = new ReactionRepository();
 
-export const setLike = async (req: Request, res: Response) => {
-  const { userId, postId } = req.params;
+export const setLike = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
+  const { id, userType } = req.payload;
+  const { postId } = req.params;
   try {
-    let reaction = await Reaction.getOne(userId, postId);
+    let reaction = await Reaction.getOne({ userId: id, postId });
 
     if (!reaction) {
-      reaction = await Reaction.create(userId, postId);
+      reaction = await Reaction.create(id, postId);
     }
 
     const isLikedPost = await PostRepository.setLike(reaction);
-    const isLikedUser = await User.setLike(reaction);
+    const isLikedUser = await (userType === "traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).setLike(reaction);
     if (!isLikedPost || !isLikedUser) throw "Error can not like.";
     if (isLikedPost === "remove" && isLikedUser === "remove") {
-      await Reaction.deleteOne(userId, postId);
+      await Reaction.deleteOne(id, postId);
     }
     res.status(200).json({
       code: 200,

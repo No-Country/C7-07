@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 import mongooseUniqueValidator from "mongoose-unique-validator";
-import { IUser } from "../../../interfaces/IUser";
+import { ITraveler } from "../../../interfaces/IUser";
 
-const UserSchema = new Schema<IUser>(
+const TravelerSchema = new Schema<ITraveler>(
   {
     name: {
       type: String,
@@ -38,18 +38,20 @@ const UserSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+
+    countriesILike: [{ type: Schema.Types.String }],
   },
   {
     versionKey: false,
   }
 );
 
-UserSchema.set("toJSON", {
+TravelerSchema.set("toJSON", {
   transform: (_, ret) => {
     ret.id = ret._id;
     delete ret._id;
   },
 });
-UserSchema.plugin(mongooseUniqueValidator);
+TravelerSchema.plugin(mongooseUniqueValidator);
 
-export const UserModel = model<IUser>("User", UserSchema);
+export const TravelerModel = model<ITraveler>("Traveler", TravelerSchema);

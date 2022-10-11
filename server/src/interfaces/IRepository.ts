@@ -16,17 +16,22 @@ export interface IPostsRepository extends IRepository {
 
 export type NewUser = Omit<IUser, "posts" | "reactions">;
 
-export interface IUserRepository {
-  getAllUsers(): Promise<Array<IUser> | null>;
-  getUserById(userId: Token): Promise<IUser | null>;
-  createUser(data: NewUser): Promise<IUser | null>;
-  editUser(userId: Token, data: NewUser): Promise<NewUser | null>;
-  deleteOne(userId: Token): Promise<IUser | null>;
+export interface IUserRepository<Entity> {
+  getAll(): Promise<Array<Entity> | null>;
+  getById(userId: Token): Promise<Entity | null>;
+  getOne(fileds: Entity): Promise<Entity | null>;
+  create<NewEntity = Entity>(data: NewEntity): Promise<Entity | null>;
+  edit<NewEntity = Entity>(
+    userId: Token,
+    data: Partial<NewEntity>
+  ): Promise<NewUser | null>;
+  deleteOne(userId: Token): Promise<Entity | null>;
   setLike(reaction: IReaction): Promise<boolean | string>;
+  setPost(userId: Token, post: IPost): Promise<boolean | string>;
 }
 
 export interface IReactionRepository {
   create(userId: Token, postId: Token): Promise<IReaction | null>;
-  getOne(userId: string, postId: string): Promise<IReaction | null>;
+  getOne(obj: { userId?: string; postId?: string }): Promise<IReaction | null>;
   deleteOne(userId: string, postId: string): Promise<IReaction | null>;
 }

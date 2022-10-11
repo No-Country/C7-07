@@ -1,54 +1,49 @@
 import { Request, Response } from "express";
-import { UserRepository } from "../../models/repository/user/UserRepository";
 import { IMessage } from "../../interfaces/IMessage";
-import { IUser } from "../../interfaces/IUser";
-import { verify, sign } from "jsonwebtoken";
-import { decryptPassword } from "../../utils/decryptPassword";
-import Print from "../../utils/Print";
-
-const User = new UserRepository();
-const print = new Print();
+import { sign } from "jsonwebtoken";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
+import { IBusiness, ITraveler, IUser } from "../../interfaces/IUser";
 
 export const login = async (
-  req: Request & { token: string },
+  req: Request & { token: string; payload: IUser },
   res: Response
 ) => {
-  let payload;
   const { email, password } = req.query as Pick<IUser, "email" | "password">;
-  const { token } = req;
-
+  const { payload, token } = req;
+  let correctPayload;
   try {
-    if (token) {
-      const { email, id, password, alias, name, userType } = verify(
-        token,
-        process.env.PRIVATE_KEY
-      ) as {
-        password: string;
-        alias: string;
-        email: string;
-        name: string;
-        userType: string;
-        id: string;
+    if (req.payload && token) {
+      correctPayload = {
+        name: payload.name,
+        alias: payload.alias,
+        email: payload.email,
+        password: payload.password,
+        userType: payload.userType,
+        id: payload.id,
       };
-      payload = { email, id, password, alias, name, userType };
     } else {
-      payload = { email, password };
+      correctPayload = { email, password };
     }
-    console.log(payload);
-    const user = await User.getOne(payload);
+    if ((!token || !payload) && (!email || !password)) throw "Bad Credentials";
+
+    const user =
+      (await TravelerRepository.getOne(correctPayload as ITraveler)) ||
+      (await AgencyRepository.getOne(correctPayload as IBusiness));
+
+    if (!user) throw "Not user founded";
 
     const newToken = sign(
       {
-        ...payload,
+        ...correctPayload,
         alias: user.alias,
         name: user.name,
         userType: user.userType,
         id: user.id,
       },
-      process.env.PRIVATE_KEY,
-      {
-        expiresIn: "5min",
-      }
+      process.env.PRIVATE_KEY
     );
 
     res.status(200).json({

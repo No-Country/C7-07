@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { IMessage } from "src/interfaces/IMessage";
-import { IPost } from "src/interfaces/IPost";
-import { Token } from "src/interfaces/Token";
+import { IMessage } from "../../interfaces/IMessage";
+import { IPost } from "../../interfaces/IPost";
+import { IUser } from "../../interfaces/IUser";
+import { Token } from "../../interfaces/Token";
 import PostRepository from "../../models/repository/posts/PostRepository";
 import Print from "../../utils/Print";
 
@@ -10,12 +11,14 @@ const print = new Print();
 type EditPost = {
   params: {
     postId: Token;
-    userId: Token;
   };
   body: Omit<IPost, "owner">;
 };
 
-export const editPost = async (req: Request, res: Response) => {
+export const editPost = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
   const {
     amountComments,
     amountReactions,
@@ -25,7 +28,8 @@ export const editPost = async (req: Request, res: Response) => {
     media,
     creationDate,
   } = req.body as EditPost["body"];
-  const { postId, userId } = req.params as EditPost["params"];
+  const { id } = req.payload;
+  const { postId } = req.params as EditPost["params"];
   try {
     const post = await PostRepository.editPost(postId, {
       amountComments,
@@ -35,7 +39,7 @@ export const editPost = async (req: Request, res: Response) => {
       reactions,
       media,
       creationDate,
-      owner: userId,
+      owner: id,
     });
     res.status(200).json({
       code: 200,

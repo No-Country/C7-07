@@ -1,15 +1,24 @@
 import { Request, Response } from "express";
+import { IUser } from "src/interfaces/IUser";
 import { IMessage } from "../../interfaces/IMessage";
-import { NewUser } from "../../interfaces/IRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
 import Print from "../../utils/Print";
 
-const User = new UserRepository();
 const print = new Print();
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const getAllUsers = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
+  const { userType } = req.payload;
   try {
-    const users = await User.getAllUsers();
+    const users = await (userType === "traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).getAll();
     res.status(200).json({
       code: 200,
       message: `Users founded: ${users?.length ?? 0}`,
