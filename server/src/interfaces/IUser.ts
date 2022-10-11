@@ -1,3 +1,4 @@
+import { IReaction } from "./IReaction";
 import { Token } from "./Token";
 export interface IUser {
   id?: string;
@@ -6,7 +7,7 @@ export interface IUser {
   password: string;
   alias: string;
   posts: Array<Token>;
-  reactions: Array<Token>;
+  reactions: Array<IReaction | string>;
   userType: string;
 }
 

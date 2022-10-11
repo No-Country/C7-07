@@ -12,7 +12,7 @@ const PostSchema = new Schema<IPost>({
     type: String,
   },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comments", default: [] }],
-  reactions: [{ type: Schema.Types.ObjectId, ref: "Reactions", default: [] }],
+  reactions: [{ type: Schema.Types.ObjectId, ref: "Reaction", default: [] }],
   amountReactions: {
     type: Number,
     default: 0,

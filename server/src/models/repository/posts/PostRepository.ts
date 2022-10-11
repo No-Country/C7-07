@@ -1,19 +1,15 @@
-import { Model } from "mongoose";
+import { Model, PopulateOption, PopulateOptions } from "mongoose";
+import { IReaction } from "src/interfaces/IReaction";
 import { RequestBodyCreatePost } from "src/interfaces/IRequest";
 import { IPost } from "../../../interfaces/IPost";
 import { IPostsRepository } from "../../../interfaces/IRepository";
 import { Token } from "../../../interfaces/Token";
 import Print from "../../../utils/Print";
-import { reactionModel } from "../reaction/ReactionModel";
 import { PostModel } from "./PostsModel";
 const print = new Print();
 
 class PostReposiory implements IPostsRepository {
-  private post: typeof Model<IPost>;
-
-  constructor() {
-    this.post = PostModel;
-  }
+  private post: Model<IPost> = PostModel;
 
   async createPost(data: RequestBodyCreatePost): Promise<IPost | null> {
     try {
@@ -41,9 +37,18 @@ class PostReposiory implements IPostsRepository {
     IPost<Ret>[] | null
   > {
     try {
-      const posts = (await this.post
-        .find()
-        .populate("owner", ["name", "id"])) as IPost<Ret>[];
+      const posts = (await this.post.find().populate([
+        {
+          path: "owner",
+          model: "User",
+          select: ["name", "alias"],
+        },
+        {
+          path: "reactions",
+          model: "Reaction",
+          select: "owner",
+        },
+      ] as PopulateOptions[])) as IPost<Ret>[];
       return posts;
     } catch (err) {
       print.red(
@@ -74,7 +79,6 @@ class PostReposiory implements IPostsRepository {
   async getByPostId(userId: Token, postId: Token): Promise<IPost | null> {
     try {
       const post = await this.post.findOne({ owner: userId, _id: postId });
-      print.blue(`${post}`);
       return post;
     } catch (err) {
       print.blue(err);
@@ -110,44 +114,6 @@ class PostReposiory implements IPostsRepository {
     }
   }
 
-  async react(
-    reactionerId: Token,
-    postId: Token,
-    data: IPost
-  ): Promise<IPost | null> {
-    const { owner, ...postData } = data;
-    let react;
-    try {
-      const reaction = await reactionModel.findOne({ owner: reactionerId });
-      if (!reaction) {
-        const newReaction = new reactionModel({
-          owner: reactionerId,
-          post: postId,
-        });
-        react = await newReaction.save();
-      }
-
-      data.amountReactions++;
-      data.reactions.push(react);
-      const post = await this.post.findOneAndUpdate(
-        { owner, _id: postId },
-        postData,
-        {
-          new: true,
-        }
-      );
-      return post;
-    } catch (err) {
-      print.red(
-        `\rError:\n + ${print.repeat(
-          "-",
-          10
-        )} Method: editPost in PostRepository ${print.repeat("-", 10)}\n`
-      );
-      return null;
-    }
-  }
-
   async deleteOne(ownerId: Token, postId: Token): Promise<IPost | null> {
     try {
       const post = await this.post.findOneAndDelete({
@@ -163,6 +129,28 @@ class PostReposiory implements IPostsRepository {
         )} Method: deleteOne in PostRepository ${print.repeat("-", 10)}\n`
       );
       return null;
+    }
+  }
+
+  async setLike(reaction: IReaction): Promise<boolean> {
+    try {
+      const post = await this.post.findOne({
+        id: reaction.post,
+        owner: reaction.owner,
+      });
+      if (!post) throw new Error("");
+      if (post.reactions.includes(reaction.id)) {
+        const reactionIdx = post.reactions.indexOf(reaction.id);
+        post.reactions.splice(reactionIdx);
+      } else {
+        post.reactions.push(reaction);
+      }
+      post.amountReactions = post.reactions.length;
+      await post.save();
+      return true;
+    } catch (error) {
+      print.red(error);
+      return false;
     }
   }
 }

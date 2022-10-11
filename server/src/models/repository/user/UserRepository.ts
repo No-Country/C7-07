@@ -4,6 +4,7 @@ import { IUser } from "../../../interfaces/IUser";
 import { IUserRepository, NewUser } from "../../../interfaces/IRepository";
 import Print from "../../../utils/Print";
 import { Token } from "src/interfaces/Token";
+import { IReaction } from "src/interfaces/IReaction";
 
 const print = new Print();
 
@@ -130,6 +131,23 @@ export class UserRepository implements IUserRepository {
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
       return null;
+    }
+  }
+
+  async setLike(reaction: IReaction): Promise<boolean> {
+    try {
+      const user = await this._repository.findById(reaction.owner);
+      if (user.reactions.includes(reaction.id)) {
+        const reactionIdx = user.reactions.indexOf(reaction.id);
+        user.reactions.splice(reactionIdx);
+      } else {
+        user.reactions.push(reaction);
+      }
+      await user.save();
+      return true;
+    } catch (error) {
+      print.red(error);
+      return false;
     }
   }
 }

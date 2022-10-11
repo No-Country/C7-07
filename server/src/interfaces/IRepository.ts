@@ -1,4 +1,5 @@
 import { IPost } from "./IPost";
+import { IReaction } from "./IReaction";
 import { IUser } from "./IUser";
 import { Token } from "./Token";
 
@@ -10,6 +11,7 @@ export interface IPostsRepository extends IRepository {
   createPost(data: IPost): Promise<IPost | null>;
   editPost(postId: Token, data: IPost): Promise<IPost | null>;
   deleteOne(userId: Token, postId: Token): Promise<IPost | null>;
+  setLike(reaction: IReaction): Promise<boolean>;
 }
 
 export type NewUser = Omit<IUser, "posts" | "reactions">;
@@ -20,4 +22,9 @@ export interface IUserRepository {
   createUser(data: NewUser): Promise<IUser | null>;
   editUser(userId: Token, data: NewUser): Promise<NewUser | null>;
   deleteOne(userId: Token): Promise<IUser | null>;
+  setLike(reaction: IReaction): Promise<boolean>;
+}
+
+export interface IReactionRepository {
+  create(userId: Token, postId: Token): Promise<IReaction | null>;
 }

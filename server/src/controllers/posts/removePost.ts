@@ -1,6 +1,8 @@
+import { Request, Response } from "express";
 import { Token } from "src/interfaces/Token";
 import PostRepository from "../../models/repository/posts/PostRepository";
 import Print from "../../utils/Print";
+import { IMessage } from "../../interfaces/IMessage";
 
 const print = new Print();
 
@@ -9,13 +11,16 @@ type DeletePostParams = {
   postId: Token;
 };
 
-export const deletePostByUserId = async ({
-  postId,
-  userId,
-}: DeletePostParams) => {
+export const deletePostByUserId = async (req: Request, res: Response) => {
+  const { userId, postId } = req.params;
   try {
     const post = await PostRepository.deleteOne(userId, postId);
-    return post;
+    res.status(200).json({
+      code: 200,
+      status: "OK",
+      data: post,
+      message: "Post Deleted!",
+    } as IMessage);
   } catch (error) {
     print.red(
       `\rError:\n${print.repeat(
@@ -26,6 +31,11 @@ export const deletePostByUserId = async ({
         10
       )}`
     );
-    throw error;
+    res.status(200).json({
+      code: 200,
+      status: "OK",
+      data: null,
+      message: "Post Deleted!",
+    } as IMessage);
   }
 };
