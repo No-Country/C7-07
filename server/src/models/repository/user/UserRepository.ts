@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, PopulateOptions } from "mongoose";
 import { UserModel } from "./UserModel";
 import { IUser } from "../../../interfaces/IUser";
 import { IUserRepository, NewUser } from "../../../interfaces/IRepository";
@@ -10,6 +10,7 @@ const print = new Print();
 
 export class UserRepository implements IUserRepository {
   private _repository: Model<IUser> = UserModel;
+  populateFields: PopulateOptions | PopulateOptions[] | undefined;
 
   async createUser({
     name,
@@ -45,6 +46,7 @@ export class UserRepository implements IUserRepository {
   async getUserById(userId: string): Promise<IUser | null> {
     try {
       const user = await this._repository.findById(userId);
+      if (user && this.populateFields) user.populate(this.populateFields);
       return user;
     } catch (e) {
       print.red(
