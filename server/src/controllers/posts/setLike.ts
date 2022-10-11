@@ -3,7 +3,6 @@ import PostRepository from "../../models/repository/posts/PostRepository";
 import { UserRepository } from "../../models/repository/user/UserRepository";
 import { ReactionRepository } from "../../models/repository/reaction/ReactionRepository";
 import { IMessage } from "../../interfaces/IMessage";
-import { IReaction } from "../../interfaces/IReaction";
 
 const User = new UserRepository();
 const Reaction = new ReactionRepository();

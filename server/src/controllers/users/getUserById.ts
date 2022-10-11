@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { IMessage } from "../../interfaces/IMessage";
-import { NewUser } from "../../interfaces/IRepository";
 import { UserRepository } from "../../models/repository/user/UserRepository";
 import Print from "../../utils/Print";
 
