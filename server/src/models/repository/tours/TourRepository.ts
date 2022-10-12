@@ -1,81 +1,75 @@
+import { Model, PopulateOptions } from "mongoose";
 import { TourModel } from "./TourModel";
-import { ITourRepository } from "../../../interfaces/IRepository";
+import { IToursRepository } from "../../../interfaces/IRepository";
 import { ITour } from "src/interfaces/ITour";
 
-export class TourRepository implements ITourRepository {
-  private _repository = TourModel;
+export class TourRepository implements IToursRepository {
+  private _repository: Model<ITour> = TourModel;
+  populateOptions: PopulateOptions[] | PopulateOptions;
 
-  async getAllTours(): Promise<ITour[]> {
-    try {
-      const tours = await this._repository.find().populate("agency");
-      return tours;
-    } catch (error) {
-      throw error;
-    }
-  }
-  async getToursByAgencyId(agencyId: string): Promise<Array<ITour>> {
+  async getAll(): Promise<ITour[]> {
     try {
       const tours = await this._repository
-        .find({
-          agency: agencyId,
-        })
-        .populate("agency");
+        .find()
+        .populate(this.populateOptions);
       return tours;
     } catch (error) {
       throw error;
     }
   }
-
-  async getTourByAgencyId(agencyId: string, tourId: string): Promise<ITour> {
+  async getAllByAgencyId(agencyId: string): Promise<ITour[]> {
+    try {
+      const tours = await this._repository
+        .find({ id: agencyId })
+        .populate(this.populateOptions);
+      return tours;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async getById(tourId: string): Promise<ITour> {
     try {
       const tour = await this._repository
-        .findOne({
-          id: tourId,
-          agency: agencyId,
-        })
-        .populate("agency");
+        .findById({ id: tourId })
+        .populate(this.populateOptions);
       return tour;
     } catch (error) {
       throw error;
     }
   }
-  async getOne<Type>(fields: Type): Promise<ITour> {
+  async create(data: Omit<ITour, "id">): Promise<ITour> {
     try {
-      const tour = this._repository.findOne({ fields }).populate("agency");
+      const tour = await this._repository.create(data);
       return tour;
     } catch (error) {
       throw error;
     }
   }
-  async createTour<Type>(data: Type): Promise<ITour> {
-    try {
-      const tour = new this._repository(data);
-      return tour;
-    } catch (error) {
-      throw error;
-    }
-  }
-  async editTour<NewType>(
+  async edit(
     agencyId: string,
     tourId: string,
-    data: NewType
+    data: Omit<ITour, "id">
   ): Promise<ITour> {
     try {
       const tour = await this._repository
-        .findOneAndUpdate({ id: tourId, agency: agencyId }, data, {
-          new: true,
-        })
-        .populate("agency");
+        .findOneAndUpdate(
+          {
+            id: tourId,
+            agency: agencyId,
+          },
+          data,
+          { new: true }
+        )
+        .populate(this.populateOptions);
 
-      await tour.save();
       return tour;
     } catch (error) {
       throw error;
     }
   }
-  async deleteTour(agencyId: string, tourId: string): Promise<ITour> {
+  async delete(agencyId: string, tourId: string): Promise<ITour> {
     try {
-      const tour = this._repository.findOneAndRemove({
+      const tour = await this._repository.findOneAndDelete({
         id: tourId,
         agency: agencyId,
       });
