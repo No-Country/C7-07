@@ -29,7 +29,7 @@ function MenuNavBar() {
       </MenuButton>
 
       <MenuList zIndex={10}>
-        <Link to={"perfil"}>
+        <Link to={"profile"}>
           <MenuItem
             display={"flex"}
             justifyContent="space-between"

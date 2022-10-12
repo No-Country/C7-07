@@ -47,7 +47,7 @@ function Profile() {
           <Box flex={1}>
             <ChakraLink
               as={RouterLink}
-              to="/perfil"
+              to="/profile"
               w={["full", "full", "full"]}
               flex={1}
               h={["50px", "50px", "50px"]}
@@ -68,7 +68,7 @@ function Profile() {
 
             <ChakraLink
               as={RouterLink}
-              to={"/perfil/password"}
+              to={"/profile/password"}
               h={["50px", "50px", "50px"]}
               display={"flex"}
               alignItems={"center"}
