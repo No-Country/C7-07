@@ -1,21 +1,22 @@
 import { Request, Response } from "express";
+import { ITraveler } from "src/interfaces/IUser";
 import { IMessage } from "../../interfaces/IMessage";
 import { NewUser } from "../../interfaces/IRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import TravelerRepository from "../../models/repository/user/TravelerRepository";
 import Print from "../../utils/Print";
 
-const User = new UserRepository();
 const print = new Print();
 
 export const createUser = async (req: Request, res: Response) => {
-  const { alias, name, userType, email, password } = req.body as NewUser;
+  const { alias, name, userType, email, password } = req.body as ITraveler;
   try {
-    const user = await User.createUser({
+    const user = await TravelerRepository.create({
       name,
       alias,
       email,
       password,
       userType,
+      countriesILike: [],
     });
     res.status(200).json({
       code: 200,

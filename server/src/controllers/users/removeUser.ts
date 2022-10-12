@@ -1,16 +1,24 @@
 import { Request, Response } from "express";
+import { IUser } from "../../interfaces/IUser";
 import { IMessage } from "../../interfaces/IMessage";
-import { NewUser } from "../../interfaces/IRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
 import Print from "../../utils/Print";
 
-const User = new UserRepository();
 const print = new Print();
 
-export const removeUser = async (req: Request, res: Response) => {
-  const { userId } = req.params;
+export const removeUser = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
+  const { userType, id } = req.payload;
   try {
-    const user = await User.deleteOne(userId);
+    const user = await (userType === "Traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).deleteOne(id);
     res.status(200).json({
       code: 200,
       message: "User deleted",

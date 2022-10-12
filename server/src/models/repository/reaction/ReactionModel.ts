@@ -2,8 +2,8 @@ import { Schema, model } from "mongoose";
 import { IReaction } from "../../../interfaces/IReaction";
 
 const ReactionSchema = new Schema<IReaction>({
-  owner: [{ ref: "User", type: Schema.Types.ObjectId }],
-  post: [{ ref: "Post", type: Schema.Types.ObjectId }],
+  owner: { ref: "User", type: Schema.Types.ObjectId },
+  post: { ref: "Post", type: Schema.Types.ObjectId },
 });
 
 ReactionSchema.set("toJSON", {
@@ -14,4 +14,4 @@ ReactionSchema.set("toJSON", {
   },
 });
 
-export const reactionModel = model<IReaction>("Reaction", ReactionSchema);
+export const ReactionModel = model<IReaction>("Reaction", ReactionSchema);

@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
+import { IUser } from "../../interfaces/IUser";
 import { IMessage } from "../../interfaces/IMessage";
 import { IPost } from "../../interfaces/IPost";
 import PostRepository from "../../models/repository/posts/PostRepository";
-import { UserRepository } from "../../models/repository/user/UserRepository";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user/";
 import Print from "../../utils/Print";
 
 const print = new Print();
-const User = new UserRepository();
 
-export const createPost = async (req: Request, res: Response) => {
+export const createPost = async (
+  req: Request & { token: string; payload: IUser },
+  res: Response
+) => {
   const { description, media } = req.body as Omit<
     IPost,
     | "owner"
@@ -18,18 +24,21 @@ export const createPost = async (req: Request, res: Response) => {
     | "reactions"
     | "creationDate"
   >;
-  const { userId } = req.params;
+  const { id, userType } = req.payload;
 
   try {
-    const newPost = await PostRepository.createPost({
-      description,
-      owner: userId,
-      media,
-    });
-    const user = await User.setPost(
-      userId,
-      (newPost as IPost & { id: string }).id
+    const newPost = await PostRepository.createPost(
+      {
+        description,
+        owner: id,
+        media,
+      },
+      userType
     );
+    const user = await (userType === "Traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).setPost(id, newPost);
     res.status(200).json({
       code: 200,
       message: "Post saved!",
