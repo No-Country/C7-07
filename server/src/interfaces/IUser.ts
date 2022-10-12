@@ -1,4 +1,5 @@
 import { IReaction } from "./IReaction";
+import { ITour } from "./ITour";
 import { Token } from "./Token";
 export interface IUser {
   id?: string;
@@ -18,6 +19,8 @@ export interface ITraveler extends IUser {
 
 export interface IAgency extends IUser {
   userType: "Agency";
+  tours: Array<ITour | string>;
+  description?: string;
   contacts: {
     whatsapp: string;
   };

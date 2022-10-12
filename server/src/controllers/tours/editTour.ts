@@ -1,24 +1,21 @@
 import { Request, Response } from "express";
 import { TourRepository } from "../../models/repository/tours/TourRepository";
 import { IMessage } from "../../interfaces/IMessage";
-import { ITour } from "src/interfaces/ITour";
+import { ITour } from "../../interfaces/ITour";
+import { IAgency } from "../../interfaces/IUser";
+import { AgencyRepository } from "../../models/repository/user";
 
 const Tour = new TourRepository();
 
-type PickedBody = Pick<
-  ITour,
-  | "experience"
-  | "apartament"
-  | "country"
-  | "description"
-  | "mainImages"
-  | "personPriceUsd"
-  | "stops"
-  | "title"
->;
+type PickedBody = Omit<ITour, "id">;
 
-export const editTour = async (req: Request, res: Response) => {
-  const { agencyId, tourId } = req.params;
+export const editTour = async (
+  req: Request & { token: string; payload: IAgency },
+  res: Response
+) => {
+  const { id, userType } = req.payload;
+  if (userType.toLowerCase() !== "agency") throw "Authentication Error.";
+  const { tourId } = req.params;
   const {
     apartament,
     country,
@@ -28,9 +25,19 @@ export const editTour = async (req: Request, res: Response) => {
     personPriceUsd,
     stops,
     title,
+    agencies: $agencies,
   } = req.body as PickedBody;
   try {
-    const tour = await Tour.editTour<Omit<ITour, "id">>(agencyId, tourId, {
+    const agencies = await AgencyRepository.getManyByTourId(tourId);
+    let _agencies = ($agencies as IAgency[]).map(
+      (agency, idx) =>
+        agency.name === agencies[idx].name &&
+        agency.email !== agencies[idx].email &&
+        agencies[idx]
+    );
+
+    _agencies = _agencies.filter((agency) => agency !== undefined);
+    const tour = await Tour.edit(tourId, {
       apartament,
       country,
       description,
@@ -39,7 +46,7 @@ export const editTour = async (req: Request, res: Response) => {
       personPriceUsd,
       stops,
       title,
-      agency: [agencyId],
+      agencies: _agencies,
     });
     res.status(200).json({
       message: `Tours edited!`,

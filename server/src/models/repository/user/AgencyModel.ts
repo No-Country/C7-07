@@ -39,7 +39,20 @@ const BusinessSchema = new Schema<IAgency>(
       required: true,
     },
 
-    // contacts: [{ type: Schema.Types.String }],
+    description: {
+      type: String,
+      default: "",
+    },
+    tours: [
+      {
+        type: Schema.Types.ObjectId,
+      },
+    ],
+    contacts: [
+      {
+        whatsapp: String,
+      },
+    ],
   },
   {
     versionKey: false,

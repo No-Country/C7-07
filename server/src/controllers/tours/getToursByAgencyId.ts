@@ -7,7 +7,7 @@ const Tour = new TourRepository();
 export const getToursByAgencyId = async (req: Request, res: Response) => {
   const { agencyId } = req.params;
   try {
-    const tours = await Tour.getToursByAgencyId(agencyId);
+    const tours = await Tour.getAllByAgencyId(agencyId);
     res.status(200).json({
       message: `Tours founed: ${tours?.length ?? 0}`,
       code: 200,

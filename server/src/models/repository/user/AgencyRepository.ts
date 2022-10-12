@@ -5,6 +5,7 @@ import { BusinessModel } from "./AgencyModel";
 import Print from "../../../utils/Print";
 import { IReaction } from "../../../interfaces/IReaction";
 import { IPost } from "../../../interfaces/IPost";
+import { ITour } from "../../../interfaces/ITour";
 
 const print = new Print();
 
@@ -41,6 +42,16 @@ class AgencyRepository implements IUserRepository<IAgency> {
       return null;
     }
   }
+
+  async getManyByTourId(tourId: string): Promise<IAgency[]> {
+    try {
+      const agencies = this._repository.find({ tours: tourId });
+      return agencies;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getOne(fields: Partial<IAgency>): Promise<IAgency> {
     try {
       const user = await this._repository.findOne(fields);
@@ -140,6 +151,16 @@ class AgencyRepository implements IUserRepository<IAgency> {
       return true;
     } catch (error) {
       return false;
+    }
+  }
+  async setTour(userId: string, tour: ITour): Promise<string | boolean> {
+    try {
+      const user = await this._repository.findById(userId);
+      user.tours.push(tour);
+      await user.save();
+      return true;
+    } catch (error) {
+      throw error;
     }
   }
 }

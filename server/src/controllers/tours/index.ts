@@ -1,5 +1,5 @@
 import { getAllTours } from "./getAllTours";
-import { getTourByAgencyId } from "./getTourByAgencyId";
+import { getTourById } from "./getTourByAgencyId";
 import { getToursByAgencyId } from "./getToursByAgencyId";
 import { createTour } from "./createTour";
 import { editTour } from "./editTour";
@@ -7,7 +7,7 @@ import { deleteTour } from "./deleteTour";
 
 export {
   getAllTours,
-  getTourByAgencyId,
+  getTourById,
   getToursByAgencyId,
   createTour,
   editTour,

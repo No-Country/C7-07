@@ -22,12 +22,8 @@ export interface IToursRepository extends IRepository {
   getAll(): Promise<Array<ITour> | null>;
   getAllByAgencyId(agencyId: Token): Promise<Array<ITour> | null>;
   getById(tourId: Token): Promise<ITour | null>;
-  create(data: Omit<ITour, "id">): Promise<ITour | null>;
-  edit(
-    agencyId: Token,
-    tourId: Token,
-    data: Omit<ITour, "id">
-  ): Promise<ITour | null>;
+  create(data: Omit<ITour, "id" | "agency">): Promise<ITour | null>;
+  edit(tourId: Token, data: Omit<ITour, "id">): Promise<ITour | null>;
   delete(agencyId: Token, tourId: Token, postId: Token): Promise<ITour | null>;
   // setLike(reaction: IReaction): Promise<boolean | string>;
 }

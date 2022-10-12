@@ -29,7 +29,7 @@ export interface ITour {
   apartament: number;
   country: string;
   experience: Array<Experience>;
-  agency: Array<IAgency | string>;
+  agencies: Array<IAgency | string>;
   personPriceUsd: string;
   mainImages: Array<string>;
   stops: Array<Stop>;
