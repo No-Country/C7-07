@@ -16,7 +16,7 @@ export const editUser = async (
   const { userType, id } = req.payload;
   const payload = req.body;
   try {
-    const user = await (userType === "traveler"
+    const user = await (userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).edit(id, payload);

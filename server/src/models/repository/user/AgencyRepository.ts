@@ -1,6 +1,6 @@
 import { Model, PopulateOptions } from "mongoose";
 import { IUserRepository } from "../../../interfaces/IRepository";
-import { IBusiness } from "../../../interfaces/IUser";
+import { IAgency } from "../../../interfaces/IUser";
 import { BusinessModel } from "./AgencyModel";
 import Print from "../../../utils/Print";
 import { IReaction } from "../../../interfaces/IReaction";
@@ -8,11 +8,11 @@ import { IPost } from "../../../interfaces/IPost";
 
 const print = new Print();
 
-class AgencyRepository implements IUserRepository<IBusiness> {
-  private _repository: Model<IBusiness> = BusinessModel;
+class AgencyRepository implements IUserRepository<IAgency> {
+  private _repository: Model<IAgency> = BusinessModel;
   populateFields: PopulateOptions | PopulateOptions[] | undefined = undefined;
 
-  async getAll(): Promise<IBusiness[]> {
+  async getAll(): Promise<IAgency[]> {
     try {
       const users = await this._repository.find();
       return users;
@@ -26,7 +26,7 @@ class AgencyRepository implements IUserRepository<IBusiness> {
       return null;
     }
   }
-  async getById(userId: string): Promise<IBusiness> {
+  async getById(userId: string): Promise<IAgency> {
     try {
       const user = await this._repository.findById(userId);
       if (user && this.populateFields) user.populate(this.populateFields);
@@ -41,7 +41,7 @@ class AgencyRepository implements IUserRepository<IBusiness> {
       return null;
     }
   }
-  async getOne(fields: Partial<IBusiness>): Promise<IBusiness> {
+  async getOne(fields: Partial<IAgency>): Promise<IAgency> {
     try {
       const user = await this._repository.findOne(fields);
       if (user && this.populateFields) user.populate(this.populateFields);
@@ -56,7 +56,7 @@ class AgencyRepository implements IUserRepository<IBusiness> {
       return null;
     }
   }
-  async create<NewEntity = IBusiness>(data: NewEntity): Promise<IBusiness> {
+  async create<NewEntity = IAgency>(data: NewEntity): Promise<IAgency> {
     try {
       const user = new this._repository(data);
       await user.save();
@@ -73,12 +73,12 @@ class AgencyRepository implements IUserRepository<IBusiness> {
       return null;
     }
   }
-  async edit<NewEntity = IBusiness>(
+  async edit<NewEntity = IAgency>(
     userId: string,
     data: Partial<NewEntity>
-  ): Promise<IBusiness> {
+  ): Promise<IAgency> {
     try {
-      const updatedUser = await this._repository.findByIdAndUpdate<IBusiness>(
+      const updatedUser = await this._repository.findByIdAndUpdate<IAgency>(
         userId,
         data,
         { new: true }
@@ -95,7 +95,7 @@ class AgencyRepository implements IUserRepository<IBusiness> {
     }
   }
 
-  async deleteOne(userId: string): Promise<IBusiness> {
+  async deleteOne(userId: string): Promise<IAgency> {
     try {
       const user = await this._repository.findByIdAndDelete(userId);
       return user;

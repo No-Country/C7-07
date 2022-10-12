@@ -12,12 +12,12 @@ export interface IUser {
 }
 
 export interface ITraveler extends IUser {
-  userType: "traveler";
+  userType: "Traveler";
   countriesILike: Array<string>;
 }
 
-export interface IBusiness extends IUser {
-  userType: "business";
+export interface IAgency extends IUser {
+  userType: "Agency";
   contacts: {
     whatsapp: string;
   };

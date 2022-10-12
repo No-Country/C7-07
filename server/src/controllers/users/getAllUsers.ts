@@ -15,7 +15,7 @@ export const getAllUsers = async (
 ) => {
   const { userType } = req.payload;
   try {
-    const users = await (userType === "traveler"
+    const users = await (userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).getAll();

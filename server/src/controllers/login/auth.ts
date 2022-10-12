@@ -5,7 +5,7 @@ import {
   AgencyRepository,
   TravelerRepository,
 } from "../../models/repository/user";
-import { IBusiness, ITraveler, IUser } from "../../interfaces/IUser";
+import { IAgency, ITraveler, IUser } from "../../interfaces/IUser";
 
 export const login = async (
   req: Request & { token: string; payload: IUser },
@@ -31,7 +31,7 @@ export const login = async (
 
     const user =
       (await TravelerRepository.getOne(correctPayload as ITraveler)) ||
-      (await AgencyRepository.getOne(correctPayload as IBusiness));
+      (await AgencyRepository.getOne(correctPayload as IAgency));
 
     if (!user) throw "Not user founded";
 

@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 import mongooseUniqueValidator from "mongoose-unique-validator";
-import { IBusiness } from "../../../interfaces/IUser";
+import { IAgency } from "../../../interfaces/IUser";
 
-const BusinessSchema = new Schema<IBusiness>(
+const BusinessSchema = new Schema<IAgency>(
   {
     name: {
       type: String,
@@ -30,7 +30,7 @@ const BusinessSchema = new Schema<IBusiness>(
     reactions: [{ ref: "Reaction", type: Schema.Types.ObjectId, default: [] }],
     userType: {
       type: String,
-      enum: ["traveler", "business"],
+      enum: ["Traveler", "Agency"],
       required: true,
     },
 
@@ -39,7 +39,7 @@ const BusinessSchema = new Schema<IBusiness>(
       required: true,
     },
 
-    contacts: [{ type: Schema.Types.String }],
+    // contacts: [{ type: Schema.Types.String }],
   },
   {
     versionKey: false,
@@ -54,4 +54,4 @@ BusinessSchema.set("toJSON", {
 });
 BusinessSchema.plugin(mongooseUniqueValidator);
 
-export const BusinessModel = model<IBusiness>("Agency", BusinessSchema);
+export const BusinessModel = model<IAgency>("Agency", BusinessSchema);

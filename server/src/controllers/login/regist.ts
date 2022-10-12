@@ -13,13 +13,11 @@ const print = new Print();
 export const regist = async (req: Request, res: Response) => {
   if (!process.env.PRIVATE_KEY) throw "NO ENV VAR SETTED";
   const payload = req.body as IUser;
-  console.log({ key: process.env.PRIVATE_KEY, body: req.body, payload });
   try {
-    const user = await (payload.userType === "traveler"
+    const user = await (payload.userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).create(payload);
-    console.log(user);
     const token = sign({ ...payload, id: user.id }, process.env.PRIVATE_KEY);
     res.status(200).json({
       code: 200,

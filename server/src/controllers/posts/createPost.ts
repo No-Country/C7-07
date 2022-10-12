@@ -27,12 +27,15 @@ export const createPost = async (
   const { id, userType } = req.payload;
 
   try {
-    const newPost = await PostRepository.createPost({
-      description,
-      owner: id,
-      media,
-    });
-    const user = await (userType === "traveler"
+    const newPost = await PostRepository.createPost(
+      {
+        description,
+        owner: id,
+        media,
+      },
+      userType
+    );
+    const user = await (userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).setPost(id, newPost);

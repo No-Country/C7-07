@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { IPost } from "../../../interfaces/IPost";
 
-const PostSchema = new Schema<IPost>({
+const PostSchema = new Schema<IPost & { docModel: string }>({
   creationDate: {
     type: Date,
   },
@@ -24,14 +24,21 @@ const PostSchema = new Schema<IPost>({
   owner: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      required: true,
+      refPath: "docModel",
     },
   ],
+  docModel: {
+    type: String,
+    required: true,
+    enum: ["Traveler", "Agency"],
+  },
 });
 
 PostSchema.set("toJSON", {
   transform: (_, ret) => {
     ret.id = ret._id;
+    delete ret.docModel;
     delete ret._id;
     delete ret.__v;
   },

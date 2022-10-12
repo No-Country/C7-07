@@ -30,7 +30,7 @@ const TravelerSchema = new Schema<ITraveler>(
     reactions: [{ ref: "Reaction", type: Schema.Types.ObjectId, default: [] }],
     userType: {
       type: String,
-      enum: ["traveler", "business"],
+      enum: ["Traveler", "Agency"],
       required: true,
     },
 

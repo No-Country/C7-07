@@ -15,7 +15,7 @@ export const removeUser = async (
 ) => {
   const { userType, id } = req.payload;
   try {
-    const user = await (userType === "traveler"
+    const user = await (userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).deleteOne(id);

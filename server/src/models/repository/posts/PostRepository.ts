@@ -11,7 +11,10 @@ const print = new Print();
 class PostReposiory implements IPostsRepository {
   private post: Model<IPost> = PostModel;
 
-  async createPost(data: RequestBodyCreatePost): Promise<IPost | null> {
+  async createPost(
+    data: RequestBodyCreatePost,
+    userType: string
+  ): Promise<IPost | null> {
     try {
       const post = new this.post({
         ...data,
@@ -20,6 +23,7 @@ class PostReposiory implements IPostsRepository {
         amountComments: 0,
         amountReactions: 0,
         creationDate: new Date(),
+        docModel: userType,
       } as IPost & RequestBodyCreatePost);
       await post.save();
       return post;
@@ -39,14 +43,12 @@ class PostReposiory implements IPostsRepository {
     try {
       const posts = (await this.post.find().populate([
         {
-          path: "reactions",
-          model: "Reaction",
-          select: "owner",
+          path: "owner",
+          select: ["name", "alias", "userType"],
         },
       ] as PopulateOptions[])) as IPost<Ret>[];
       return posts;
     } catch (err) {
-      console.log(err);
       print.red(
         `\rError:\n + ${print.repeat(
           "-",
@@ -135,7 +137,7 @@ class PostReposiory implements IPostsRepository {
         id: reaction.post,
         owner: reaction.owner,
       });
-      if (!post) throw new Error("");
+      if (!post) throw new Error("Post not exists");
       if (post.reactions.includes(reaction.id)) {
         const reactionIdx = post.reactions.indexOf(reaction.id);
         post.reactions.splice(reactionIdx);
