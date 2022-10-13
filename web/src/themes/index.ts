@@ -1,11 +1,14 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const colors = {
-  brand1: {
-    900: "#1a365d",
-    800: "#153e75",
-    700: "#2a69ac",
-    600: "#000",
+export const theme = extendTheme({
+  colors: {
+    brand: {
+      500: "#4ED972",
+      700: "#24A745",
+    },
   },
-};
-export const theme = extendTheme({ colors });
+  fonts: {
+    heading: "Poppins, sans-serif",
+    body: "Poppins, sans-serif",
+  },
+});
