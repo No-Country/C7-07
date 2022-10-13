@@ -7,10 +7,8 @@ const print = new Print();
 
 export const getAllPostsByUserId = async (req: Request, res: Response) => {
   const { userId } = req.params;
-  print.blue(`Here`);
   try {
     const posts = await PostRepository.getAllByUserId(userId);
-    print.blue(`${posts}`);
     res.status(200).json({
       code: 200,
       message: "Post founded!",

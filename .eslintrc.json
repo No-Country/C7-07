@@ -5,7 +5,7 @@
       "jsx": true
     }
   },
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": [],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -25,6 +25,7 @@
     ],
     "react/react-in-jsx-scope": "off",
     "prefer-const": "warn",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-useless-catch": "off"
   }
 }

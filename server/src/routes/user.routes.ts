@@ -1,17 +1,17 @@
 import { Router } from "express";
+import { verifyToken } from "../middlewares/verifyToken";
 import {
-  createUser,
   editUser,
   getAllUsers,
   getUserById,
   removeUser,
 } from "../controllers/users";
+import { setPayload } from "../middlewares/setPayload";
 const router = Router();
 
-router.get("/", getAllUsers);
-router.get("/:userId", getUserById);
-router.post("/", createUser);
-router.put("/:userId", editUser);
-router.delete("/:userId", removeUser);
+router.get("/", verifyToken, setPayload, getAllUsers);
+router.get("/:userId", verifyToken, getUserById);
+router.put("/", verifyToken, setPayload, editUser);
+router.delete("/", verifyToken, setPayload, removeUser);
 
 export default router;
