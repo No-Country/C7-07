@@ -19,6 +19,7 @@ interface HeaderProps {
 }
 
 const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
+  creationDate = new Date(creationDate).toDateString();
   return (
     <Grid
       gap="6px 9px"
@@ -30,14 +31,20 @@ const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
       templateRows="35px 1fr"
       textAlign="start"
     >
-      <GridItem w="35px" h="35px" borderRadius="full" area="profile">
+      <GridItem
+        w="35px"
+        h="35px"
+        bgColor="#C7C5C5"
+        borderRadius="full"
+        area="profile"
+      >
         <Image src={profile} />
       </GridItem>
 
       <GridItem as={Grid} area="metadata">
         <Grid gap="4px">
           <Text fontSize="12">{name}</Text>
-          <Text fontSize="11">{creationDate.toLocaleDateString()}</Text>
+          <Text fontSize="11">{creationDate}</Text>
         </Grid>
       </GridItem>
 
