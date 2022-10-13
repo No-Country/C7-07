@@ -1,20 +1,22 @@
 import { Router } from "express";
 import {
   getAllTours,
-  getTourByAgencyId,
+  getTourById,
   getToursByAgencyId,
   createTour,
   editTour,
   deleteTour,
 } from "../controllers/tours";
+import { verifyToken } from "../middlewares/verifyToken";
+import { setPayload } from "../middlewares/setPayload";
 
 const router = Router();
 
-router.get("/", getAllTours);
-router.get("/:agencyId/:tourId", getTourByAgencyId);
-router.get("/:agencyId", getToursByAgencyId);
-router.post("/:agencyId", createTour);
-router.post("/:agencyId/:tourId", editTour);
-router.delete("/:agencyId/:tourId", deleteTour);
+router.get("/", verifyToken, getAllTours);
+router.get("/:agencyId/:tourId", verifyToken, getTourById);
+router.get("/:agencyId", verifyToken, getToursByAgencyId);
+router.post("/", verifyToken, setPayload, createTour);
+router.put("/:tourId", verifyToken, setPayload, editTour);
+router.delete("/:tourId", verifyToken, setPayload, deleteTour);
 
 export default router;

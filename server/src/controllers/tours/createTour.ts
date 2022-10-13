@@ -1,25 +1,21 @@
 import { Request, Response } from "express";
 import { TourRepository } from "../../models/repository/tours/TourRepository";
 import { IMessage } from "../../interfaces/IMessage";
-import { ITour } from "src/interfaces/ITour";
+import { ITour } from "../../interfaces/ITour";
+import { IAgency } from "../../interfaces/IUser";
+import { AgencyRepository } from "../../models/repository/user";
 
 const Tour = new TourRepository();
 
-type PickedBody = Pick<
-  ITour,
-  | "experience"
-  | "apartament"
-  | "country"
-  | "description"
-  | "mainImages"
-  | "personPriceUsd"
-  | "stops"
-  | "title"
-  | "agency"
->;
+type PickedBody = Omit<ITour, "id" | "agency">;
 
-export const createTour = async (req: Request, res: Response) => {
-  const { agencyId } = req.params;
+export const createTour = async (
+  req: Request & { token: string; payload: IAgency },
+  res: Response
+) => {
+  const { id, userType } = req.payload;
+  if (userType.toLowerCase() !== "agency")
+    throw "No Agency users can not create Tours.";
   const {
     apartament,
     country,
@@ -29,9 +25,11 @@ export const createTour = async (req: Request, res: Response) => {
     personPriceUsd,
     stops,
     title,
+    agencies,
   } = req.body as PickedBody;
   try {
-    const tour = await Tour.createTour<PickedBody>({
+    const agency = await AgencyRepository.getById(id);
+    const tour = await Tour.create({
       apartament,
       country,
       description,
@@ -40,8 +38,9 @@ export const createTour = async (req: Request, res: Response) => {
       personPriceUsd,
       stops,
       title,
-      agency: [agencyId],
+      agencies: [agency],
     });
+    await AgencyRepository.setTour(id, tour);
     res.status(200).json({
       message: `Tour created!`,
       code: 200,
@@ -49,7 +48,7 @@ export const createTour = async (req: Request, res: Response) => {
       data: tour,
     } as IMessage<typeof tour>);
   } catch (error) {
-    res.status(500).json({
+    res.status(404).json({
       message: error,
       code: 200,
       status: "ERROR",

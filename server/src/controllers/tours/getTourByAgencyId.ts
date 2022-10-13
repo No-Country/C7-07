@@ -4,10 +4,10 @@ import { IMessage } from "../../interfaces/IMessage";
 
 const Tour = new TourRepository();
 
-export const getTourByAgencyId = async (req: Request, res: Response) => {
-  const { agencyId, tourId } = req.params;
+export const getTourById = async (req: Request, res: Response) => {
+  const { tourId } = req.params;
   try {
-    const tour = await Tour.getTourByAgencyId(agencyId, tourId);
+    const tour = await Tour.getById(tourId);
     res.status(200).json({
       message: `Tour founed!`,
       code: 200,

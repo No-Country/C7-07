@@ -1,4 +1,4 @@
-import { IAgency } from "./IUsers";
+import { IAgency } from "./IUser";
 
 type Experience = {
   whatYouWillDo: Array<string>;

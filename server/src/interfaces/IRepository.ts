@@ -1,5 +1,6 @@
 import { IPost } from "./IPost";
 import { IReaction } from "./IReaction";
+import { ITour } from "./ITour";
 import { IUser } from "./IUser";
 import { Token } from "./Token";
 
@@ -15,6 +16,16 @@ export interface IPostsRepository extends IRepository {
   editPost(postId: Token, data: IPost): Promise<IPost | null>;
   deleteOne(userId: Token, postId: Token): Promise<IPost | null>;
   setLike(reaction: IReaction): Promise<boolean | string>;
+}
+
+export interface IToursRepository extends IRepository {
+  getAll(): Promise<Array<ITour> | null>;
+  getAllByAgencyId(agencyId: Token): Promise<Array<ITour> | null>;
+  getById(tourId: Token): Promise<ITour | null>;
+  create(data: Omit<ITour, "id" | "agency">): Promise<ITour | null>;
+  edit(tourId: Token, data: Omit<ITour, "id">): Promise<ITour | null>;
+  delete(agencyId: Token, tourId: Token, postId: Token): Promise<ITour | null>;
+  // setLike(reaction: IReaction): Promise<boolean | string>;
 }
 
 export type NewUser = Omit<IUser, "posts" | "reactions">;
