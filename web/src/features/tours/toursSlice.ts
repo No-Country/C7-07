@@ -8,6 +8,7 @@ export const loadTours = createAsyncThunk("tours/loadTours", async () => {
 
 export const toursSlice = createSlice({
   name: "tours",
+  reducers: {},
   initialState: {
     toursArray: [],
     isLoading: false,
@@ -22,7 +23,6 @@ export const toursSlice = createSlice({
       .addCase(loadTours.fulfilled, (state, action) => {
         state.isLoading = false;
         state.toursArray = action.payload;
-        
       })
       .addCase(loadTours.rejected, (state) => {
         state.isLoading = false;
@@ -31,7 +31,7 @@ export const toursSlice = createSlice({
   },
 });
 
-export const selectTours = (state) => state.tours.toursArray;
+export const selectTours = (state: any) => state.tours.toursArray;
 export const selectIsLoadingTours = (state) => state.tours.isLoading;
 export const selectHasErrorTours = (state) => state.tours.hasError;
 

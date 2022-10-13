@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { Carousel } from "../Carousel/Carousel";
 
-interface Props {
-  id: number;
+export interface Props {
+  id: string;
   country: string;
   title: string;
   personPriceUsd: number;

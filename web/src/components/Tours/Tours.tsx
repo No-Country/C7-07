@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Wrap, WrapItem, Flex, Spacer } from "@chakra-ui/react";
-import TourCard from "../TourCard/TourCard";
+import TourCard, { Props } from "../TourCard/TourCard";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectTours,
@@ -11,7 +11,7 @@ import {
 
 function Tours() {
   const dispatch = useDispatch();
-  const toursData = useSelector(selectTours);
+  const toursData = useSelector<[], []>(selectTours);
 
   useEffect(() => {
     dispatch(loadTours());
@@ -20,24 +20,16 @@ function Tours() {
   return (
     <Box bg="" py={5}>
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
-        {toursData?.map(
-          (tour: {
-            _id: React.Key | null | undefined;
-            country: string;
-            title: string;
-            personPriceUsd: number;
-            mainImages: string[];
-          }) => (
-            <TourCard
-              key={tour._id}
-              id={tour._id}
-              country={tour.country}
-              title={tour.title}
-              personPriceUsd={tour.personPriceUsd}
-              mainImages={tour.mainImages}
-            />
-          )
-        )}
+        {toursData?.map((tour: Props) => (
+          <TourCard
+            key={tour.id}
+            id={tour.id}
+            country={tour.country}
+            title={tour.title}
+            personPriceUsd={tour.personPriceUsd}
+            mainImages={tour.mainImages}
+          />
+        ))}
       </Box>
     </Box>
   );

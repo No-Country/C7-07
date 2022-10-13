@@ -1,3 +1,5 @@
+import { IAgency } from "./IUsers";
+
 type Experience = {
   whatYouWillDo: Array<string>;
   whatIncludes: Array<string>;
@@ -24,10 +26,11 @@ export interface ITour {
   id: string;
   title: string;
   description: string;
-  apartament: number;
+  region: string;
+  days: number;
   country: string;
   experience: Array<Experience>;
-  agency: Array<any>;
+  agency: Array<IAgency | string>;
   personPriceUsd: string;
   mainImages: Array<string>;
   stops: Array<Stop>;
