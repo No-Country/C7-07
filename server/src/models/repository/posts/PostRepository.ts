@@ -1,21 +1,20 @@
-import { Model } from "mongoose";
+import { Model, PopulateOptions } from "mongoose";
+import { IReaction } from "src/interfaces/IReaction";
 import { RequestBodyCreatePost } from "src/interfaces/IRequest";
 import { IPost } from "../../../interfaces/IPost";
 import { IPostsRepository } from "../../../interfaces/IRepository";
 import { Token } from "../../../interfaces/Token";
 import Print from "../../../utils/Print";
-import { reactionModel } from "../reaction/ReactionModel";
 import { PostModel } from "./PostsModel";
 const print = new Print();
 
 class PostReposiory implements IPostsRepository {
-  private post: typeof Model<IPost>;
+  private post: Model<IPost> = PostModel;
 
-  constructor() {
-    this.post = PostModel;
-  }
-
-  async createPost(data: RequestBodyCreatePost): Promise<IPost | null> {
+  async createPost(
+    data: RequestBodyCreatePost,
+    userType: string
+  ): Promise<IPost | null> {
     try {
       const post = new this.post({
         ...data,
@@ -24,6 +23,7 @@ class PostReposiory implements IPostsRepository {
         amountComments: 0,
         amountReactions: 0,
         creationDate: new Date(),
+        docModel: userType,
       } as IPost & RequestBodyCreatePost);
       await post.save();
       return post;
@@ -41,9 +41,12 @@ class PostReposiory implements IPostsRepository {
     IPost<Ret>[] | null
   > {
     try {
-      const posts = (await this.post
-        .find()
-        .populate("owner", ["name", "id"])) as IPost<Ret>[];
+      const posts = (await this.post.find().populate([
+        {
+          path: "owner",
+          select: ["name", "alias", "userType"],
+        },
+      ] as PopulateOptions[])) as IPost<Ret>[];
       return posts;
     } catch (err) {
       print.red(
@@ -74,7 +77,6 @@ class PostReposiory implements IPostsRepository {
   async getByPostId(userId: Token, postId: Token): Promise<IPost | null> {
     try {
       const post = await this.post.findOne({ owner: userId, _id: postId });
-      print.blue(`${post}`);
       return post;
     } catch (err) {
       print.blue(err);
@@ -110,44 +112,6 @@ class PostReposiory implements IPostsRepository {
     }
   }
 
-  async react(
-    reactionerId: Token,
-    postId: Token,
-    data: IPost
-  ): Promise<IPost | null> {
-    const { owner, ...postData } = data;
-    let react;
-    try {
-      const reaction = await reactionModel.findOne({ owner: reactionerId });
-      if (!reaction) {
-        const newReaction = new reactionModel({
-          owner: reactionerId,
-          post: postId,
-        });
-        react = await newReaction.save();
-      }
-
-      data.amountReactions++;
-      data.reactions.push(react);
-      const post = await this.post.findOneAndUpdate(
-        { owner, _id: postId },
-        postData,
-        {
-          new: true,
-        }
-      );
-      return post;
-    } catch (err) {
-      print.red(
-        `\rError:\n + ${print.repeat(
-          "-",
-          10
-        )} Method: editPost in PostRepository ${print.repeat("-", 10)}\n`
-      );
-      return null;
-    }
-  }
-
   async deleteOne(ownerId: Token, postId: Token): Promise<IPost | null> {
     try {
       const post = await this.post.findOneAndDelete({
@@ -163,6 +127,31 @@ class PostReposiory implements IPostsRepository {
         )} Method: deleteOne in PostRepository ${print.repeat("-", 10)}\n`
       );
       return null;
+    }
+  }
+
+  async setLike(reaction: IReaction): Promise<boolean | string> {
+    try {
+      let msg;
+      const post = await this.post.findOne({
+        id: reaction.post,
+        owner: reaction.owner,
+      });
+      if (!post) throw new Error("Post not exists");
+      if (post.reactions.includes(reaction.id)) {
+        const reactionIdx = post.reactions.indexOf(reaction.id);
+        post.reactions.splice(reactionIdx);
+        msg = "remove";
+      } else {
+        post.reactions.push(reaction);
+        msg = "add";
+      }
+      post.amountReactions = post.reactions.length;
+      await post.save();
+      return msg;
+    } catch (error) {
+      print.red(error);
+      return false;
     }
   }
 }

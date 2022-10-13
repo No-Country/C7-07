@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Box, Wrap, WrapItem, Flex, Spacer } from "@chakra-ui/react";
 import TourCard from "../TourCard/TourCard";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectTours,
+  selectIsLoadingTours,
+  selectHasErrorTours,
+  loadTours,
+} from "../../features/tours/toursSlice";
 
 function Tours() {
-  const [toursData, setToursData] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const toursData = useSelector(selectTours);
 
   useEffect(() => {
-    fetch("http://localhost:3005/tours")
-      .then((response) => response.json())
-      .then((response) => setToursData(response || []));
+    dispatch(loadTours());
   }, []);
 
   return (
     <Box bg="" py={5}>
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
-        {toursData?.map((tour) => (
-          <TourCard
-            key={tour.id}
-            id={tour.id}
-            pais={tour.pais}
-            titulo={tour.titulo}
-            precioPorPersonaUsd={tour.precioPorPersonaUsd}
-            fotosPrincipales={tour.fotosPrincipales}
-          />
-        ))}
+        {toursData?.map(
+          (tour: {
+            _id: React.Key | null | undefined;
+            country: string;
+            title: string;
+            personPriceUsd: number;
+            mainImages: string[];
+          }) => (
+            <TourCard
+              key={tour._id}
+              id={tour._id}
+              country={tour.country}
+              title={tour.title}
+              personPriceUsd={tour.personPriceUsd}
+              mainImages={tour.mainImages}
+            />
+          )
+        )}
       </Box>
     </Box>
   );

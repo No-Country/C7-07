@@ -1,8 +1,10 @@
 import { Mongo } from "./config/Mongo";
 import { IRoutes, Server } from "./server";
+
 import UserRouter from "./routes/user.routes";
 import PostRouter from "./routes/post.routes";
 import LoginRouter from "./routes/login.routes";
+import TourRouter from "./routes/tour.routes";
 
 async function main(
   envDir: string | undefined,
@@ -33,6 +35,10 @@ const ROUTES: Array<IRoutes> = [
   {
     path: "/login",
     router: LoginRouter,
+  },
+  {
+    path: "/tours",
+    router: TourRouter,
   },
 ];
 

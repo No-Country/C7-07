@@ -1,6 +1,8 @@
-import { Token } from "./Token";
+import { IPost } from "./IPost";
+import { IUser } from "./IUser";
 
 export interface IReaction {
-  owner: Token;
-  post: Token;
+  id: string;
+  owner: IUser | string;
+  post: IPost | string;
 }

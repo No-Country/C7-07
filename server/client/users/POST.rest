@@ -6,5 +6,5 @@ Content-Type: application/json
 	"email": "ignaciofedorenco2317@gmail.com",
 	"password": "$pass123",
 	"alias": "IgnFed",
-	"userType": "traveler"
+	"userType": "Traveler"
 }

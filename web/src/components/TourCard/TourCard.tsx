@@ -11,32 +11,16 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Carousel } from "../Carousel/Carousel";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  selectCount,
-} from "../../features/counter/counterSlice";
 
 interface Props {
   id: number;
-  pais: string;
-  titulo: string;
-  precioPorPersonaUsd: number;
-  fotosPrincipales: Array<string>;
+  country: string;
+  title: string;
+  personPriceUsd: number;
+  mainImages: Array<string>;
 }
 
-function TourCard({
-  id,
-  pais,
-  titulo,
-  precioPorPersonaUsd,
-  fotosPrincipales,
-}: Props) {
-  const count = useSelector(selectCount);
-
-  const dispatch = useDispatch();
-
+function TourCard({ id, country, title, personPriceUsd, mainImages }: Props) {
   return (
     <Center mt={50} bg="gray.100" w={["full", "full", "320px"]}>
       <Box
@@ -74,15 +58,15 @@ function TourCard({
           justifyContent="center"
           alignItems="center"
         >
-          <Carousel fotosPrincipales={fotosPrincipales} />
+          <Carousel fotosPrincipales={mainImages} />
         </Box>
 
         <Stack pt={3} align={"left"}>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            {titulo}
+            {title}
           </Heading>
           <Text color={"gray.500"} fontSize={"xl"}>
-            {pais}
+            {country}
           </Text>
           <Text color={"gray.500"} fontSize={"xl"}>
             1 Día
@@ -92,7 +76,7 @@ function TourCard({
               Desde
             </Text>
             <Text fontWeight={700} fontSize={"xl"}>
-              {precioPorPersonaUsd} USD
+              {personPriceUsd} USD
             </Text>
             <Text color={"gray.500"} fontSize={"xl"}>
               por persona

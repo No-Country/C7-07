@@ -14,6 +14,7 @@ import activeMountain from "../../assets/img/montana_activado.png";
 import noActiveMountain from "../../assets/img/montana_desactivado.png";
 import logoTravis from "../../assets/img/Logo_Travis.svg";
 import MenuNavBar from "../MenuNavBar/MenuNavBar";
+import MenuDrawer from "../MenuDrawer/MenuDrawer";
 
 const LIST_ITEMS = [
   {
@@ -106,12 +107,27 @@ function NavBar() {
         </ListItem>
         <ListItem
           bg="none"
-          display="flex"
+          display={{
+            base: "none",
+            md: "flex",
+          }}
           alignItems="center"
           _hover={{ bg: "none" }}
           h="100%"
         >
           <MenuNavBar />
+        </ListItem>
+        <ListItem
+          bg="none"
+          display={{
+            base: "flex",
+            md: "none",
+          }}
+          alignItems="center"
+          _hover={{ bg: "none" }}
+          h="100%"
+        >
+          <MenuDrawer />
         </ListItem>
       </List>
       <Outlet />

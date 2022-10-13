@@ -1,31 +1,24 @@
 import { Request, Response } from "express";
-import { UserRepository } from "../../models/repository/user/UserRepository";
 import { sign } from "jsonwebtoken";
 import { IMessage } from "../../interfaces/IMessage";
 import Print from "../../utils/Print";
-import { NewUser } from "../../interfaces/IRepository";
-import { encryptPassword } from "../../utils/encryptPassword";
+import {
+  AgencyRepository,
+  TravelerRepository,
+} from "../../models/repository/user";
+import { IUser } from "../../interfaces/IUser";
 
-const User = new UserRepository();
 const print = new Print();
 
 export const regist = async (req: Request, res: Response) => {
   if (!process.env.PRIVATE_KEY) throw "NO ENV VAR SETTED";
-  const { password, alias, email, name, userType } = req.body as NewUser;
-  const payload = {
-    password,
-    alias,
-    email,
-    name,
-    userType,
-  };
-  console.log({ key: process.env.PRIVATE_KEY, body: req.body, payload });
+  const payload = req.body as IUser;
   try {
-    const user = await User.createUser(payload);
-    console.log(user);
-    const token = sign({ ...payload, id: user.id }, process.env.PRIVATE_KEY, {
-      expiresIn: "5min",
-    });
+    const user = await (payload.userType === "Traveler"
+      ? TravelerRepository
+      : AgencyRepository
+    ).create(payload);
+    const token = sign({ ...payload, id: user.id }, process.env.PRIVATE_KEY);
     res.status(200).json({
       code: 200,
       data: token,
