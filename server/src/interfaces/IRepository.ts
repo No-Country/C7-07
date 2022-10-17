@@ -47,5 +47,5 @@ export interface IUserRepository<Entity> {
 export interface IReactionRepository {
   create(userId: Token, postId: Token): Promise<IReaction | null>;
   getOne(obj: { userId?: string; postId?: string }): Promise<IReaction | null>;
-  deleteOne(userId: string, postId: string): Promise<IReaction | null>;
+  deleteOne(reaction: IReaction): Promise<IReaction | null>;
 }

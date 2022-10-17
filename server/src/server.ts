@@ -33,7 +33,7 @@ export class Server {
   private middlewares(): void {
     dotenvConfig({ path: this.envDir });
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json({ limit: "50mb" }));
     this.app.use(express.urlencoded({ extended: true }));
   }
 

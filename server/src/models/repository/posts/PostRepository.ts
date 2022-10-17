@@ -44,7 +44,11 @@ class PostReposiory implements IPostsRepository {
       const posts = (await this.post.find().populate([
         {
           path: "owner",
-          select: ["name", "alias", "userType"],
+          select: ["name", "alias", "userType", "reactions"],
+        },
+        {
+          path: "reactions",
+          select: ["owner"],
         },
       ] as PopulateOptions[])) as IPost<Ret>[];
       return posts;
@@ -133,10 +137,7 @@ class PostReposiory implements IPostsRepository {
   async setLike(reaction: IReaction): Promise<boolean | string> {
     try {
       let msg;
-      const post = await this.post.findOne({
-        id: reaction.post,
-        owner: reaction.owner,
-      });
+      const post = await this.post.findById(reaction.post);
       if (!post) throw new Error("Post not exists");
       if (post.reactions.includes(reaction.id)) {
         const reactionIdx = post.reactions.indexOf(reaction.id);
