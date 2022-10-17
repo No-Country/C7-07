@@ -57,7 +57,6 @@ export const socialApi = createApi({
     }),
     setPost: builder.mutation<IMessage<IPost<[IUser]>>, SetPost>({
       query: (obj) => {
-        console.log(obj);
         return {
           url: "/posts",
           method: "POST",
@@ -66,8 +65,21 @@ export const socialApi = createApi({
       },
       invalidatesTags: ["Post"],
     }),
+    removePost: builder.mutation<IMessage<IPost<[IUser]>>, string>({
+      query: (id: string) => {
+        return {
+          url: `/posts/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Post"],
+    }),
   }),
 });
 
-export const { useGetAllPostsQuery, useSetLikeMutation, useSetPostMutation } =
-  socialApi;
+export const {
+  useGetAllPostsQuery,
+  useSetLikeMutation,
+  useSetPostMutation,
+  useRemovePostMutation,
+} = socialApi;

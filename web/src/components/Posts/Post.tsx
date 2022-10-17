@@ -1,36 +1,53 @@
+import { DeleteIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Text,
   Box,
   Grid,
   GridItem,
-  ListItem,
   List,
+  ListItem,
   Button,
   Image,
+  Menu,
+  MenuButton,
+  IconButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import React from "react";
 import { LoveIt } from "../../icons/LoveIt";
 import { IPost } from "../../interfaces/IPost";
 import { IUser } from "../../interfaces/IUser";
-import { useSetLikeMutation } from "../../services/social";
+import {
+  useRemovePostMutation,
+  useSetLikeMutation,
+} from "../../services/social";
 
 interface PostProps extends Omit<IPost<IUser>, "comments"> {}
 interface HeaderProps {
   name: PostProps["owner"]["alias"];
   creationDate: PostProps["creationDate"];
   profile: string;
+  postId: PostProps["id"];
   description: PostProps["description"];
 }
 
-const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
+const Header = ({
+  creationDate,
+  name,
+  profile,
+  description,
+  postId,
+}: HeaderProps) => {
+  const [removePost] = useRemovePostMutation();
   creationDate = new Date(creationDate).toDateString();
   return (
     <Grid
       gap="6px 9px"
       marginInline="13px"
       marginBlock="13px 9px"
-      templateAreas={`"profile metadata"
-			"description description"`}
+      templateAreas={`"profile metadata options"
+			"description description description"`}
       templateColumns="35px 1fr"
       templateRows="35px 1fr"
       textAlign="start"
@@ -42,16 +59,33 @@ const Header = ({ creationDate, name, profile, description }: HeaderProps) => {
         borderRadius="full"
         area="profile"
       >
-        <Image overflow="hidden" src={profile} />
+        {profile && <Image overflow="hidden" src={profile} />}
       </GridItem>
 
-      <GridItem as={Grid} area="metadata">
-        <Grid gap="4px">
+      <GridItem as={Grid} gap="4px" area="metadata">
+        <GridItem>
           <Text fontSize="12">{name}</Text>
+        </GridItem>
+        <GridItem>
           <Text fontSize="11">{creationDate}</Text>
-        </Grid>
+        </GridItem>
       </GridItem>
-
+      <GridItem gap="4px" area="options">
+        <Menu isLazy={true} lazyBehavior="keepMounted" placement="left-start">
+          <MenuButton
+            as={IconButton}
+            aria-label="Options"
+            icon={<HamburgerIcon />}
+            variant="outline"
+          />
+          <MenuList>
+            <MenuItem icon={<EditIcon />}>Edit</MenuItem>
+            <MenuItem icon={<DeleteIcon />} onClick={() => removePost(postId)}>
+              Delete
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </GridItem>
       <GridItem area="description">{description}</GridItem>
     </Grid>
   );
@@ -157,6 +191,7 @@ export const Post = React.memo(function Post({
     >
       <GridItem as="header">
         <Header
+          postId={id}
           creationDate={creationDate}
           profile={""}
           description={description}
@@ -165,6 +200,7 @@ export const Post = React.memo(function Post({
       </GridItem>
       {media && (
         <GridItem>
+          <hr />
           <Body media={media} />
         </GridItem>
       )}

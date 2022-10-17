@@ -5,12 +5,7 @@ import { useGetAllPostsQuery } from "../services/social";
 import { PostSkeleton } from "../components/Posts/PostSkeleton";
 
 export const Home = () => {
-  const {
-    data: response,
-    isFetching,
-    isLoading,
-  } = useGetAllPostsQuery(undefined);
-  console.log(isFetching);
+  const { data: response, isLoading } = useGetAllPostsQuery(undefined);
   return (
     <Box paddingBlock={"12px"} marginInline={["12px"]} textAlign="center">
       <Flex
