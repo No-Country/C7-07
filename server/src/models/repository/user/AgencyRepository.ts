@@ -127,7 +127,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
       const user = await this._repository.findById(reaction.owner);
       if (user.reactions.includes(reaction.id)) {
         const reactionIdx = user.reactions.indexOf(reaction.id);
-        user.reactions.splice(reactionIdx);
+        user.reactions.splice(reactionIdx, 1);
         msg = "remove";
       } else {
         user.reactions.push(reaction);
