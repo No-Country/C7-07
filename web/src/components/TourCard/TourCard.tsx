@@ -16,13 +16,15 @@ export interface Props {
   id: string;
   country: string;
   title: string;
-  personPriceUsd: number;
+  personPriceUsd: string;
   mainImages: Array<string>;
+  days: number;
+  city: string;
 }
 
-function TourCard({ id, country, title, personPriceUsd, mainImages }: Props) {
+function TourCard({ id, country, title, personPriceUsd, mainImages, days, city }: Props) {
   return (
-    <Center mt={50} bg="gray.100" w={["full", "full", "320px"]}>
+    <Center  bg="gray.100" w={["full", "full", "320px"]} marginBottom='15px'>
       <Box
         role={"group"}
         p={3}
@@ -53,7 +55,7 @@ function TourCard({ id, country, title, personPriceUsd, mainImages }: Props) {
           }} */
           position="relative"
           w="full"
-          h="300px"
+          
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -66,10 +68,10 @@ function TourCard({ id, country, title, personPriceUsd, mainImages }: Props) {
             {title}
           </Heading>
           <Text color={"gray.500"} fontSize={"xl"}>
-            {country}
+            {city}, {country}
           </Text>
           <Text color={"gray.500"} fontSize={"xl"}>
-            1 Día
+            {days} Día{days > 1 ? "s" : ""}
           </Text>
           <Stack direction={"row"} align={"center"}>
             <Text color={"gray.500"} fontSize={"xl"}>

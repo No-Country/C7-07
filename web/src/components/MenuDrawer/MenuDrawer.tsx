@@ -27,10 +27,8 @@ function MenuDrawer() {
 
   const menuDrawItems = [
     "Perfil",
-    "Reservas",
-    "Historial",
-    "Ajustes",
-    "Idiomas",
+    "Mis tours",
+    
   ];
 
   return (

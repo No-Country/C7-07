@@ -39,10 +39,8 @@ function MenuNavBar() {
           </MenuItem>
         </Link>
 
-        <MenuItem fontWeight={"medium"}>Reservas</MenuItem>
-        <MenuItem fontWeight={"medium"}>Historial</MenuItem>
-        <MenuItem fontWeight={"medium"}>Ajustes</MenuItem>
-        <MenuItem fontWeight={"medium"}>Idiomas</MenuItem>
+        <MenuItem fontWeight={"medium"}>Mis tours</MenuItem>
+        
         <MenuItem fontWeight={"medium"}>Cerrar Sesión</MenuItem>
       </MenuList>
     </Menu>
