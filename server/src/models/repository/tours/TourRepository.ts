@@ -67,6 +67,40 @@ export class TourRepository implements IToursRepository {
       throw error;
     }
   }
+
+  async searchBy(value: string): Promise<ITour[] | void> {
+    try {
+      value = value?.trim();
+      const tours = await this._repository.aggregate([
+        {
+          $match: {
+            $or: [
+              { title: { $regex: value, $options: "i" } },
+              { city: { $regex: value, $options: "i" } },
+              { country: { $regex: value, $options: "i" } },
+              { "agencies.name": { $regex: value, $options: "i" } },
+              { "experience.whatIncludes": { $regex: value, $options: "i" } },
+            ],
+          },
+        },
+
+        {
+          $project: {
+            title: 1,
+            description: 1,
+            agencies: 1,
+            city: 1,
+            country: 1,
+            days: 1,
+          },
+        },
+      ]);
+      return tours;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async delete(agencyId: string, tourId: string): Promise<ITour> {
     try {
       const tour = await this._repository.findOneAndDelete({
