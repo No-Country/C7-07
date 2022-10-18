@@ -83,17 +83,6 @@ export class TourRepository implements IToursRepository {
             ],
           },
         },
-
-        {
-          $project: {
-            title: 1,
-            description: 1,
-            agencies: 1,
-            city: 1,
-            country: 1,
-            days: 1,
-          },
-        },
       ]);
       return tours;
     } catch (error) {
