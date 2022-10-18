@@ -78,7 +78,7 @@ function TourCard({ id, country, title, personPriceUsd, mainImages, days, city }
               Desde
             </Text>
             <Text fontWeight={700} fontSize={"xl"}>
-              {personPriceUsd} USD
+              ${personPriceUsd}
             </Text>
             <Text color={"gray.500"} fontSize={"xl"}>
               por persona

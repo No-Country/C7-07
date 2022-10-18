@@ -18,11 +18,11 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 function Tours() {
   const dispatch = useAppDispatch();
   const toursData = useAppSelector(selectTours);
-  console.log("🚀 ~ file: Tours.tsx ~ line 22 ~ Tours ~ toursData", toursData)
 
 
   useEffect(() => {
     dispatch(loadTours());
+
   }, [dispatch]); 
 
   
@@ -35,7 +35,7 @@ function Tours() {
         alignItems="center"
         justifyContent={["start"]}
       >
-        <SearchTours toursData={toursData}/>
+        <SearchTours />
       </Box>
 
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
