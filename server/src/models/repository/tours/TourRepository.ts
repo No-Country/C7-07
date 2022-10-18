@@ -45,7 +45,7 @@ export class TourRepository implements IToursRepository {
       throw error;
     }
   }
-  async edit(tourId: string, data: Omit<ITour, "id">): Promise<ITour> {
+  async edit(tourId: string, data: Partial<Omit<ITour, "id">>): Promise<ITour> {
     try {
       const tour = await this._repository
         .findOneAndUpdate(
@@ -56,6 +56,11 @@ export class TourRepository implements IToursRepository {
           { new: true }
         )
         .populate(this.populateOptions);
+
+      console.log({
+        tourId,
+        tour,
+      });
 
       return tour;
     } catch (error) {

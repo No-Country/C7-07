@@ -40,6 +40,7 @@ export interface IUserRepository<Entity> {
     data: Partial<NewEntity>
   ): Promise<NewUser | null>;
   deleteOne(userId: Token): Promise<Entity | null>;
+  deletePost(userId: Token, postId: Token): Promise<boolean | void>;
   setLike(reaction: IReaction): Promise<boolean | string>;
   setPost(userId: Token, post: IPost): Promise<boolean | string>;
 }

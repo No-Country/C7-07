@@ -6,6 +6,7 @@ import Print from "../../../utils/Print";
 import { IReaction } from "../../../interfaces/IReaction";
 import { IPost } from "../../../interfaces/IPost";
 import { ITour } from "../../../interfaces/ITour";
+import PostRepository from "../posts/PostRepository";
 
 const print = new Print();
 
@@ -121,6 +122,23 @@ class AgencyRepository implements IUserRepository<IAgency> {
     }
   }
 
+  async deletePost(userId: string, postId: string): Promise<boolean | void> {
+    try {
+      if (!postId) throw "Not PostId arguments Provided.";
+      const user = await this._repository.findById(userId);
+      const posts = user.posts;
+      if (posts.length === 0) return false;
+      console.log(posts);
+      const postIdx = user.posts.findIndex((idx) => idx.toString() === postId);
+      if (postIdx < 0) return false;
+      posts.splice(postIdx, 1);
+      console.log(posts);
+      await user.save();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async setLike(reaction: IReaction): Promise<string | boolean> {
     try {
       let msg;
@@ -153,12 +171,18 @@ class AgencyRepository implements IUserRepository<IAgency> {
       return false;
     }
   }
-  async setTour(userId: string, tour: ITour): Promise<string | boolean> {
+
+  async setTour(
+    agencyFilters: Partial<IAgency>,
+    tour: ITour
+  ): Promise<ITour | void> {
     try {
-      const user = await this._repository.findById(userId);
-      user.tours.push(tour);
-      await user.save();
-      return true;
+      const user = await this._repository.findOne({ ...agencyFilters });
+      if (user) {
+        user.tours.push(tour.id);
+        await user.save();
+      }
+      return user as unknown as ITour;
     } catch (error) {
       throw error;
     }

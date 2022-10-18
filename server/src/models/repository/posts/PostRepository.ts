@@ -16,6 +16,7 @@ class PostReposiory implements IPostsRepository {
     userType: string
   ): Promise<IPost | null> {
     try {
+      if (data.description?.trim().length === 0 && !data?.media) return null;
       const post = new this.post({
         ...data,
         reactions: [],
