@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { socialApi } from "../services/social";
+import toursReducer from "../features/tours/toursSlice" 
+import userSlice from "../features/user/userSlice";
 
 export const store = configureStore({
   reducer: {
+    tours: toursReducer,
+    user: userSlice,
     [socialApi.reducerPath]: socialApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

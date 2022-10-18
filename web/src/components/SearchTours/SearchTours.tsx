@@ -17,13 +17,24 @@ function SearchTours() {
   const [search, setSearch] = useState("");
 
   const [tours, setTours] = useState<ITour[]>([]);
+  
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWduYWNpbyBGZWRvcmVuY28iLCJlbWFpbCI6ImlnbmFjaW9mZWRvcmVuY28yMzE3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJHBhc3MxMjMiLCJhbGlhcyI6IklnbkZlZCIsInVzZXJUeXBlIjoiQWdlbmN5IiwiZGVzY3JpcHRpb24iOiJUcmF2ZWwgQWdlbmN5IiwiY29udGFjdHMiOnsid2hhdHNhcHAiOiIzMjE5MTMxOTgyNzM4In0sImlkIjoiNjM0Y2U0ZDhlYjFiYmQyZjlmMjkwZWFhIiwiaWF0IjoxNjY1OTgzNzA0fQ.rNcqm39rhKh5ViM24TRqyzYFRdfvUnCZbfW-A3Kc6Dw";
 
   useEffect(() => {
-    fetch("http://localhost:3005/tours?q=" + search)
-      .then((response) => response.json())
-      .then((data) => {
-        setTours(data);
-      });
+    if (search) {
+      fetch(`http://localhost:3001/tours/search/?value=${search}`, {
+        headers: {
+          Authorization: "bearer " + token,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          setTours(json.data);
+          console.log("🚀 ~ file: SearchTours.tsx ~ line 35 ~ .then ~ json.data", json.data)
+        });
+    }
   }, [search]);
 
   return (
@@ -77,7 +88,7 @@ function SearchTours() {
             </Button>
           }
         />
-        {search && tours.length > 0 ? (
+        {search && tours && tours.length > 0 ? (
           <Box
             backgroundColor={"white"}
             maxH="400px"
@@ -90,7 +101,6 @@ function SearchTours() {
                 boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
                 borderRadius: "10px",
                 marginY: "4px",
-                
               },
 
               "::-webkit-scrollbar-thumb": {
@@ -107,10 +117,10 @@ function SearchTours() {
             border={"1px solid gray"}
             position="absolute"
             boxShadow={"2xl"}
-            paddingY='10px'
+            paddingY="10px"
           >
             {tours.map((tour, i) => (
-              <Link to={tour.id} key={i}>
+              <Link to={ tour.id} key={i}>
                 <Box
                   _hover={{
                     background: "#4ED972",

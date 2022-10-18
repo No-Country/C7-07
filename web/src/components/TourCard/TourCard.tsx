@@ -10,6 +10,7 @@ import {
   Spacer,
   Button,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { Carousel } from "../Carousel/Carousel";
 
 export interface Props {
@@ -22,9 +23,18 @@ export interface Props {
   city: string;
 }
 
-function TourCard({ id, country, title, personPriceUsd, mainImages, days, city }: Props) {
+function TourCard({
+  id,
+  country,
+  title,
+  personPriceUsd,
+  mainImages,
+  days,
+  city,
+}: Props) {
+  console.log("🚀 ~ file: TourCard.tsx ~ line 35 ~ id", id)
   return (
-    <Center  bg="gray.100" w={["full", "full", "320px"]} marginBottom='15px'>
+    <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom="15px">
       <Box
         role={"group"}
         p={3}
@@ -55,7 +65,6 @@ function TourCard({ id, country, title, personPriceUsd, mainImages, days, city }
           }} */
           position="relative"
           w="full"
-          
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -63,28 +72,31 @@ function TourCard({ id, country, title, personPriceUsd, mainImages, days, city }
           <Carousel fotosPrincipales={mainImages} />
         </Box>
 
-        <Stack pt={3} align={"left"}>
-          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            {title}
-          </Heading>
-          <Text color={"gray.500"} fontSize={"xl"}>
-            {city}, {country}
-          </Text>
-          <Text color={"gray.500"} fontSize={"xl"}>
-            {days} Día{days > 1 ? "s" : ""}
-          </Text>
-          <Stack direction={"row"} align={"center"}>
+        <Link to={id}>
+          
+          <Stack pt={3} align={"left"}>
+            <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+              {title}
+            </Heading>
             <Text color={"gray.500"} fontSize={"xl"}>
-              Desde
-            </Text>
-            <Text fontWeight={700} fontSize={"xl"}>
-              ${personPriceUsd}
+              {city}, {country}
             </Text>
             <Text color={"gray.500"} fontSize={"xl"}>
-              por persona
+              {days} Día{days > 1 ? "s" : ""}
             </Text>
+            <Stack direction={"row"} align={"center"}>
+              <Text color={"gray.500"} fontSize={"xl"}>
+                Desde
+              </Text>
+              <Text fontWeight={700} fontSize={"xl"}>
+                ${personPriceUsd}
+              </Text>
+              <Text color={"gray.500"} fontSize={"xl"}>
+                por persona
+              </Text>
+            </Stack>
           </Stack>
-        </Stack>
+        </Link>
       </Box>
     </Center>
   );
