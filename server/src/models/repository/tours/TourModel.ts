@@ -44,4 +44,11 @@ const TourSchema = new Schema<ITour>(
   { versionKey: false }
 );
 
+TourSchema.set("toJSON", {
+  transform: (_, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+  },
+});
+
 export const TourModel = model<ITour>("Tour", TourSchema);
