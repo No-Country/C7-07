@@ -8,6 +8,7 @@ import Tours from "./components/Tours/Tours";
 import Profile from "./components/Perfil/Profile";
 import Password from "./components/Perfil/Password";
 import InputProfile from "./components/Perfil/InputProfile";
+import Tour from "./components/Tour/Tour";
 
 function App() {
   return (
@@ -17,12 +18,12 @@ function App() {
           <Route path="/" element={<NavBar />}>
             <Route path="/home" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/tour" element={<Tour />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<InputProfile />} />
               <Route path="/profile/password" element={<Password />} />
             </Route>
           </Route>
-
           <Route path="/ingresar" element={<LoginPage />} />
           <Route path="/registrar" element={<RegisterPage />} />
         </Routes>
