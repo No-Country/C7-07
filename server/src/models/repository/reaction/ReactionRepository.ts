@@ -21,20 +21,22 @@ export class ReactionRepository implements IReactionRepository {
     postId?: string;
   }): Promise<IReaction | null> {
     try {
-      const reaction = await this._repository.findOne(obj);
+      const reaction = await this._repository.findOne({
+        $and: [
+          { owner: { $eq: obj.userId } },
+          { post: { $eq: obj.postId, $exists: true } },
+        ],
+      });
       return reaction;
     } catch (error) {
       return null;
     }
   }
 
-  async deleteOne(userId: string, postId: string): Promise<IReaction> {
+  async deleteOne(reaction: IReaction): Promise<IReaction> {
     try {
-      const reaction = await this._repository.findOneAndDelete({
-        owner: userId,
-        post: postId,
-      });
-      return reaction;
+      const _reaction = await this._repository.findByIdAndDelete(reaction);
+      return _reaction;
     } catch (error) {
       return null;
     }

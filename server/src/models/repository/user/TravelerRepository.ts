@@ -111,6 +111,21 @@ class TravelerRepository implements IUserRepository<ITraveler> {
     }
   }
 
+  async deletePost(userId: string, postId: string): Promise<boolean | void> {
+    try {
+      if (!postId) throw "Not PostId arguments Provided.";
+      const user = await this._repository.findById(userId);
+      const posts = user.posts;
+      if (posts.length === 0) return false;
+      const postIdx = user.posts.findIndex((idx) => idx === postId);
+      if (postIdx < 0) return false;
+      posts.splice(postIdx, 1);
+      await user.save();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async setLike(reaction: IReaction): Promise<string | boolean> {
     try {
       let msg;

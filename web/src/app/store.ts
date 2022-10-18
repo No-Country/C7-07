@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toursSlice from "../features/tours/toursSlice";
+import { socialApi } from "../services/social";
 
 export const store = configureStore({
   reducer: {
-    tours: toursSlice,
+    [socialApi.reducerPath]: socialApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(socialApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -35,13 +35,21 @@ export const createPost = async (
       },
       userType
     );
+    if (!newPost) {
+      return res.status(200).json({
+        code: 200,
+        message: "Post not created!",
+        data: null,
+        status: "OK",
+      } as IMessage);
+    }
     const user = await (userType === "Traveler"
       ? TravelerRepository
       : AgencyRepository
     ).setPost(id, newPost);
     res.status(200).json({
       code: 200,
-      message: "Post saved!",
+      message: "Post created!",
       data: {
         user,
         post: newPost,
