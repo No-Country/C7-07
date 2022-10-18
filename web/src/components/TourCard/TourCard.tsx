@@ -32,7 +32,7 @@ function TourCard({
   days,
   city,
 }: Props) {
-  console.log("🚀 ~ file: TourCard.tsx ~ line 35 ~ id", id)
+  console.log("🚀 ~ file: TourCard.tsx ~ line 35 ~ id", id);
   return (
     <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom="15px">
       <Box
@@ -73,7 +73,6 @@ function TourCard({
         </Box>
 
         <Link to={id}>
-          
           <Stack pt={3} align={"left"}>
             <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
               {title}

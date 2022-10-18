@@ -10,27 +10,25 @@ import {
 } from "../../features/tours/toursSlice.js";
 import { ITour } from "../../interfaces/ITour";
 import SearchTours from "../SearchTours/SearchTours";
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import {selectUser,selectIsLoadingUser,selectHasErrorUser,loadUser} from '../../features/user/userSlice';
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import {
+  selectUser,
+  selectIsLoadingUser,
+  selectHasErrorUser,
+  loadUser,
+} from "../../features/user/userSlice";
 import { Link } from "react-router-dom";
-
-
-
 
 function Tours() {
   const dispatch = useAppDispatch();
   const toursData = useAppSelector(selectTours);
   const userData = useAppSelector(selectUser);
-  
 
-  
   useEffect(() => {
     dispatch(loadTours());
     dispatch(loadUser());
+  }, [dispatch]);
 
-  }, [dispatch]); 
-
-  
   return (
     <Box bg="" py={5}>
       <Box
@@ -46,7 +44,6 @@ function Tours() {
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
         {toursData?.map((tour: ITour, i: number) => {
           return (
-            
             <TourCard
               key={i}
               id={tour.id}
@@ -57,7 +54,6 @@ function Tours() {
               personPriceUsd={tour.personPriceUsd}
               mainImages={tour.mainImages}
             />
-            
           );
         })}
       </Box>

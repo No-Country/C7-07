@@ -25,11 +25,7 @@ function MenuDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const menuDrawItems = [
-    "Perfil",
-    "Mis tours",
-    
-  ];
+  const menuDrawItems = ["Perfil", "Mis tours"];
 
   return (
     <>

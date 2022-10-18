@@ -15,7 +15,7 @@ import noActiveMountain from "../../assets/img/montana_desactivado.png";
 import logoTravis from "../../assets/img/Logo_Travis.svg";
 import MenuNavBar from "../MenuNavBar/MenuNavBar";
 import MenuDrawer from "../MenuDrawer/MenuDrawer";
-import logo from '../../assets/img/logoTravis.svg'
+import logo from "../../assets/img/logoTravis.svg";
 
 const LIST_ITEMS = [
   {
@@ -71,15 +71,22 @@ function NavBar() {
       >
         <ListItem>
           <ChakraLink as={RouterLink} to="/home">
-            <Image src={logoTravis} w="20vmin" display={{
-            base: "none",
-            md: "block",
-          }}/>
-            <Image src={logo} w="48px" display={{
-            base: "block",
-            md: "none",
-          }}/>
-
+            <Image
+              src={logoTravis}
+              w="20vmin"
+              display={{
+                base: "none",
+                md: "block",
+              }}
+            />
+            <Image
+              src={logo}
+              w="48px"
+              display={{
+                base: "block",
+                md: "none",
+              }}
+            />
           </ChakraLink>
         </ListItem>
         <ListItem display="flex" gap="2rem" h="100%">
