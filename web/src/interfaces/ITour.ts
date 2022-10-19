@@ -31,8 +31,8 @@ export interface ITour {
   country: string;
   experience: Array<Experience>;
   agency: {
-    name: string;
-    description: string;
+    name: IAgency["name"];
+    description: IAgency["description"];
   };
   personPriceUsd: string;
   mainImages: Array<string>;

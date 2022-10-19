@@ -32,6 +32,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
     try {
       const user = await this._repository.findById(userId);
       if (user && this.populateFields) user.populate(this.populateFields);
+      console.log("GET_BY_ID: ", user);
       return user;
     } catch (e) {
       print.red(
@@ -40,7 +41,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -57,6 +58,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
     try {
       const user = await this._repository.findOne(fields);
       if (user && this.populateFields) user.populate(this.populateFields);
+      console.log("GET_ONE: ", user);
       return user;
     } catch (e) {
       print.red(
@@ -65,7 +67,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
   async create<NewEntity = IAgency>(data: NewEntity): Promise<IAgency> {
@@ -182,6 +184,8 @@ class AgencyRepository implements IUserRepository<IAgency> {
         user.tours.push(tour.id);
         await user.save();
       }
+      console.log("SET_TOUR: ", user);
+
       return user as unknown as ITour;
     } catch (error) {
       throw error;

@@ -50,9 +50,15 @@ function ModalPostTour() {
     },
   ]);
   const [title, setTitle] = useState("fghfghf");
+  const [agencies, setAgencies] = useState([
+    {
+      name: "",
+      description: "",
+    },
+  ]);
 
   const tourTemplate = {
-    days: Number(days?.current?.value || 1),
+    days,
     region,
     country,
     description,
@@ -61,6 +67,7 @@ function ModalPostTour() {
     personPriceUsd,
     stops,
     title,
+    agencies,
   } as ITour;
 
   /* {

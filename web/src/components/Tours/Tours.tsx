@@ -17,11 +17,11 @@ import {
   selectHasErrorUser,
   loadUser,
 } from "../../features/user/userSlice";
-import { Link } from "react-router-dom";
+import ModalPostTour from "../ModalPostTour/ModalPostTour";
 
 function Tours() {
-  const dispatch = useAppDispatch();
-  const toursData = useAppSelector(selectTours);
+  const dispatch: any = useAppDispatch();
+  const toursData = useAppSelector<ITour[] | null>(selectTours);
   const userData = useAppSelector(selectUser);
 
   useEffect(() => {
@@ -35,21 +35,23 @@ function Tours() {
         h={["60px", "60px", "120px"]}
         marginBottom="20px"
         display={"flex"}
+        flexWrap="wrap"
         alignItems="center"
         justifyContent={["start"]}
       >
         <SearchTours />
+        <ModalPostTour />
       </Box>
 
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
         {toursData &&
-          (toursData as [])?.map((tour: ITour, i: number) => {
+          toursData.map((tour: ITour, i: number) => {
             return (
               <TourCard
                 key={i}
                 id={tour.id}
                 days={tour.days}
-                city={tour.city}
+                city={tour.region}
                 country={tour.country}
                 title={tour.title}
                 personPriceUsd={tour.personPriceUsd}
