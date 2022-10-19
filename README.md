@@ -2,6 +2,8 @@
 
 # C7-07 (Travis)
 
+[![logo.png](https://i.postimg.cc/BQJNLSVp/logo.png)](https://postimg.cc/yWr02HB3)
+
 ## Acerca de
 
 Usuario (turista) Necesita una plataforma virtual que le permita conectarse con otros turistas que se encuentren en el lugar que él visitará o está visitando, para compartir una experiencia de viaje, además de recibir recomendaciones de servicios como son tours por la ciudad.

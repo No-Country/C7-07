@@ -1,15 +1,14 @@
-import { IComment } from "./IComment";
 import { IReaction } from "./IReaction";
-import { IUser } from "./IUser";
+import { IComment } from "./IComment";
 
-export interface IPost {
+export interface IPost<Ref = string> {
   id: string;
-  description?: string;
-  creationDate: Date | string;
+  description: string;
+  creationDate: string;
   reactions: Array<IReaction>;
   comments: Array<IComment>;
   amountReactions: number;
   amountComments: number;
   media?: string;
-  owner: IUser;
+  owner: Ref;
 }

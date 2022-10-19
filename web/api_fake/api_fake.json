@@ -1,588 +1,610 @@
 {
   "tours": [
     {
-      "id": 1,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d6d4d094e50149e1ec775" ,
+      "title": "Cataratas del Iguazú ",
+      "agencies": [
+         "634ce4d8eb1bbd2f9f290eaa" ,
+         "634ddd05ed223cadc1ba7888" ,
+         "634ddd23ed223cadc1ba788f" 
+      ],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Excursión de día completo al lado argentino de las cataratas",
+            "Camine por los senderos y puentes del espléndido Parque Nacional Iguazú y déjese sorprender por la exuberante vegetación circundante y su increíble flora y fauna. Tome un baño en las cataratas mientras camina por las caminatas superiores e inferiores. Disfrute de un paseo en el tren ecológico y camine por un sendero que lo llevará al imponente cañón de la Garganta del Diablo."
           ],
-          "queIncluye": [
-            "Guia",
+          "whatIncludes": [
+            "Transporte en autocar con aire acondicionado desde el aeropuerto de Iguazú al hotel.",
             "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+            "Alojamiento en hotel 4 * incluido (YVY Hotel de la Selva o similar)",
+            "Tour lado argentino y brasileño de las cataratas",
+            "Traslados desde Hotel / Aeropuerto en Buenos Aires.",
+            "Gran excursión de aventura (disponible para comprar en el sitio)"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Aeroparque Internacional Jorge Newbery\nAv. Costanera Rafael Obligado s/n, C1425 CABA, Argentina",
+          "_id":  "634d6d4d094e50149e1ec776" 
         }
       ],
-      "agencia": [
+      "country": "Argentina",
+      "description": "Vea las Cataratas del Iguazú desde ambos lados con este tour para grupos pequeños, que incluye pasaje aéreo de ida y vuelta desde Buenos Aires y dos noches en alojamiento de 4 estrellas. Visitarás el lado brasileño de las cataratas el primer día, dedicando el segundo día a explorar el lado argentino y regresando a Buenos Aires el tercer día.",
+      "personPriceUsd": "980",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Tour a las cataratas del lado brasileño",
+          "direction": "Puerto Iguazú",
+          "coords": [
+            { "$numberDouble": "-25.595720215276042" },
+            { "$numberDouble": "-54.59115534405976" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d4d094e50149e1ec777" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Excursión de día completo al lado argentino de las cataratas",
+          "direction": "Puerto Iguazu",
+          "coords": [
+            { "$numberDouble": "-25.69460158150157" },
+            { "$numberDouble": "-54.43675203210362" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d4d094e50149e1ec778" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
+          "name": "Traslado al aeropuerto",
+          "coords": [
+            { "$numberDouble": "-25.652287136640183" },
+            { "$numberDouble": "-54.513656330930566" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": true,
             "trekking": false
-          }
+          },
+          "_id": { "$oid": "634d6d4d094e50149e1ec779" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1587845858725-81d43f65121b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
+        "https://images.unsplash.com/photo-1534971119865-7210cc8b6872?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1648042515894-8049215d3f55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1657386364330-bd89e99cb65c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1610&q=80"
+      ],
+      "city": "Iguazú",
+      "days":  "3" 
     },
     {
-      "id": 2,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d6d55094e50149e1ec780" ,
+      "title": "Machu Picchu",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Aprende sobre los antiguos incas con tu guía turístico.",
+            "Deje que un profesional organice el largo viaje"
           ],
-          "queIncluye": [
+          "whatIncludes": [
             "Guia",
             "Degustacion gastronomica",
             "Agua",
             "Cata de vinos"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Vegas Ballon Rides: 4390 Polaris Ave.",
+          "_id": { "$oid": "634d6d55094e50149e1ec781" }
         }
       ],
-      "agencia": [
+      "country": "Perú",
+      "description": "Descubra la antigua ciudad inca de Machu Picchu en solo un día en esta emocionante excursión. Salga de Cusco y diríjase a la estación de tren de Ollantaytambo para tomar su tren. Luego, disfrute de un relajante viaje a Aguas Calientes, el pueblo en la base de Machu Picchu. Realice una visita guiada a la antigua ciudadela y disfrute de tiempo libre para explorar o almorzar antes de regresar a Cusco.",
+      "personPriceUsd": "330",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
+          "name": "Vinicunca",
+          "direction": "Las Lobelias 2209, La Florida, Santiago",
+          "coords": [
+            { "$numberDouble": "-70.586622" },
+            { "$numberDouble": "-33.512547" }
+          ],
+          "height": { "$numberInt": "3400" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": true,
+            "trekking": false
+          },
+          "_id": { "$oid": "634d6d55094e50149e1ec782" }
+        },
+        {
+          "name": "Vinicunca2",
+          "direction": "Las Lobelias 2209, La Florida, Santiago",
+          "coords": [
+            { "$numberDouble": "-70.586622" },
+            { "$numberDouble": "-33.512547" }
+          ],
+          "height": { "$numberInt": "3400" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": true,
+            "trekking": false
+          },
+          "_id": { "$oid": "634d6d55094e50149e1ec783" }
+        },
+        {
+          "name": "Vinicunca3",
+          "coords": [
+            { "$numberDouble": "-70.586622" },
+            { "$numberDouble": "-33.512547" }
+          ],
+          "height": { "$numberInt": "3400" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": true,
+            "trekking": false
+          },
+          "_id": { "$oid": "634d6d55094e50149e1ec784" }
         }
       ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
+      "mainImages": [
         "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80",
+        "https://images.unsplash.com/photo-1577157875325-9bff9b14f4c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
       ],
-      "paradas": [
-        {
-          "id": 2,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        },
-        {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        },
-        {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        }
-      ]
+      "city": "Cusco",
+      "days":  "1" 
     },
     {
-      "id": 3,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d6d56094e50149e1ec78b" ,
+      "title": "El Chalten",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Comenzaremos a las 7:30 de la mañana con el pick up por los hoteles en el Calafate. ",
+            "Terminado el mismo, emprenderemos viaje hacia el pueblo de El Chaltén (Capital Nacional del Trekking) a 220 km de El Calafate.",
+            "En nuestro recorrido, atravesaremos el Río Santa Cruz, y nos detendremos por algunos minutos en la Estancia La Leona, junto al río homónimo. Continuaremos camino al El Chaltén, bordeando el Lago Viedma ."
           ],
-          "queIncluye": [
-            "Guia",
+          "whatIncludes": [
+            "Traslado ida y vuelta desde su hotel céntrico en el Calafate.",
             "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+            "Guía español / inglés",
+            "Almuerzo"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Recogemos a los pasajeros en hoteles céntricos de El Calafate. ",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "Argentina",
+      "description": "Comenzaremos a las 7:30 de la mañana con el pick up por los hoteles en el Calafate. Terminado el mismo, emprenderemos viaje hacia el pueblo de El Chaltén (Capital Nacional del Trekking) a 220 km de El Calafate. En nuestro recorrido, atravesaremos el Río Santa Cruz, y nos detendremos por algunos minutos en la Estancia La Leona, junto al río homónimo. Continuaremos camino al El Chaltén, bordeando el Lago Viedma . Al llegar al Chaltén, tendremos 5 horas para disfrutar de este pequeño pueblo de montaña (si elige la opción con vianda o almuerzo, leer las particularidades). Para recorrer el lugar, disponemos de 2 opciones: - Habilitado todo el año: Visitar el Mirador de los Cóndores y el Chorrillo del Salto Acompañados por el guía. - De Septiembre a Abril - (Sujeto a condiciones de clima): realizar parte del sendero al Fitz Roy, llegando hasta la Laguna Capri (sendero autoguiado de 8 km ida y vuelta). Para regresar, nos reuniremos todos en un punto de encuentro fijado con anterioridad.",
+      "personPriceUsd": "75",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "El Mirador De Los Condores",
+          "direction": "San Martín, El Chalten, Santa Cruz",
+          "coords": [
+            { "$numberDouble": "-49.34768949838227" },
+            { "$numberDouble": "-72.87168034800739" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Chorillo del Salto",
+          "direction": "San Martín, El Chalten, Santa Cruz",
+          "coords": [
+            { "$numberDouble": "-49.29539805658105" },
+            { "$numberDouble": "-72.9075090833133" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78e" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Laguna Capri",
+          "coords": [
+            { "$numberDouble": "-49.30379813938349" },
+            { "$numberDouble": "-72.9392560014456" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d57094e50149e1ec78f" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1520641082665-df9ec00b0953?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1615657368807-f0ec59aa9ba2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+        "https://images.unsplash.com/photo-1637948741592-11a1f4ae3116?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+        "https://media.tacdn.com/media/attractions-splice-spp-674x446/09/9b/60/df.jpg"
+      ],
+      "city": "El Chalten",
+      "days":  "1" 
     },
     {
-      "id": 4,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d8cbe9bedf3badf4ee3ac" ,
+      "title": "Huacachina",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Un parque temático sobre las brujas de la epoca en Ica y la palmera de 7 cabezas",
+            "vitivinicola procesadora de vino y pisco artesanal tradicional del departamento de Ica",
+            "Visita al Oass Huacachina, entre dunas y totorales."
           ],
-          "queIncluye": [
-            "Guia",
-            "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+          "whatIncludes": [
+            "Transporte privado",
+            "Almuerzo",
+            "Todos los impuestos y tasas"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "El Chaco, Paracas 11550, Perú",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "Perú",
+      "description": "El mejor encuentro con un oasis se vive en Huacachina y toda la adrenalina posible que vives gracias a los sand buggy",
+      "personPriceUsd": "80",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Parque De Las Brujas De Cachiche",
+          "direction": "Ica, Perú",
+          "coords": [
+            { "$numberDouble": "-14.09094087600429" },
+            { "$numberDouble": "-75.73651325991626" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Piskus",
+          "direction": "Ica, Perú",
+          "coords": [
+            { "$numberDouble": "-14.102996930074381" },
+            { "$numberDouble": "-75.70675000224574" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78e" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Huacachina Ica",
+          "coords": [
+            { "$numberDouble": "-14.087692838693807" },
+            { "$numberDouble": "-75.76414168128005" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d57094e50149e1ec78f" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1527736848781-72dc3b2ee00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1717&q=80",
+        "https://images.unsplash.com/photo-1621626787855-ede017ed4456?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1621795307430-3ff25aa08945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1643856249010-506d17831d19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      ],
+      "city": "Ica",
+      "days":  "1" 
     },
     {
-      "id": 5,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d9248fc4ab9869d62045b" ,
+      "title": "Chichén Itzá",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Visita a Chichén Itzá, Cenote y Valladolid con tiempo libre para disfrutar del lugar",
+            "Recogida en el hotel disponible desde Cancún, Rivera Maya, Playa del Carmen, Puerto Aventuras y Tulum",
+            "Obtenga una gran visión de la cultura maya con esta visita guiada de día completo y elija la opción que más le convenga."
           ],
-          "queIncluye": [
-            "Guia",
-            "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+          "whatIncludes": [
+            "Guía profesional (Monolingüe, solo inglés)",
+            "Almuerzo",
+            "Chaleco salvavidas en el cenote"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Playa del Carmen",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "México",
+      "description": "Viaje a la península de Yucatán en México para visitar las ruinas mayas de Chichén Itzá en esta excursión de día completo que incluye traslado de ida y vuelta al hotel. Además de visitar el Castillo y aprender sobre el importante papel que esta ciudad precolombina desempeñó en la civilización maya, visitará la ciudad colonial de Valladolid y hará una parada en un cenote para darse un baño rápido y disfrutar de un almuerzo bufé.",
+      "personPriceUsd": "45",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Valladolid",
+          "direction": "Valladolid, Yucatán, México",
+          "coords": [
+            { "$numberDouble": "20.689800837650683" },
+            { "$numberDouble": "-88.2046097328595" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Chichen Itza",
+          "direction": "Chichén Itzá, Yucatán, México",
+          "coords": [
+            { "$numberDouble": "20.68458327502142" },
+            { "$numberDouble": "-88.56773661206553" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78e" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Hacienda Selva Maya",
+          "coords": [
+            { "$numberDouble": "20.687915603942727" },
+            { "$numberDouble": "-88.56698559360235" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d57094e50149e1ec78f" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1561577101-aa749bffbb70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1647220501374-3491829bfd81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1607646624191-a4a15eee248d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1518638150340-f706e86654de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80"
+      ],
+      "city": "Yucatán",
+      "days":  "1" 
     },
     {
-      "id": 6,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634d9542fc4ab9869d62045c" ,
+      "title": "Glaciar Perito Moreno",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Excursión guiada de día completo al Glaciar Perito Moreno desde El Calafate",
+            "Vea el vasto glaciar Perito Moreno desde varios miradores.",
+            "Tome un paseo en bote para obtener aún más vistas de la maravilla natural (si reserva nuestra opción de tour que lo incluye)",
+            "Recogida y regreso de cortesía desde la mayoría de los hoteles de El Calafate"
           ],
-          "queIncluye": [
-            "Guia",
-            "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+          "whatIncludes": [
+            "Guía profesional bilingüe",
+            "Paseo en barco (si has elegido tu opción de tour que lo incluye)",
+            "Recogida y regreso al hotel.",
+            "Propinas",
+            "Entradas (alrededor de USD 33) pagaderas solo en efectivo y moneda local",
+            "\nAlmuerzo"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Se incluye recogida en hoteles de El Calafate.",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "Argentina",
+      "description": "Experimente la majestuosa extensión helada del glaciar Perito Moreno en esta excursión de un día completo desde El Calafate. Disfrute de las vistas de los picos del Parque Nacional Los Glaciares con un guía profesional y tome un paseo en bote opcional en el lago Argentino para una perspectiva de cerca de la fantástica formación. ¡Incluso podría presenciar el movimiento característico del glaciar y los crujidos de los icebergs que se desprenden!",
+      "personPriceUsd": "90",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "El Calafate",
+          "direction": "El Calafate, Santa Cruz",
+          "coords": [
+            { "$numberDouble": "20.689800837650683" },
+            { "$numberDouble": "-88.2046097328595" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Perito Moreno Glacier",
+          "direction": "Perito Moreno Glacier, Santa Cruz",
+          "coords": [
+            { "$numberDouble": "20.68458327502142" },
+            { "$numberDouble": "-88.56773661206553" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78e" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Lago Argentino, Santa Cruz",
+          "coords": [
+            { "$numberDouble": "20.687915603942727" },
+            { "$numberDouble": "-88.56698559360235" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d57094e50149e1ec78f" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1552751753-0fc84ae5b6c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1517154258594-ec7c1921cc9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1590246646417-b0199da13a3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1606852727221-f31bf7fe6cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
+      ],
+      "city": "El Calafate",
+      "days": "1" 
     },
     {
-      "id": 7,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634da136fc4ab9869d62045e" ,
+      "title": "Salar de Uyuni",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Excursión guiada de día completo al Glaciar Perito Moreno desde El Calafate",
+            "Vea el vasto glaciar Perito Moreno desde varios miradores.",
+            "Tome un paseo en bote para obtener aún más vistas de la maravilla natural (si reserva nuestra opción de tour que lo incluye)",
+            "Recogida y regreso de cortesía desde la mayoría de los hoteles de El Calafate"
           ],
-          "queIncluye": [
-            "Guia",
-            "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+          "whatIncludes": [
+            "Conductor experto",
+            "Transporte compartido en Toyota Land Cruiser 4x4 o similar (7 asientos)",
+            "Entradas para la isla Incahuasi (30 pesos bolivianos por persona)"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Recogida en el hotel o aeropuerto de Uyuni.",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "Bolivia",
+      "description": "Durante el Tour de un día al Salar de Uyuni, tendremos la oportunidad de disfrutar de uno de los paisajes más maravillosos del mundo, un desierto infinito de sal donde podremos visitar el cementerio de trenes y la increíble isla Incahuasi, comer en medio del desierto y contemplar una espectacular puesta de sol.",
+      "personPriceUsd": "39",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
-        }
-      ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
-      ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Train Cemetery",
+          "direction": "Train Cemetery, Uyuni, Bolivia",
+          "coords": [
+            { "$numberDouble": "-20.48158258507504" },
+            { "$numberDouble": "-66.83798353098669" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         },
         {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Salar De Uyuni",
+          "direction": "Salar de Uyuni, Bolivia",
+          "coords": [
+            { "$numberDouble": "-20.12293854145568" },
+            { "$numberDouble": "-67.50003311646586" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78e" }
         },
         {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
+          "name": "Isla Incahuasi, Bolivia",
+          "coords": [
+            { "$numberDouble": "-20.243205893553938" },
+            { "$numberDouble": "-67.62545772522904" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d57094e50149e1ec78f" }
         }
-      ]
+      ],
+      "mainImages": [
+        "https://images.unsplash.com/photo-1618898695947-f6dac23bd1eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1623&q=80",
+        "https://images.unsplash.com/photo-1560057089-4b7dcb2a9ebe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        "https://images.unsplash.com/photo-1511236474532-77e19e1b7eee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1179&q=80",
+        "https://images.unsplash.com/photo-1526029655228-b7ee496c7819?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      ],
+      "city": "Uyuni",
+      "days":  "1" 
     },
     {
-      "id": 8,
-      "titulo": "Machu Picchu",
-      "descripcion": ".....",
-      "departamento": 1,
-      "pais": "Perú",
-      "experiencia": [
+      "_id":  "634da344fc4ab9869d62045f" ,
+      "title": "Ruinas Mayas",
+      "agencies": [{ "$oid": "634ce4d8eb1bbd2f9f290eaa" }],
+      "experience": [
         {
-          "queHaras": [
-            "11111111111111111",
-            "22222222222222222",
-            "33333333333333333"
+          "whatYouWillDo": [
+            "Arco visita guiada a las ruinas de Tulum",
+            "Snorkeling en el arrecife frente al castillo principal de Tulum."
           ],
-          "queIncluye": [
-            "Guia",
-            "Degustacion gastronomica",
-            "Agua",
-            "Cata de vinos"
+          "whatIncludes": [
+            "Transporte desde la tienda.",
+            "Guía profesional",
+            "Entradas"
           ],
-          "puntoDeEncuentro": "Vegas Ballon Rides: 4390 Polaris Ave."
+          "meetingPoint": "Agua Clara Diving Tulum\nluna poniente mz 22 lt 1 loc 2 Centro, 77780 Tulum, Q.R., México",
+          "_id": { "$oid": "634d6d56094e50149e1ec78c" }
         }
       ],
-      "agencia": [
+      "country": "México",
+      "description": "Una visita guiada arqueológica especializada a través de las increíbles estructuras de las ruinas mayas de Tulum. Partiendo por la mañana para disfrutar mejor del sitio con al menos personas como sea posible. Termine el recorrido refrescante en el espectacular arrecife frente al castillo de malla de Tulum.",
+      "personPriceUsd": "148",
+      "stops": [
         {
-          "titulo": "Vegas Ballon RIdes",
-          "descripcion": ""
+          "name": "Tulum Archaeological Site",
+          "direction": "zona arqueologica tulum",
+          "coords": [
+            { "$numberDouble": "20.21516181368828" },
+            { "$numberDouble": "-87.42942120229766" }
+          ],
+          "height": { "$numberInt": "0" },
+          "details": {
+            "watcher": false,
+            "pickUpPoint": false,
+            "trekking": true
+          },
+          "_id": { "$oid": "634d6d56094e50149e1ec78d" }
         }
       ],
-      "precioPorPersonaUsd": 39,
-      "fotosPrincipales": [
-        "https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        "https://images.unsplash.com/photo-1594902294032-b00d798485e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1526052056866-810289073817?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+      "mainImages": [
+        "https://images.unsplash.com/photo-1622870129889-f7e0ba2603a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        "https://images.unsplash.com/photo-1610565094701-ddfce4af14b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1685&q=80",
+        "https://images.unsplash.com/photo-1549414279-d6799fcf2279?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        "https://images.unsplash.com/photo-1568548634530-38ee433dcc1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
       ],
-      "paradas": [
-        {
-          "id": 1,
-          "nombre": "Vinicunca",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        },
-        {
-          "id": 2,
-          "nombre": "Vinicunca2",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        },
-        {
-          "id": 3,
-          "nombre": "Vinicunca3",
-          "direccion": "Las Lobelias 2209, La Florida, Santiago",
-          "coordenadas": [-70.586622, -33.512547],
-          "altura": 3400,
-          "detalles": {
-            "puntoDeRecojo": true,
-            "mirador": false,
-            "trekking": false
-          }
-        }
-      ]
+      "city": "Tulum",
+      "days":  "1" 
     }
   ],
   "agencias": [
