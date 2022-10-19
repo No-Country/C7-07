@@ -10,6 +10,7 @@ export interface IUser {
   posts: Array<Token>;
   reactions: Array<IReaction | string>;
   userType: string;
+  countryOfBirth: string;
 }
 
 export interface ITraveler extends IUser {
