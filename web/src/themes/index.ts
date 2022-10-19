@@ -1,4 +1,11 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, Image } from "@chakra-ui/react";
+
+Image.defaultProps = {
+  ...Image.defaultProps,
+  alt: "Image",
+  decoding: "async",
+  loading: "lazy",
+};
 
 export const theme = extendTheme({
   colors: {

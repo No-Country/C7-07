@@ -28,10 +28,15 @@ export const login = async (
       correctPayload = { email, password };
     }
     if ((!token || !payload) && (!email || !password)) throw "Bad Credentials";
-
-    const user =
-      (await TravelerRepository.getOne(correctPayload as ITraveler)) ||
-      (await AgencyRepository.getOne(correctPayload as IAgency));
+    let user;
+    if (payload?.userType === "Traveler")
+      user = await TravelerRepository.getOne(correctPayload as ITraveler);
+    else if (payload?.userType === "Agency")
+      user = await AgencyRepository.getOne(correctPayload as IAgency);
+    else
+      user =
+        (await TravelerRepository.getOne(correctPayload as ITraveler)) ||
+        (await AgencyRepository.getOne(correctPayload as IAgency));
 
     if (!user) throw "Not user founded";
 

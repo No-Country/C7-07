@@ -26,7 +26,7 @@ function Password() {
           marginX={[4, 4, 5]}
           minW="300px"
           maxW="400px"
-          focusBorderColor="#4DDA73"
+          focusBorderColor="#4ED972"
           colorScheme={"#EBEEF1"}
           bg="#EBEEF1"
         />
@@ -37,7 +37,7 @@ function Password() {
           marginX={[4, 4, 5]}
           minW="300px"
           maxW="400px"
-          focusBorderColor="#4DDA73"
+          focusBorderColor="#4ED972"
           colorScheme={"#EBEEF1"}
           bg="#EBEEF1"
         />
@@ -49,7 +49,7 @@ function Password() {
         justifyContent={["center", "center", "center", "flex-start"]}
         marginBottom={["20px"]}
       >
-        <Button bg="#4DDA73" color="white" w={"120px"} borderRadius="15px">
+        <Button bg="#4ED972" color="white" w={"120px"} borderRadius="15px">
           Guardar
         </Button>
       </Box>
