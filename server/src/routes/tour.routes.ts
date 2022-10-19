@@ -13,7 +13,7 @@ import { setPayload } from "../middlewares/setPayload";
 const router = Router();
 
 router.get("/", verifyToken, getAllTours);
-router.get("/:agencyId/:tourId", verifyToken, getTourById);
+router.get("/:tourId", verifyToken, getTourById);
 router.get("/:agencyId", verifyToken, getToursByAgencyId);
 router.post("/", verifyToken, setPayload, createTour);
 router.put("/:tourId", verifyToken, setPayload, editTour);

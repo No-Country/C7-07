@@ -8,20 +8,27 @@ import {
   selectHasErrorTours,
   loadTours,
 } from "../../features/tours/toursSlice";
+import { useNavigate } from "react-router-dom";
 
 function Tours() {
   const dispatch = useDispatch();
   const toursData = useSelector<[], []>(selectTours);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(loadTours());
+    console.log(toursData)
   }, []);
 
   return (
     <Box bg="" py={5}>
-      <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
+      <Box display="flex" flexWrap="wrap" justifyContent={"space-around"} 
+        onClick={()=> navigate(`/hola`)}
+        >
         {toursData?.map((tour: Props) => (
           <TourCard
+            
             key={tour.id}
             id={tour.id}
             country={tour.country}
