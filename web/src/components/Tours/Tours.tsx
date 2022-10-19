@@ -10,43 +10,42 @@ import {
 } from "../../features/tours/toursSlice.js";
 import { ITour } from "../../interfaces/ITour";
 import SearchTours from "../SearchTours/SearchTours";
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import {selectUser,selectIsLoadingUser,selectHasErrorUser,loadUser} from '../../features/user/userSlice';
-import { Link } from "react-router-dom";
-
-
-
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import {
+  selectUser,
+  selectIsLoadingUser,
+  selectHasErrorUser,
+  loadUser,
+} from "../../features/user/userSlice";
+import ModalPostTour from "../ModalPostTour/ModalPostTour";
 
 function Tours() {
   const dispatch = useAppDispatch();
-  const toursData = useAppSelector(selectTours);
+  const toursData:any = useAppSelector(selectTours);
   const userData = useAppSelector(selectUser);
-  
 
-  
   useEffect(() => {
     dispatch(loadTours());
     dispatch(loadUser());
+  }, [dispatch]);
 
-  }, [dispatch]); 
-
-  
   return (
     <Box bg="" py={5}>
       <Box
         h={["60px", "60px", "120px"]}
         marginBottom="20px"
         display={"flex"}
+        flexWrap="wrap"
         alignItems="center"
-        justifyContent={["start"]}
+        justifyContent={["end","end","space-between"]}
       >
         <SearchTours />
+        <ModalPostTour />
       </Box>
 
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
         {toursData?.map((tour: ITour, i: number) => {
           return (
-            
             <TourCard
               key={i}
               id={tour.id}
@@ -57,7 +56,6 @@ function Tours() {
               personPriceUsd={tour.personPriceUsd}
               mainImages={tour.mainImages}
             />
-            
           );
         })}
       </Box>

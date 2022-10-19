@@ -40,7 +40,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -65,7 +65,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
   async create<NewEntity = IAgency>(data: NewEntity): Promise<IAgency> {
