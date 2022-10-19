@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { IAgency } from "./IUser";
 
 type Experience = {
@@ -31,9 +30,11 @@ export interface ITour {
   days: number;
   country: string;
   experience: Array<Experience>;
-  agency: Array<IAgency | string>;
+  agency: {
+    name: string;
+    description: string;
+  };
   personPriceUsd: string;
   mainImages: Array<string>;
   stops: Array<Stop>;
-  city: string;
 }
