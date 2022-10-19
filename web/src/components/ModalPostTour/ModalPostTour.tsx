@@ -49,12 +49,6 @@ function ModalPostTour() {
     },
   ]);
   const [title, setTitle] = useState("fghfghf");
-  const [agencies, setAgencies] = useState([
-    {
-      name: "",
-      description: "",
-    },
-  ]);
 
   const tourTemplate = {
     days,
@@ -66,7 +60,6 @@ function ModalPostTour() {
     personPriceUsd,
     stops,
     title,
-    agencies,
   };
 
   /* {
@@ -103,19 +96,22 @@ function ModalPostTour() {
     region: "",
     days: 0,
   }; */
-  const [tour, setTour] = useState(tourTemplate);
+  
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWduYWNpbyBGZWRvcmVuY28iLCJlbWFpbCI6ImlnbmFjaW9mZWRvcmVuY28yMzE3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJHBhc3MxMjMiLCJhbGlhcyI6IklnbkZlZCIsInVzZXJUeXBlIjoiQWdlbmN5IiwiZGVzY3JpcHRpb24iOiJUcmF2ZWwgQWdlbmN5IiwiY29udGFjdHMiOnsid2hhdHNhcHAiOiIzMjE5MTMxOTgyNzM4In0sImlkIjoiNjM0Y2U0ZDhlYjFiYmQyZjlmMjkwZWFhIiwiaWF0IjoxNjY1OTgzNzA0fQ.rNcqm39rhKh5ViM24TRqyzYFRdfvUnCZbfW-A3Kc6Dw";
 
-  async function postData(url = "http://localhost:3001/tours", data = tour) {
+    
+  async function postData(url = "http://localhost:3001/tours") {
+    
     try {
       const response = await fetch(url, {
         method: "POST", // or 'PUT'
         headers: {
+          'Content-Type': 'application/json',
           Authorization: "Bearer " + token,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(tourTemplate),
       });
       const datas = await response.json();
 
