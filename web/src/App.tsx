@@ -25,9 +25,9 @@ function App() {
               <Route path="/profile/password" element={<Password />} />
             </Route>
           </Route>
-          **<Route path="*" element={<NotFound/>}/>**
           <Route path="/ingresar" element={<LoginPage />} />
           <Route path="/registrar" element={<RegisterPage />} />
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
     </>
