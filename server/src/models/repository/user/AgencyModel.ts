@@ -53,6 +53,7 @@ const BusinessSchema = new Schema<IAgency>(
         whatsapp: String,
       },
     ],
+    country: Schema.Types.String,
   },
   {
     versionKey: false,

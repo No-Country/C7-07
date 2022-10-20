@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Wrap, WrapItem, Flex, Spacer } from "@chakra-ui/react";
 import TourCard, { Props } from "../TourCard/TourCard";
-import { useSelector, useDispatch } from "react-redux";
 import {
   selectTours,
   selectIsLoadingTours,
@@ -18,46 +17,55 @@ import {
   loadUser,
 } from "../../features/user/userSlice";
 import ModalPostTour from "../ModalPostTour/ModalPostTour";
+import decodeToken from "../../utils/decodeToken";
+import { IUser } from "../../interfaces/IUser";
 
 function Tours() {
-  const dispatch = useAppDispatch();
-  const toursData:any = useAppSelector(selectTours);
-  const userData = useAppSelector(selectUser);
+  const dispatch: any = useAppDispatch();
+  const toursData = useAppSelector<ITour[] | null>(selectTours);
+  const [userData, setuserData] = useState<IUser | null>(null);
 
   useEffect(() => {
     dispatch(loadTours());
-    dispatch(loadUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setuserData(decodeToken(localStorage.getItem("token")));
+    }
+  }, []);
 
   return (
     <Box bg="" py={5}>
       <Box
         h={["60px", "60px", "120px"]}
-        marginBottom="20px"
+        marginBottom={["40px", "40px", "20px"]}
         display={"flex"}
         flexWrap="wrap"
         alignItems="center"
-        justifyContent={["end","end","space-between"]}
+        justifyContent={["space-between"]}
       >
         <SearchTours />
-        <ModalPostTour />
+
+        {userData?.userType === "Agency" && <ModalPostTour />}
       </Box>
 
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
-        {toursData?.map((tour: ITour, i: number) => {
-          return (
-            <TourCard
-              key={i}
-              id={tour.id}
-              days={tour.days}
-              city={tour.city}
-              country={tour.country}
-              title={tour.title}
-              personPriceUsd={tour.personPriceUsd}
-              mainImages={tour.mainImages}
-            />
-          );
-        })}
+        {toursData &&
+          toursData.map((tour: ITour, i: number) => {
+            return (
+              <TourCard
+                key={i}
+                id={tour.id}
+                days={tour.days}
+                city={tour.region}
+                country={tour.country}
+                title={tour.title}
+                personPriceUsd={tour.personPriceUsd}
+                mainImages={tour.mainImages}
+              />
+            );
+          })}
       </Box>
     </Box>
   );

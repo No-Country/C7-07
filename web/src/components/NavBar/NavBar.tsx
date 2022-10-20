@@ -7,7 +7,12 @@ import {
   Link as ChakraLink,
   LinkProps,
 } from "@chakra-ui/react";
-import { Link as RouterLink, Outlet, useLocation } from "react-router-dom";
+import {
+  Link as RouterLink,
+  Outlet,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import noActiveHouse from "../../assets/img/casa_desactivado.png";
 import activeHouse from "../../assets/img/casa_activado.png";
 import activeMountain from "../../assets/img/montana_activado.png";
@@ -15,7 +20,7 @@ import noActiveMountain from "../../assets/img/montana_desactivado.png";
 import logoTravis from "../../assets/img/Logo_Travis.svg";
 import MenuNavBar from "../MenuNavBar/MenuNavBar";
 import MenuDrawer from "../MenuDrawer/MenuDrawer";
-import logo from '../../assets/img/logoTravis.svg'
+import logo from "../../assets/img/logoTravis.svg";
 
 const LIST_ITEMS = [
   {
@@ -57,9 +62,9 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
-
   return (
     <Box h="80px" borderBottom="1px solid gray">
+      {m.pathname === "/" && <Navigate to="/home" replace={true} />}
       <List
         as="nav"
         display="flex"
@@ -71,15 +76,22 @@ function NavBar() {
       >
         <ListItem>
           <ChakraLink as={RouterLink} to="/home">
-            <Image src={logoTravis} w="20vmin" display={{
-            base: "none",
-            md: "block",
-          }}/>
-            <Image src={logo} w="48px" display={{
-            base: "block",
-            md: "none",
-          }}/>
-
+            <Image
+              src={logoTravis}
+              w="20vmin"
+              display={{
+                base: "none",
+                md: "block",
+              }}
+            />
+            <Image
+              src={logo}
+              w="48px"
+              display={{
+                base: "block",
+                md: "none",
+              }}
+            />
           </ChakraLink>
         </ListItem>
         <ListItem display="flex" gap="2rem" h="100%">

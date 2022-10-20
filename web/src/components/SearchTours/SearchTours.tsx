@@ -18,8 +18,7 @@ function SearchTours() {
 
   const [tours, setTours] = useState<ITour[]>([]);
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWduYWNpbyBGZWRvcmVuY28iLCJlbWFpbCI6ImlnbmFjaW9mZWRvcmVuY28yMzE3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJHBhc3MxMjMiLCJhbGlhcyI6IklnbkZlZCIsInVzZXJUeXBlIjoiQWdlbmN5IiwiZGVzY3JpcHRpb24iOiJUcmF2ZWwgQWdlbmN5IiwiY29udGFjdHMiOnsid2hhdHNhcHAiOiIzMjE5MTMxOTgyNzM4In0sImlkIjoiNjM0Y2U0ZDhlYjFiYmQyZjlmMjkwZWFhIiwiaWF0IjoxNjY1OTgzNzA0fQ.rNcqm39rhKh5ViM24TRqyzYFRdfvUnCZbfW-A3Kc6Dw";
+  const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
     if (search) {
@@ -31,10 +30,7 @@ function SearchTours() {
         .then((response) => response.json())
         .then((json) => {
           setTours(json.data);
-          console.log(
-            "🚀 ~ file: SearchTours.tsx ~ line 35 ~ .then ~ json.data",
-            json.data
-          );
+          
         });
     }
   }, [search]);
