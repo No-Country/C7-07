@@ -10,6 +10,9 @@ import {
   useColorModeValue,
   FormControl,
   FormErrorMessage,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import {
   AsyncSelect,
@@ -51,14 +54,24 @@ interface IFormData {
   name: string;
   description?: string;
   contact?: number;
+  birthday?: string;
+  genre?: string;
   email: string;
   country: string;
   password: string;
   confirmPassword: string;
 }
 
+interface IError {
+  status: boolean;
+  message: string;
+}
+
 export const Register = ({ userType }: Props) => {
   const navigate = useNavigate();
+
+  const [error, setError] = useState<IError>({ status: false, message: "" });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -70,9 +83,65 @@ export const Register = ({ userType }: Props) => {
 
   const [countries, setCountries] = useState<ISelectCountries[]>([]);
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URI}/login/regist`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            userType == "turista"
+              ? {
+                  name: data.name,
+                  email: data.email,
+                  password: data.password,
+                  alias: data.name,
+                  posts: [],
+                  reactions: [],
+                  userType: "Traveler",
+                  countriesILike: [],
+                  country: data.country,
+                  birthday: data.birthday,
+                  genre: data.genre,
+                }
+              : {
+                  name: data.name,
+                  email: data.email,
+                  password: data.password,
+                  alias: data.name,
+                  posts: [],
+                  reactions: [],
+                  userType: "Agency",
+                  tours: [],
+                  description: data.description,
+                  contacts: { whatsapp: data.contact?.toString() },
+                }
+          ),
+        }
+      );
+      const dataResponse = await response.json();
+      if (dataResponse.code == 200) {
+        setIsLoading(false);
+        localStorage.setItem("token", dataResponse.data);
+        navigate("/home", { replace: true });
+      } else if (dataResponse.code == 500) {
+        setIsLoading(false);
+        setError({ status: true, message: "Error en el registro" });
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  });
 
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home", { replace: true });
+    }
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
@@ -90,12 +159,13 @@ export const Register = ({ userType }: Props) => {
   }, []);
 
   return (
-    <Flex w="full" minH="100vh">
-      <Flex
-        flexDirection={{ base: "column", md: "row" }}
+    <Box w="full" minH="100vh">
+      <HStack
         marginX="auto"
         alignItems="center"
         w="full"
+        spacing={0}
+        minH="100vh"
       >
         <Box
           h="100vh"
@@ -116,11 +186,25 @@ export const Register = ({ userType }: Props) => {
           <Box position="absolute" bg="black" inset="0" opacity="0.35"></Box>
         </Box>
         <VStack
+          maxH="100vh"
           minH="100vh"
-          justifyContent="center"
           position="relative"
           w="45rem"
           maxW="45rem"
+          overflowY="auto"
+          paddingY={{ base: "4rem", md: "4rem" }}
+          paddingX={{ base: "1rem" }}
+          sx={{
+            "::-webkit-scrollbar": {
+              width: "12px",
+              background: "#fff",
+            },
+            "::-webkit-scrollbar-thumb": {
+              background: "#4ed972",
+              borderRadius: "10px",
+              border: "3px solid #fff",
+            },
+          }}
         >
           <Box
             position="absolute"
@@ -128,7 +212,7 @@ export const Register = ({ userType }: Props) => {
             left={{ base: 3, md: 4 }}
           >
             <Button
-              onClick={() => navigate("/auth/register")}
+              onClick={() => navigate("/register")}
               color="brand.500"
               colorScheme="green"
               leftIcon={<ChevronLeftIcon w={6} h={6} />}
@@ -144,18 +228,17 @@ export const Register = ({ userType }: Props) => {
             </Button>
           </Box>
           <Flex
-            paddingY={{ base: "4rem", md: "2rem" }}
-            paddingX={{ base: "2rem" }}
             w="full"
             h="full"
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
+            marginY={{ base: "3rem" }}
           >
-            <VStack w="100%" marginBottom="2rem">
-              <Box position="relative">
+            <VStack w="100%" marginBottom="1rem">
+              <VStack spacing={0} alignItems="flex-end">
                 <Image src="/logo.png" h="14" />
-                <Box position="absolute" right={0} bottom={-5}>
+                <Box>
                   <Text
                     color="brand.500"
                     fontSize="xl"
@@ -165,7 +248,7 @@ export const Register = ({ userType }: Props) => {
                     {userType}
                   </Text>
                 </Box>
-              </Box>
+              </VStack>
             </VStack>
             <VStack
               as="form"
@@ -174,8 +257,9 @@ export const Register = ({ userType }: Props) => {
               maxW="23rem"
               marginX="auto"
               spacing="3"
+              mt="1rem"
             >
-              <Text fontSize="xl" fontWeight="600" mb={{ base: "1rem", md: 0 }}>
+              <Text fontSize="xl" fontWeight="600" mb="0.5rem">
                 Crear una cuenta
               </Text>
               <FormControl isInvalid={Boolean(errors.name)}>
@@ -251,31 +335,6 @@ export const Register = ({ userType }: Props) => {
                   {errors.email && errors.email.message}
                 </FormErrorMessage>
               </FormControl>
-              {userType == "agencia" && (
-                <FormControl isInvalid={Boolean(errors.contact)}>
-                  <Input
-                    placeholder="Contacto"
-                    rounded="4px"
-                    type="text"
-                    fontSize="sm"
-                    _focus={{
-                      boxShadow: "none",
-                      borderColor: "#aaa",
-                    }}
-                    {...register("contact", {
-                      required: "El contacto es obligatorio",
-                      valueAsNumber: true,
-                    })}
-                  />
-                  <FormErrorMessage
-                    fontSize="0.75rem"
-                    fontWeight="500"
-                    marginTop="0.25rem"
-                  >
-                    {errors.contact && errors.contact.message}
-                  </FormErrorMessage>
-                </FormControl>
-              )}
               <Box width="full">
                 <Controller<IFormData>
                   control={control}
@@ -394,6 +453,95 @@ export const Register = ({ userType }: Props) => {
                   )}
                 />
               </Box>
+              {userType == "turista" && (
+                <>
+                  <FormControl isInvalid={Boolean(errors.birthday)}>
+                    <FormLabel
+                      fontSize="0.75rem"
+                      fontWeight="400"
+                      color="gray.500"
+                      marginBottom="0.1rem"
+                    >
+                      Fecha de nacimiento
+                    </FormLabel>
+                    <Input
+                      type="date"
+                      rounded="4px"
+                      fontSize="sm"
+                      {...register("birthday", {
+                        required: "La fecha de nacimiento es obligatoria",
+                      })}
+                    />
+                    <FormErrorMessage
+                      fontSize="0.75rem"
+                      fontWeight="500"
+                      marginTop="0.25rem"
+                    >
+                      {errors.birthday && errors.birthday.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel
+                      fontSize="0.75rem"
+                      fontWeight="400"
+                      color="gray.500"
+                      marginBottom="0.1rem"
+                    >
+                      Género
+                    </FormLabel>
+                    <RadioGroup w="full" defaultValue="M">
+                      <HStack spacing={5} justifyContent="flex-start">
+                        <Radio
+                          colorScheme="green"
+                          value="M"
+                          {...register("genre")}
+                        >
+                          Hombre
+                        </Radio>
+                        <Radio
+                          colorScheme="green"
+                          value="F"
+                          {...register("genre")}
+                        >
+                          Mujer
+                        </Radio>
+                        <Radio
+                          colorScheme="green"
+                          value="U"
+                          {...register("genre")}
+                        >
+                          No indicar
+                        </Radio>
+                      </HStack>
+                    </RadioGroup>
+                  </FormControl>
+                </>
+              )}
+              {userType == "agencia" && (
+                <FormControl isInvalid={Boolean(errors.contact)}>
+                  <Input
+                    placeholder="Contacto"
+                    rounded="4px"
+                    type="text"
+                    fontSize="sm"
+                    _focus={{
+                      boxShadow: "none",
+                      borderColor: "#aaa",
+                    }}
+                    {...register("contact", {
+                      required: "El contacto es obligatorio",
+                      valueAsNumber: true,
+                    })}
+                  />
+                  <FormErrorMessage
+                    fontSize="0.75rem"
+                    fontWeight="500"
+                    marginTop="0.25rem"
+                  >
+                    {errors.contact && errors.contact.message}
+                  </FormErrorMessage>
+                </FormControl>
+              )}
               <FormControl isInvalid={Boolean(errors.password)}>
                 <Input
                   type="password"
@@ -449,21 +597,33 @@ export const Register = ({ userType }: Props) => {
                   {errors.confirmPassword && errors.confirmPassword.message}
                 </FormErrorMessage>
               </FormControl>
-              <Button
-                type="submit"
-                w="full"
-                bg="brand.500"
-                _hover={{ background: "brand.700" }}
-                color="white"
-                rounded="4px"
-                paddingY={{ base: "1.5rem", md: "1.2rem" }}
-              >
-                Registrarse
-              </Button>
+              <FormControl isInvalid={error.status}>
+                <Button
+                  type="submit"
+                  w="full"
+                  bg="brand.500"
+                  _hover={{ background: "brand.700" }}
+                  color="white"
+                  rounded="4px"
+                  paddingY={{ base: "1.5rem", md: "1.2rem" }}
+                  isLoading={isLoading}
+                >
+                  Registrarse
+                </Button>
+                <FormErrorMessage
+                  fontSize="0.8rem"
+                  fontWeight="500"
+                  marginTop="0.25rem"
+                >
+                  <Text textAlign="center" w="full">
+                    {error.status && error.message}
+                  </Text>
+                </FormErrorMessage>
+              </FormControl>
               <HStack fontSize="0.8rem" fontWeight="500">
                 <Text>¿Ya tienes una cuenta? </Text>
                 <Text
-                  onClick={() => navigate("/auth/login")}
+                  onClick={() => navigate("/login")}
                   cursor="pointer"
                   color="brand.500"
                   fontWeight="600"
@@ -474,7 +634,7 @@ export const Register = ({ userType }: Props) => {
             </VStack>
           </Flex>
         </VStack>
-      </Flex>
-    </Flex>
+      </HStack>
+    </Box>
   );
 };

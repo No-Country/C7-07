@@ -24,19 +24,17 @@ function App() {
             </Route>
           </Route>
 
-          <Route path="/auth">
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register">
-              <Route index element={<PreRegister />} />
-              <Route
-                path="turista"
-                element={<RegisterPage userType="turista" />}
-              />
-              <Route
-                path="agencia"
-                element={<RegisterPage userType="agencia" />}
-              />
-            </Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register">
+            <Route index element={<PreRegister />} />
+            <Route
+              path="turista"
+              element={<RegisterPage userType="turista" />}
+            />
+            <Route
+              path="agencia"
+              element={<RegisterPage userType="agencia" />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

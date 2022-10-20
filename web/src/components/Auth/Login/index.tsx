@@ -13,14 +13,23 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 interface IFormData {
   email: string;
   password: string;
 }
 
+interface IError {
+  status: boolean;
+  message: string;
+}
+
 export const Login = () => {
   const navigate = useNavigate();
+
+  const [error, setError] = useState<IError>({ status: false, message: "" });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -28,7 +37,35 @@ export const Login = () => {
     handleSubmit,
   } = useForm<IFormData>();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URI}/login/auth?email=${
+          data.email
+        }&password=${data.password}`,
+        {}
+      );
+      const dataResponse = await response.json();
+      if (dataResponse.code == 200) {
+        setIsLoading(false);
+        localStorage.setItem("token", dataResponse.data);
+        navigate("/home", { replace: true });
+      } else if (dataResponse.code == 404) {
+        setIsLoading(false);
+        setError({ status: true, message: "Credenciales incorrectas" });
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home", { replace: true });
+    }
+  }, []);
 
   return (
     <Flex w="full" minH="100vh">
@@ -153,21 +190,33 @@ export const Login = () => {
                   {errors.password && errors.password.message}
                 </FormErrorMessage>
               </FormControl>
-              <Button
-                type="submit"
-                w="full"
-                bg="brand.500"
-                _hover={{ background: "brand.700" }}
-                color="white"
-                rounded="4px"
-                paddingY="1.4rem"
-              >
-                Iniciar sesión
-              </Button>
+              <FormControl isInvalid={error.status}>
+                <Button
+                  type="submit"
+                  w="full"
+                  bg="brand.500"
+                  _hover={{ background: "brand.700" }}
+                  color="white"
+                  rounded="4px"
+                  paddingY="1.4rem"
+                  isLoading={isLoading}
+                >
+                  Iniciar sesión
+                </Button>
+                <FormErrorMessage
+                  fontSize="0.8rem"
+                  fontWeight="500"
+                  marginTop="0.25rem"
+                >
+                  <Text textAlign="center" w="full">
+                    {error.status && error.message}
+                  </Text>
+                </FormErrorMessage>
+              </FormControl>
               <HStack fontSize="0.8rem" fontWeight="500">
                 <Text>¿Todavía no tienes una cuenta? </Text>
                 <Text
-                  onClick={() => navigate("/auth/register/turista")}
+                  onClick={() => navigate("/register")}
                   cursor="pointer"
                   color="brand.500"
                   fontWeight="600"

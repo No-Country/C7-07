@@ -1,11 +1,18 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MotionBox = motion(Box);
 
 export const PreRegister = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home", { replace: true });
+    }
+  }, []);
 
   return (
     <Flex
@@ -41,7 +48,7 @@ export const PreRegister = () => {
               cursor="pointer"
               border="2px solid #ddd"
               rounded="lg"
-              onClick={() => navigate("/auth/register/turista")}
+              onClick={() => navigate("/register/turista")}
               mb={{ base: 8, sm: 0 }}
             >
               <VStack
@@ -65,7 +72,7 @@ export const PreRegister = () => {
               cursor="pointer"
               border="2px solid #ddd"
               rounded="lg"
-              onClick={() => navigate("/auth/register/agencia")}
+              onClick={() => navigate("/register/agencia")}
             >
               <VStack
                 h={{ base: "36", sm: "48" }}
