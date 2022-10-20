@@ -9,6 +9,7 @@ import Profile from "./components/Perfil/Profile";
 import Password from "./components/Perfil/Password";
 import InputProfile from "./components/Perfil/InputProfile";
 import Tour from "./components/Tour/Tour";
+import NotFound from "./components/404NotFound/NotFound";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/profile/password" element={<Password />} />
             </Route>
           </Route>
+          **<Route path="*" element={<NotFound/>}/>**
           <Route path="/ingresar" element={<LoginPage />} />
           <Route path="/registrar" element={<RegisterPage />} />
         </Routes>
