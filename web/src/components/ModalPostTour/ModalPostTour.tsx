@@ -61,10 +61,13 @@ function ModalPostTour() {
     height: 0,
     details: { watcher: false, pickUpPoint: false, trekking: false },
   });
-  
 
   const [stops, setStops] = useState([]);
-  console.log("🚀 ~ file: ModalPostTour.tsx ~ line 70 ~ ModalPostTour ~ stops", stops)
+  console.clear();
+  console.log(
+    "🚀 ~ file: ModalPostTour.tsx ~ line 70 ~ ModalPostTour ~ stops",
+    stops
+  );
 
   const tourTemplate = {
     days,
@@ -156,7 +159,7 @@ function ModalPostTour() {
       </Button>
 
       <Modal
-        isOpen={isOpen}
+        isOpen={true}
         onClose={onClose}
         isCentered
         motionPreset="slideInBottom"
@@ -368,7 +371,20 @@ function ModalPostTour() {
                   borderRadius="10px"
                   onClick={() => {
                     setNumberStops((prev) => prev + 1);
-                    setStops((prev:any) => [...prev, stop])
+                    if (numberStops === 0) return;
+                    setStops((prev: any) => (prev ? [...prev, stop] : stop));
+                    setStop({
+                      name: null,
+                      number: null,
+                      direction: null,
+                      coords: [0, 0],
+                      height: 0,
+                      details: {
+                        watcher: false,
+                        pickUpPoint: false,
+                        trekking: false,
+                      },
+                    });
                   }}
                   type="submit"
                 >
@@ -508,6 +524,20 @@ function ModalPostTour() {
                 setWhatYouWillDo(() => null);
                 setWhatIncludes(() => null);
                 setMeetingPoint(() => null);
+                if (!stop.name.trim() || !stop.direction.trim()) return;
+                setStops((prev: any) => (prev ? [...prev, stop] : stop));
+                setStop({
+                  name: null,
+                  number: null,
+                  direction: null,
+                  coords: [0, 0],
+                  height: 0,
+                  details: {
+                    watcher: false,
+                    pickUpPoint: false,
+                    trekking: false,
+                  },
+                });
               }}
               type="submit"
             >
