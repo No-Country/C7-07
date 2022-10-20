@@ -1,6 +1,7 @@
 import express, { Application, Router } from "express";
 import cors from "cors";
-import { config as dotenvConfig, DotenvConfigOutput } from "dotenv";
+import compression from "compression";
+import { config as dotenvConfig } from "dotenv";
 import Print from "./utils/Print";
 
 const print = new Print();
@@ -33,7 +34,8 @@ export class Server {
   private middlewares(): void {
     dotenvConfig({ path: this.envDir });
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(compression());
+    this.app.use(express.json({ limit: "50mb" }));
     this.app.use(express.urlencoded({ extended: true }));
   }
 

@@ -7,7 +7,7 @@ import { AgencyRepository } from "../../models/repository/user";
 
 const Tour = new TourRepository();
 
-type PickedBody = Omit<ITour, "id" | "agency">;
+type PickedBody = Omit<ITour, "id">;
 
 export const createTour = async (
   req: Request & { token: string; payload: IAgency },
@@ -17,7 +17,8 @@ export const createTour = async (
   if (userType.toLowerCase() !== "agency")
     throw "No Agency users can not create Tours.";
   const {
-    apartament,
+    days,
+    region,
     country,
     description,
     experience,
@@ -25,12 +26,12 @@ export const createTour = async (
     personPriceUsd,
     stops,
     title,
-    agencies,
   } = req.body as PickedBody;
   try {
     const agency = await AgencyRepository.getById(id);
     const tour = await Tour.create({
-      apartament,
+      days,
+      region,
       country,
       description,
       experience,
@@ -38,15 +39,15 @@ export const createTour = async (
       personPriceUsd,
       stops,
       title,
-      agencies: [agency],
+      agency: { name: agency.name, description: agency.description },
     });
-    await AgencyRepository.setTour(id, tour);
+    await AgencyRepository.setTour({ id }, tour);
     res.status(200).json({
-      message: `Tour created!`,
+      message: "Created",
       code: 200,
       status: "OK",
       data: tour,
-    } as IMessage<typeof tour>);
+    } as IMessage);
   } catch (error) {
     res.status(404).json({
       message: error,

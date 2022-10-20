@@ -1,4 +1,8 @@
+import { IPost } from "./IPost";
+import { IUser } from "./IUser";
+
 export interface IReaction {
-  owner: string;
-  post: string;
+  id: string;
+  owner: IUser | string;
+  post: IPost | string;
 }

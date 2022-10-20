@@ -12,7 +12,10 @@ import ArrowLeft from "../../icons/ArrowLeft";
 import { Link as RouterLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { loadTourById, selectTour } from "../../features/tours/toursSlice";
+import { loadTourById, selectTour } from "../../features/tour/tourSlice";
+import { ITour } from "../../interfaces/ITour";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
 
 
 // Revisar primer param de getTourbyId
@@ -29,50 +32,48 @@ import { loadTourById, selectTour } from "../../features/tours/toursSlice";
 
 function Tour() {
 
-    let {agencyId,tourId} = useParams();
-
-    const dispatch = useDispatch();
-    const tourData = useSelector<[], []>(selectTour);
+    let {tourId} = useParams();
+    const dispatch: any = useAppDispatch();
+    const tourData = useAppSelector<ITour[] | null>(selectTour);
 
     useEffect(() => {
-        dispatch(loadTourById(agencyId,tourId));
+        dispatch(loadTourById(tourId));
     }, []);
-
     return (
         <Box  marginX={"40px"}>
-            {tourData && "Sí"}
-        <Box flex={1}>
-            <ChakraLink
-            as={RouterLink}
-            to="/tours"
-            w={["full", "full", "full"]}
-            flex={1}
-            h={["50px", "50px", "50px"]}
-            display={"flex"}
-            alignItems={"center"}
-            >
-            <Box marginX={"10px"}>
-                <ArrowLeft />
-            </Box>
-            <Text
+            <Box flex={1}>
+                {tourData && "SÏ"}
+                <ChakraLink
+                as={RouterLink}
+                to="/tours"
+                w={["full", "full", "full"]}
+                flex={1}
+                h={["50px", "50px", "50px"]}
                 display={"flex"}
-                fontWeight="bold"
-                fontSize="medium"
-                color="#4DDA73"
-            >
-                Ver todos los Tours
-            </Text>
-            </ChakraLink>
-            <Box>
-                <Box>
-                Senderismo por la montaña Arcoíris y el valle Rojo
+                alignItems={"center"}
+                >
+                <Box marginX={"10px"}>
+                    <ArrowLeft />
                 </Box>
+                <Text
+                    display={"flex"}
+                    fontWeight="bold"
+                    fontSize="medium"
+                    color="#4DDA73"
+                >
+                    Ver todos los Tours
+                </Text>
+                </ChakraLink>
                 <Box>
-                    Puno, Perú - 1 día
+                    <Box>
+                        {tourData.title}
+                    </Box>
+                    <Box>
+                        Puno, Perú - 1 día
+                    </Box>
                 </Box>
             </Box>
-        </Box>
-        <Box>Mapa</Box>
+            <Box>Mapa</Box>
         </Box>
     );
 }

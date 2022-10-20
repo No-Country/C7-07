@@ -33,12 +33,17 @@ const TravelerSchema = new Schema<ITraveler>(
       enum: ["Traveler", "Agency"],
       required: true,
     },
-
+    genre: {
+      type: String,
+      required: true,
+      enum: ["F", "M", "U"],
+    },
     password: {
       type: String,
       required: true,
     },
-
+    birthDate: Schema.Types.String,
+    country: Schema.Types.String,
     countriesILike: [{ type: Schema.Types.String }],
   },
   {

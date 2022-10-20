@@ -22,7 +22,7 @@ export const setLike = async (
     if (!reaction) {
       reaction = await Reaction.create(id, postId);
     }
-
+    console.log(reaction);
     const isLikedPost = await PostRepository.setLike(reaction);
     const isLikedUser = await (userType === "Traveler"
       ? TravelerRepository
@@ -30,8 +30,9 @@ export const setLike = async (
     ).setLike(reaction);
 
     if (!isLikedPost || !isLikedUser) throw "Error can not like.";
+    console.log({ isLikedPost, isLikedUser });
     if (isLikedPost === "remove" && isLikedUser === "remove") {
-      await Reaction.deleteOne(id, postId);
+      await Reaction.deleteOne(reaction);
     }
     res.status(200).json({
       code: 200,

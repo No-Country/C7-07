@@ -30,7 +30,7 @@ export class TourRepository implements IToursRepository {
   async getById(tourId: string): Promise<ITour> {
     try {
       const tour = await this._repository
-        .findById({ id: tourId })
+        .findById(tourId)
         .populate(this.populateOptions);
       return tour;
     } catch (error) {
@@ -40,12 +40,13 @@ export class TourRepository implements IToursRepository {
   async create(data: Omit<ITour, "id">): Promise<ITour> {
     try {
       const tour = await this._repository.create(data);
+      console.log("CREATE_TOUR: ", tour);
       return tour;
     } catch (error) {
       throw error;
     }
   }
-  async edit(tourId: string, data: Omit<ITour, "id">): Promise<ITour> {
+  async edit(tourId: string, data: Partial<Omit<ITour, "id">>): Promise<ITour> {
     try {
       const tour = await this._repository
         .findOneAndUpdate(
@@ -57,11 +58,39 @@ export class TourRepository implements IToursRepository {
         )
         .populate(this.populateOptions);
 
+      console.log({
+        tourId,
+        tour,
+      });
+
       return tour;
     } catch (error) {
       throw error;
     }
   }
+
+  async searchBy(value: string): Promise<ITour[] | void> {
+    try {
+      value = value?.trim();
+      const tours = await this._repository.aggregate([
+        {
+          $match: {
+            $or: [
+              { title: { $regex: value, $options: "i" } },
+              { city: { $regex: value, $options: "i" } },
+              { country: { $regex: value, $options: "i" } },
+              { "agencies.name": { $regex: value, $options: "i" } },
+              { "experience.whatIncludes": { $regex: value, $options: "i" } },
+            ],
+          },
+        },
+      ]);
+      return tours;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async delete(agencyId: string, tourId: string): Promise<ITour> {
     try {
       const tour = await this._repository.findOneAndDelete({

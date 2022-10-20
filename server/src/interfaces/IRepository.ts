@@ -40,6 +40,7 @@ export interface IUserRepository<Entity> {
     data: Partial<NewEntity>
   ): Promise<NewUser | null>;
   deleteOne(userId: Token): Promise<Entity | null>;
+  deletePost(userId: Token, postId: Token): Promise<boolean | void>;
   setLike(reaction: IReaction): Promise<boolean | string>;
   setPost(userId: Token, post: IPost): Promise<boolean | string>;
 }
@@ -47,5 +48,5 @@ export interface IUserRepository<Entity> {
 export interface IReactionRepository {
   create(userId: Token, postId: Token): Promise<IReaction | null>;
   getOne(obj: { userId?: string; postId?: string }): Promise<IReaction | null>;
-  deleteOne(userId: string, postId: string): Promise<IReaction | null>;
+  deleteOne(reaction: IReaction): Promise<IReaction | null>;
 }
