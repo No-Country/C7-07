@@ -54,6 +54,9 @@ const BusinessSchema = new Schema<IAgency>(
       },
     ],
     country: Schema.Types.String,
+    profile: {
+      type: Schema.Types.String,
+    },
   },
   {
     versionKey: false,
