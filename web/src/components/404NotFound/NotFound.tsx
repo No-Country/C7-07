@@ -12,15 +12,21 @@ import {
 
 function NotFound() {
     return(
-        <Box display={"flex"} minH="90vh" w="full"justifyContent={"center"} alignItems="center">
-            <Box w={["full", "full", "400px"]}
+        <Box display={"flex"} flexWrap={"wrap"} minH="90vh" w="full" justifyContent={"center"} alignItems="center"
+        paddingY={10}
+        >
+            <Box 
+                w= {"400px"}
+                paddingX={[5]}
                 display={"flex"}
                 flexDirection={"column"}
-            >   
+                paddingY={5}
+            >
                 <ChakraLink as={RouterLink} to="/home" >
-                    <Image src={logoTravis} w="30vmin" marginBottom={"30px"}/>
+                    <Image src={logoTravis} marginBottom={"30px"}
+                    w= {"200px"}
+                    />
                 </ChakraLink>
-
                 <Box>
                     <Text
                         fontWeight={300} fontSize="3xl"
@@ -30,7 +36,7 @@ function NotFound() {
                     <Text
                         color="gray.500"
                         as={"i"}
-                        marginTop={"20px"}
+                        marginTop={"5px"}
                         display={"flex"}
                         justifyContent={"flex-end"}
                         marginRight={"35px"}
@@ -39,7 +45,10 @@ function NotFound() {
                     </Text>
                 </Box>
             </Box>
-            <Image src={NotFoundImage}/>
+            <Image 
+            src={NotFoundImage}
+            w= {["300px","400px","400px"]}
+            />
         </Box>
     )
 }
