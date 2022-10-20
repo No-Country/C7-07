@@ -30,7 +30,7 @@ export class TourRepository implements IToursRepository {
   async getById(tourId: string): Promise<ITour> {
     try {
       const tour = await this._repository
-        .findById({ id: tourId })
+        .findById(tourId)
         .populate(this.populateOptions);
       return tour;
     } catch (error) {
