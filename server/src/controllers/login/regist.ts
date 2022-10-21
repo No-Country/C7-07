@@ -6,13 +6,13 @@ import {
   AgencyRepository,
   TravelerRepository,
 } from "../../models/repository/user";
-import { IUser } from "../../interfaces/IUser";
+import { ITraveler, IAgency } from "../../interfaces/IUser";
 
 const print = new Print();
 
 export const regist = async (req: Request, res: Response) => {
   if (!process.env.PRIVATE_KEY) throw "NO ENV VAR SETTED";
-  const payload = req.body as IUser;
+  const payload = req.body as ITraveler | IAgency;
   try {
     const user = await (payload.userType === "Traveler"
       ? TravelerRepository
