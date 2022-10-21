@@ -48,18 +48,20 @@ const Header = ({
       marginBlock="13px 9px"
       templateAreas={`"profile metadata options"
 			"description description description"`}
-      templateColumns="35px 1fr"
-      templateRows="35px 1fr"
+      templateColumns="auto 1fr"
+      templateRows="auto 1fr"
       textAlign="start"
     >
       <GridItem
-        w="35px"
-        h="35px"
+        w="45px"
+        h="45px"
         bgColor="#C7C5C5"
         borderRadius="full"
         area="profile"
+        rounded="full"
+        overflow="hidden"
       >
-        {profile && <Image overflow="hidden" src={profile} />}
+        {profile && <Image src={profile} />}
       </GridItem>
 
       <GridItem as={Grid} gap="4px" area="metadata">
@@ -193,7 +195,7 @@ export const Post = React.memo(function Post({
         <Header
           postId={id}
           creationDate={creationDate}
-          profile={""}
+          profile={owner?.profile || ""}
           description={description}
           name={owner?.alias}
         />

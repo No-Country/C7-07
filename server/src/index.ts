@@ -9,12 +9,10 @@ import TourRouter from "./routes/tour.routes";
 async function main(
   envDir: string | undefined,
   port: number,
-  host = "localhost",
   routes: Array<IRoutes>
 ) {
   const server = new Server({
     envDir,
-    host,
     port,
   });
   const mongo = new Mongo();
@@ -42,4 +40,4 @@ const ROUTES: Array<IRoutes> = [
   },
 ];
 
-main(undefined, 3001, "localhost", ROUTES);
+main(undefined, 3001, ROUTES);

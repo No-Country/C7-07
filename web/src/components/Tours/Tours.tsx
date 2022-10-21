@@ -1,66 +1,99 @@
-import React, { useEffect, useState } from "react";
-import { Box, Wrap, WrapItem, Flex, Spacer } from "@chakra-ui/react";
-import TourCard, { Props } from "../TourCard/TourCard";
-import { useSelector, useDispatch } from "react-redux";
 import {
-  selectTours,
-  selectIsLoadingTours,
-  selectHasErrorTours,
-  loadTours,
-} from "../../features/tours/toursSlice.js";
-import { ITour } from "../../interfaces/ITour";
-import SearchTours from "../SearchTours/SearchTours";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import {
-  selectUser,
-  selectIsLoadingUser,
-  selectHasErrorUser,
-  loadUser,
-} from "../../features/user/userSlice";
-import ModalPostTour from "../ModalPostTour/ModalPostTour";
-import { useNavigate } from "react-router-dom";
+  Box,
+  Center,
+  useColorModeValue,
+  Heading,
+  Text,
+  Stack,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Carousel } from "../Carousel/Carousel";
 
-function Tours() {
-  const dispatch: any = useAppDispatch();
-  const toursData = useAppSelector<ITour[] | null>(selectTours);
-  const userData = useAppSelector(selectUser);
+export interface Props {
+  id: string;
+  country: string;
+  title: string;
+  personPriceUsd: string;
+  mainImages: Array<string>;
+  days: number;
+  city: string;
+}
 
-
-  useEffect(() => {
-    dispatch(loadTours());
-  }, []);
-
+function TourCard({
+  id,
+  country,
+  title,
+  personPriceUsd,
+  mainImages,
+  days,
+  city,
+}: Props) {
   return (
-    <>
+    <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom={"15px"}>
+      <Box
+        role={"group"}
+        p={3}
+        maxW={"100%"}
+        w={"full"}
+        bg={useColorModeValue("white", "gray.800")}
+        boxShadow={"2xl"}
+        rounded={"lg"}
+        pos={"relative"}
+        zIndex={1}
+        overflow="hide"
+      >
         <Box
-          h={["60px", "60px", "120px"]}
-          marginBottom="20px"
-          display={"flex"}
-          flexWrap="wrap"
+          rounded={"lg"}
+          pos={"relative"}
+          height={"230px"}
+          /* _after={{
+            transition: "all .3s ease",
+            content: '""',
+            w: "full",
+            h: "full",
+            pos: "absolute",
+            top: 5,
+            left: 0,
+            // backgroundImage: `url(${I]MAGE})`,
+            filter: "blur(15px)",
+            zIndex: -1,
+          }} */
+          position="relative"
+          w="full"
+          display="flex"
+          justifyContent="center"
           alignItems="center"
-          justifyContent={["start"]}
         >
-          <SearchTours />
-          <ModalPostTour />
+          <Carousel fotosPrincipales={mainImages} />
         </Box>
-        <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
-          {toursData &&
-            toursData.map((tour: ITour, i: number) => {
-              return (
-                <TourCard
-                  key={i}
-                  id={tour.id}
-                  days={tour.days}
-                  city={tour.region}
-                  country={tour.country}
-                  title={tour.title}
-                  personPriceUsd={tour.personPriceUsd}
-                  mainImages={tour.mainImages}
-                />
-              );
-            })}
-        </Box>
-    </>
+
+        <Link to={`/tours/${id}`}>
+          <Stack pt={3} align={"left"}>
+            <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+              {title}
+            </Heading>
+            <Text color={"gray.500"} fontSize={"xl"}>
+              {city}, {country}
+            </Text>
+            <Text color={"gray.500"} fontSize={"xl"}>
+              {days} Día{days > 1 ? "s" : ""}
+            </Text>
+            <Stack direction={"row"} align={"center"}>
+              <Text color={"gray.500"} fontSize={"xl"}>
+                Desde
+              </Text>
+              <Text fontWeight={700} fontSize={"xl"}>
+                ${personPriceUsd}
+              </Text>
+              <Text color={"gray.500"} fontSize={"xl"}>
+                por persona
+              </Text>
+            </Stack>
+          </Stack>
+        </Link>
+      </Box>
+    </Center>
   );
 }
-export default Tours;
+
+export default TourCard;

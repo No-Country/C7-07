@@ -25,7 +25,7 @@ const TravelerSchema = new Schema<ITraveler>(
       },
       unique: true,
     },
-
+    profile: String,
     posts: [{ ref: "Post", type: Schema.Types.ObjectId, default: [] }],
     reactions: [{ ref: "Reaction", type: Schema.Types.ObjectId, default: [] }],
     userType: {

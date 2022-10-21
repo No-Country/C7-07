@@ -25,14 +25,13 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: getAllUsers in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
   async getById(userId: string): Promise<IAgency> {
     try {
       const user = await this._repository.findById(userId);
       if (user && this.populateFields) user.populate(this.populateFields);
-      console.log("GET_BY_ID: ", user);
       return user;
     } catch (e) {
       print.red(
@@ -58,7 +57,6 @@ class AgencyRepository implements IUserRepository<IAgency> {
     try {
       const user = await this._repository.findOne(fields);
       if (user && this.populateFields) user.populate(this.populateFields);
-      console.log("GET_ONE: ", user);
       return user;
     } catch (e) {
       print.red(
@@ -84,7 +82,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
         )} Method: createUser in UserRepository ${print.repeat("-", 10)}\n`
       );
       if (e) throw e;
-      return null;
+      throw e;
     }
   }
   async edit<NewEntity = IAgency>(
@@ -105,7 +103,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: editUser in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -120,7 +118,7 @@ class AgencyRepository implements IUserRepository<IAgency> {
           10
         )} Method: deleteOne in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -130,11 +128,9 @@ class AgencyRepository implements IUserRepository<IAgency> {
       const user = await this._repository.findById(userId);
       const posts = user.posts;
       if (posts.length === 0) return false;
-      console.log(posts);
       const postIdx = user.posts.findIndex((idx) => idx.toString() === postId);
       if (postIdx < 0) return false;
       posts.splice(postIdx, 1);
-      console.log(posts);
       await user.save();
     } catch (error) {
       throw error;
@@ -184,7 +180,6 @@ class AgencyRepository implements IUserRepository<IAgency> {
         user.tours.push(tour.id);
         await user.save();
       }
-      console.log("SET_TOUR: ", user);
 
       return user as unknown as ITour;
     } catch (error) {

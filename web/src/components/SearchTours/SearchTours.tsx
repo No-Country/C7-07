@@ -41,14 +41,9 @@ function SearchTours() {
 
   return (
     <>
-      <InputGroup mx={["10px", "20px", "50px"]} w={["full", "full", "400px"]} marginBottom='2px' >
-        <InputLeftElement
-          mx="4px"
-          pointerEvents="none"
-          // eslint-disable-next-line react/no-children-prop
-          children={<SearchIcon color="gray.700" />}
-        />
-
+      <InputGroup mx={["10px", "20px", "50px"]} w={["full", "full", "400px"]}>
+        <InputLeftElement mx="4px" pointerEvents="none" />
+        <SearchIcon color="gray.700" />
         <Input
           variant="filled"
           placeholder="¿A dónde viajas?"
@@ -71,27 +66,21 @@ function SearchTours() {
             }
           }}
         />
-        <InputRightElement
-          w={"65px"}
-          mr="7px"
-          // eslint-disable-next-line react/no-children-prop
-          children={
-            <Button
-              bg="#4ED972"
-              h="29px"
-              color="white"
-              fontWeight={600}
-              borderRadius="15px"
-              fontSize={"sm"}
-              onClick={(e) => {
-                e.preventDefault();
-                setSearch("");
-              }}
-            >
-              Buscar
-            </Button>
-          }
-        />
+        <InputRightElement w={"65px"} mr="7px" />
+        <Button
+          bg="#4ED972"
+          h="29px"
+          color="white"
+          fontWeight={600}
+          borderRadius="15px"
+          fontSize={"sm"}
+          onClick={(e) => {
+            e.preventDefault();
+            setSearch("");
+          }}
+        >
+          Buscar
+        </Button>
         {search && tours && tours.length > 0 ? (
           <Box
             backgroundColor={"white"}
@@ -124,7 +113,7 @@ function SearchTours() {
             paddingY="10px"
           >
             {tours.map((tour, i) => (
-              <Link to={tour._id} key={i}>
+              <Link to={tour.id} key={i}>
                 <Box
                   _hover={{
                     background: "#4ED972",

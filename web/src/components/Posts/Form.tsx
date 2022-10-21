@@ -10,7 +10,7 @@ import React, { useRef, useState } from "react";
 import fileImage from "../../assets/img/File_Photo.svg";
 import { useSetPostMutation } from "../../services/social";
 
-export const PostForm = () => {
+export const PostForm = React.memo(function FormMemo() {
   const [setPost] = useSetPostMutation();
   const [imgRef, setImgRef] = useState<{
     url: string | ArrayBuffer | null;
@@ -36,8 +36,7 @@ export const PostForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!imgRef?.url && !contentRef?.current) return;
+    if (!imgRef?.url && !contentRef?.current?.value) return;
     await setPost({
       description: contentRef?.current?.value ?? "",
       media: imgRef?.url ?? "",
@@ -68,8 +67,10 @@ export const PostForm = () => {
         <Box borderRadius="full" w="35px" h="35px" bgColor="#796E6E"></Box>
         <Input
           borderRadius="full"
-          // onChange={handleChange}
           ref={contentRef}
+          outline="none"
+          border="none"
+          _focus={{ outline: "3px solid #4ED972" }}
           name="content"
           bgColor="#EAEAEA"
           placeholder="¿Qué tienes en mente Usuario?"
@@ -113,4 +114,4 @@ export const PostForm = () => {
       </FormControl>
     </Box>
   );
-};
+});

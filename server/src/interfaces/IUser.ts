@@ -10,6 +10,7 @@ export interface IUser {
   posts: Array<Token>;
   reactions: Array<IReaction | string>;
   userType: string;
+  profile: string;
   country: string;
 }
 type Genre = "M" | "F" | "U";
