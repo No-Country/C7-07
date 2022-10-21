@@ -10,11 +10,11 @@ export type SetPost = {
 
 type GetAllPostsResponse = IMessage<Omit<IPost<[IUser]>, "comments">[]>;
 
-const TOKEN = import.meta.env.VITE_SERVER_URI;
+const TOKEN = window.localStorage.getItem("token");
 export const socialApi = createApi({
   reducerPath: "socialApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001",
+    baseUrl: import.meta.env.VITE_SERVER_URI,
     prepareHeaders: (headers) => {
       headers.set("Authorization", `Bearer ${TOKEN}`);
       return headers;
