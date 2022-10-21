@@ -9,7 +9,7 @@ import Profile from "./components/Perfil/Profile";
 import Password from "./components/Perfil/Password";
 import InputProfile from "./components/Perfil/InputProfile";
 import Tour from "./components/Tour/Tour";
-import NotFound from "./components/404NotFound/NotFound";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
