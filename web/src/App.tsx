@@ -9,13 +9,21 @@ import Profile from "./components/Perfil/Profile";
 import Password from "./components/Perfil/Password";
 import InputProfile from "./components/Perfil/InputProfile";
 import { PreRegister } from "./components/Auth/Register/PreRegister";
+import { Private } from "./components/Auth/Private/Private";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NavBar />}>
+          <Route
+            path="/"
+            element={
+              <Private>
+                <NavBar />
+              </Private>
+            }
+          >
             <Route path="/home" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
             <Route path="/profile" element={<Profile />}>
