@@ -6,11 +6,7 @@ import { useGetAllPostsQuery } from "../services/social";
 import { PostSkeleton } from "../components/Posts/PostSkeleton";
 
 export const Home = React.memo(function HomeMemo() {
-  const {
-    data: response,
-    isLoading,
-    isFetching,
-  } = useGetAllPostsQuery(undefined);
+  const { data: response, isLoading } = useGetAllPostsQuery(undefined);
   return (
     <Box paddingBlock={"12px"} marginInline={["12px"]} textAlign="center">
       <Flex
@@ -30,13 +26,7 @@ export const Home = React.memo(function HomeMemo() {
           direction="column"
           gap="3rem"
         >
-          {!response?.data ||
-            (isFetching && (
-              <>
-                <PostSkeleton />
-              </>
-            ))}
-          {!response?.data && isLoading && (
+          {isLoading && (
             <>
               <PostSkeleton />
             </>
