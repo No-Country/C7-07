@@ -18,7 +18,10 @@ export const regist = async (req: Request, res: Response) => {
       ? TravelerRepository
       : AgencyRepository
     ).create(payload);
-    const token = sign({ ...payload, id: user.id }, process.env.PRIVATE_KEY);
+    const token = sign(
+      { ...payload, profile: "", id: user.id },
+      process.env.PRIVATE_KEY
+    );
     res.status(200).json({
       code: 200,
       data: token,
