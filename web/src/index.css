@@ -3,3 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+mapbox-search-listbox div:nth-child(2) {
+  z-index: 10000;
+}

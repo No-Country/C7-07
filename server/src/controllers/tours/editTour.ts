@@ -13,11 +13,10 @@ export const editTour = async (
   req: Request & { token: string; payload: IAgency },
   res: Response
 ) => {
-  const { id, userType } = req.payload;
+  const { userType } = req.payload;
   if (userType.toLowerCase() !== "agency") throw "Authentication Error.";
   const { tourId } = req.params;
   const {
-    apartament,
     country,
     description,
     experience,
@@ -25,6 +24,8 @@ export const editTour = async (
     personPriceUsd,
     stops,
     title,
+    days,
+    region,
     agencies: $agencies,
   } = req.body as PickedBody;
   try {
@@ -38,7 +39,8 @@ export const editTour = async (
 
     _agencies = _agencies.filter((agency) => agency !== undefined);
     const tour = await Tour.edit(tourId, {
-      apartament,
+      days,
+      region,
       country,
       description,
       experience,
