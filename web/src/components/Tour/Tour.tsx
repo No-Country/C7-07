@@ -23,6 +23,9 @@ import { ITour } from "../../interfaces/ITour";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 import checkIcon from "../../assets/img/check 3.svg";
+import ListPoint from "../ListPoint/ListPoint";
+import { loadTours, selectTours } from "../../features/tours/toursSlice";
+import TourCard from "../TourCard/TourCard";
 
 // Revisar primer param de getTourbyId
 // Correr url de Postman con agencia/tour
@@ -43,12 +46,18 @@ function Tour() {
     const tourData = useAppSelector<ITour[] | null>(selectTour);
     const [isLoading, setIsLoading] = useState(true);
 
+    const dispatch1: any = useAppDispatch();
+    const toursData = useAppSelector<ITour[] | null>(selectTours);
+
     useEffect(() => {
         dispatch(loadTourById(tourId));
+        dispatch1(loadTours());
         setTimeout(() => {
             setIsLoading(false);
         }, 5000);
     }, []);
+
+    
 
     return (
         <Box  marginX={"40px"}>
@@ -91,12 +100,15 @@ function Tour() {
                                         {tourData.title}
                                     </Box>
                                     <Box>
-                                    {tourData.city}, {tourData.country} · {tourData.days} dia{tourData.days > 1 ? "s": ""}
+                                    {tourData.region}, {tourData.country} · {tourData.days} dia{tourData.days > 1 ? "s": ""}
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box>Mapa</Box>
                             <Box>
+                                Mapa
+                                
+                            </Box>
+                            <Box display={"flex"} justifyContent={"space-between"}>
                                 <Box w={["full", "full", "800px"]}>
                                     {tourData.description}
                                     <Box>
@@ -104,22 +116,79 @@ function Tour() {
                                             Tu experiencia
                                         </Text>
                                         <Box>
-                                            <Text>
-                                                Qué harás
-                                            </Text>
-                                            <List>
-                                                <ListItem display="flex">
-                                                    <Image marginRight={"10px"} src={checkIcon}/>
-                                                    <Text>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                                    </Text>
-                                                </ListItem>
-                                            </List>
+                                            <Box 
+                                            display={"flex"} 
+                                            borderBottom="1px solid #B5B5B5"
+                                            paddingY={"20px"}
+                                            >
+                                                <Text>
+                                                    Qué harás
+                                                </Text>
+                                                <List marginX={"150px"}>
+                                                    {
+                                                    tourData.experience[0].whatYouWillDo.map((i: string)=>{
+                                                        return(
+                                                            <ListPoint content={i}/>
+                                                        );})
+                                                    }
+                                                </List>
+                                            </Box>
+                                            <Box 
+                                            display={"flex"} 
+                                            borderBottom="1px solid #B5B5B5"
+                                            paddingY={"20px"}
+                                            >
+                                                <Text>
+                                                    Qué incluye
+                                                </Text>
+                                                <List marginX={"140px"}>
+                                                    {
+                                                    tourData.experience[0].whatIncludes.map((i: string)=>{
+                                                        return(
+                                                            <ListPoint content={i}/>
+                                                        );})
+                                                    }
+                                                </List>
+                                            </Box>
+                                            <Box
+                                            display={"flex"} 
+                                            borderBottom="1px solid #B5B5B5"
+                                            paddingY={"20px"}
+                                            >
+                                                <Text>
+                                                    Punto de encuentro
+                                                </Text>
+                                                <Box marginX={"90px"}>
+                                                    {tourData.experience[0].meetingPoint}
+                                                </Box>
+                                            </Box>
                                         </Box>
                                     </Box>
                                 </Box>
                                 <Box>
                                     Form
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Text>
+                                    Otras Sugerencias
+                                </Text>
+                                <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
+                                {toursData &&
+                                    toursData.map((tour: ITour, i: number) => {
+                                    return (
+                                        <TourCard
+                                        key={i}
+                                        id={tour.id}
+                                        days={tour.days}
+                                        city={tour.region}
+                                        country={tour.country}
+                                        title={tour.title}
+                                        personPriceUsd={tour.personPriceUsd}
+                                        mainImages={tour.mainImages}
+                                        />
+                                    );
+                                })}           
                                 </Box>
                             </Box>
                         </>
