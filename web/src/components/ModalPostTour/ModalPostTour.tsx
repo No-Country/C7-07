@@ -27,9 +27,12 @@ import { ITour } from "../../interfaces/ITour";
 import { loadTours } from "../../features/tours/toursSlice";
 import { useAppDispatch } from "../../app/hooks";
 
-function ModalPostTour() {
-  const dispatch: any = useAppDispatch();
 
+
+function ModalPostTour() {
+  const [value, setValue] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+  const dispatch: any = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [numberStops, setNumberStops] = useState(0);
@@ -63,11 +66,7 @@ function ModalPostTour() {
   });
 
   const [stops, setStops] = useState([]);
-  console.clear();
-  console.log(
-    "🚀 ~ file: ModalPostTour.tsx ~ line 70 ~ ModalPostTour ~ stops",
-    stops
-  );
+  // console.log("🚀 ~ file: ModalPostTour.tsx ~ line 66 ~ ModalPostTour ~ stops", stops)
 
   const tourTemplate = {
     days,
@@ -80,40 +79,7 @@ function ModalPostTour() {
     stops,
     title,
   } as unknown as ITour;
-  // console.log("🚀 ~ file: ModalPostTour.tsx ~ line 82 ~ ModalPostTour ~ tourTemplate", tourTemplate)
-
-  /* const tourTemplate = {
-    title: title.current?.value,
-    agencies: [
-      {
-        name: "",
-        description: "",
-      },
-    ],
-    experience: [
-      {
-        whatYouWillDo: [""],
-        whatIncludes: [""],
-        meetingPoint: "",
-      },
-    ],
-    country: "",
-    description: "",
-    personPriceUsd: 0,
-    stops: [
-      {
-        name: "",
-        number: "",
-        direction: "",
-        coords: [0, 0],
-        height: 0,
-        details: { watcher: false, pickUpPoint: false, trekking: false },
-      },
-    ],
-    mainImages: [],
-    region: "",
-    days: 0,
-  } as unknown as ITour; */
+  
 
   const token = localStorage.getItem("token") || "";
 
@@ -144,6 +110,26 @@ function ModalPostTour() {
     });
   };
 
+  
+    
+  
+    const handleChange = async (event:any) => {
+      setValue(event.target.value);
+      
+      try {
+        const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${event.target.value}.json?access_token=pk.eyJ1Ijoiam9zZW5pcXVlbiIsImEiOiJjbDlocmZlOWUwMDQwM3hxb3d5NDJndndrIn0.tzVLXGD36Y3dY79CBg8HMQ&autocomplete=true`;
+        const response = await fetch(endpoint);
+        const results = await response.json();
+        setSuggestions(results?.features);
+        console.log(results)
+      } catch (error) {
+        console.log("Error fetching data, ", error);
+      }
+    };
+  
+
+  
+
   return (
     <>
       <Button
@@ -159,7 +145,7 @@ function ModalPostTour() {
       </Button>
 
       <Modal
-        isOpen={true}
+        isOpen={isOpen}
         onClose={onClose}
         isCentered
         motionPreset="slideInBottom"
@@ -304,12 +290,19 @@ function ModalPostTour() {
                     bg="#EBEEF1"
                     type="text"
                   />
+
                   <Input
                     onChange={(e) => {
                       setStop((prev: any) => {
-                        return { ...prev, direction: e.target.value };
+                        return {
+                          ...prev,
+                          direction: e.target.value,
+                          coords: [e.target.value],
+                        };
                       });
+                      handleChange(e);
                     }}
+
                     variant="filled"
                     placeholder={`Dirección`}
                     marginY={[3, 3, 0]}
@@ -318,6 +311,7 @@ function ModalPostTour() {
                     bg="#EBEEF1"
                     type="text"
                   />
+
                   <Stack spacing={5} direction="row" marginY="10px">
                     <Checkbox
                       colorScheme="whatsapp"
@@ -524,8 +518,8 @@ function ModalPostTour() {
                 setWhatYouWillDo(() => null);
                 setWhatIncludes(() => null);
                 setMeetingPoint(() => null);
-                if (!stop.name.trim() || !stop.direction.trim()) return;
-                setStops((prev: any) => (prev ? [...prev, stop] : stop));
+                /* if (!stop.name.trim() || !stop.direction.trim()) return;
+                setStops((prev: any) => (prev ? [...prev, stop] : stop)); */
                 setStop({
                   name: null,
                   number: null,
@@ -538,6 +532,8 @@ function ModalPostTour() {
                     trekking: false,
                   },
                 });
+                setStops(() => []);
+                setNumberStops(() => 0);
               }}
               type="submit"
             >
@@ -550,5 +546,6 @@ function ModalPostTour() {
     </>
   );
 }
+
 
 export default ModalPostTour;
