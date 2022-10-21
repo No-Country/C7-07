@@ -26,6 +26,9 @@ import checkIcon from "../../assets/img/check 3.svg";
 import ListPoint from "../ListPoint/ListPoint";
 import { loadTours, selectTours } from "../../features/tours/toursSlice";
 import TourCard from "../TourCard/TourCard";
+import MapTour from "../MapTour/MapTour";
+
+
 
 // Revisar primer param de getTourbyId
 // Correr url de Postman con agencia/tour
@@ -104,10 +107,9 @@ function Tour() {
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box>
-                                Mapa
-                                
-                            </Box>
+
+                            {/* <MapTour/> */}
+
                             <Box display={"flex"} justifyContent={"space-between"}>
                                 <Box w={["full", "full", "800px"]}>
                                     {tourData.description}

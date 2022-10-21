@@ -28,10 +28,6 @@ function Tours() {
 
   useEffect(() => {
     dispatch(loadTours());
-    console.log("-----------+------------")
-    console.log(toursData)
-    console.log("------------+------------")
-
   }, []);
 
   return (
