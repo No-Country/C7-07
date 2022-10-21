@@ -39,11 +39,11 @@ function App() {
           <Route path="/register">
             <Route index element={<PreRegister />} />
             <Route
-              path="turista"
+              path="traveler"
               element={<RegisterPage userType="turista" />}
             />
             <Route
-              path="agencia"
+              path="agency"
               element={<RegisterPage userType="agencia" />}
             />
           </Route>

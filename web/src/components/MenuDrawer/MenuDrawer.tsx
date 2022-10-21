@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Drawer,
   DrawerBody,
@@ -8,8 +7,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Button,
-  Input,
   Image,
   Text,
   Box,
@@ -20,10 +17,11 @@ import menu from "../../assets/img/menu.png";
 import perfil from "../../assets/img/perfil.png";
 import PhotoPerfilSmall from "../../icons/PhotoPerfilSmall";
 import { Link as RouterLink } from "react-router-dom";
+import { useRef } from "react";
 
 function MenuDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef<any>();
+  const btnRef = useRef<HTMLImageElement>(null);
 
   const menuDrawItems = ["Perfil", "Mis tours"];
 
@@ -33,7 +31,7 @@ function MenuDrawer() {
         src={menu}
         ref={btnRef}
         onClick={onOpen}
-        w="70px"
+        h="3.5rem"
         padding={3}
         cursor={"pointer"}
       />
