@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { type RootState } from "../../app/store";
 import { RootState } from "../../app/store";
 
 const token =

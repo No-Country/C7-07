@@ -59,8 +59,11 @@ function Profile() {
               borderBottom="none"
             >
               <Box marginX={"12px"}>
-                {location.pathname.includes("password") ?  <PerfilIconBlack/> : <PerfilIconGreen />   }
-
+                {location.pathname.includes("password") ? (
+                  <PerfilIconBlack />
+                ) : (
+                  <PerfilIconGreen />
+                )}
               </Box>
               {/* <Image src={LogoIcon} w="30px" marginX={"12px"} /> */}
               <Text display={"flex"} fontWeight="bold" fontSize="medium">

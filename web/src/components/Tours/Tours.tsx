@@ -17,6 +17,7 @@ import {
   selectHasErrorUser,
   loadUser,
 } from "../../features/user/userSlice";
+import { Link } from "react-router-dom";
 import ModalPostTour from "../ModalPostTour/ModalPostTour";
 
 function Tours() {
@@ -44,21 +45,20 @@ function Tours() {
       </Box>
 
       <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
-        {toursData &&
-          toursData.map((tour: ITour, i: number) => {
-            return (
-              <TourCard
-                key={i}
-                id={tour.id}
-                days={tour.days}
-                city={tour.region}
-                country={tour.country}
-                title={tour.title}
-                personPriceUsd={tour.personPriceUsd}
-                mainImages={tour.mainImages}
-              />
-            );
-          })}
+        {toursData?.map((tour: ITour, i: number) => {
+          return (
+            <TourCard
+              key={i}
+              id={tour.id}
+              days={tour.days}
+              city={tour.city}
+              country={tour.country}
+              title={tour.title}
+              personPriceUsd={tour.personPriceUsd}
+              mainImages={tour.mainImages}
+            />
+          );
+        })}
       </Box>
     </Box>
   );
