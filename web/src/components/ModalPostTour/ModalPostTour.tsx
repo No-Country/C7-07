@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useState, ChangeEvent } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -8,31 +8,34 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  FormControl,
-  FormLabel,
   Input,
   useDisclosure,
   Box,
   Text,
   Textarea,
-  Radio,
-  RadioGroup,
   Stack,
-  InputGroup,
-  InputRightElement,
-  Image,
   Checkbox,
+  VStack,
 } from "@chakra-ui/react";
 import { ITour } from "../../interfaces/ITour";
-import { loadTours } from "../../features/tours/toursSlice";
-import { useAppDispatch } from "../../app/hooks";
 
-
+interface IStop {
+  name: string | null;
+  number: number | null;
+  direction: string | null;
+  coords: number[];
+  height: number;
+  details: {
+    watcher: boolean;
+    pickUpPoint: boolean;
+    trekking: boolean;
+  };
+}
 
 function ModalPostTour() {
-  const [value, setValue] = useState('');
-    const [suggestions, setSuggestions] = useState([]);
-  const dispatch: any = useAppDispatch();
+  const [value, setValue] = useState<string>("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [selected, setSelected] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [numberStops, setNumberStops] = useState(0);
@@ -54,9 +57,9 @@ function ModalPostTour() {
     meetingPoint,
   };
 
-  const [mainImages, setmainImages] = useState([]);
+  const [mainImages, setmainImages] = useState<string[]>([]);
 
-  const [stop, setStop] = useState({
+  const [stop, setStop] = useState<IStop>({
     name: null,
     number: null,
     direction: null,
@@ -65,8 +68,7 @@ function ModalPostTour() {
     details: { watcher: false, pickUpPoint: false, trekking: false },
   });
 
-  const [stops, setStops] = useState([]);
-  // console.log("🚀 ~ file: ModalPostTour.tsx ~ line 66 ~ ModalPostTour ~ stops", stops)
+  const [stops, setStops] = useState<IStop[]>([]);
 
   const tourTemplate = {
     days,
@@ -79,7 +81,6 @@ function ModalPostTour() {
     stops,
     title,
   } as unknown as ITour;
-  
 
   const token = localStorage.getItem("token") || "";
 
@@ -101,34 +102,32 @@ function ModalPostTour() {
     }
   }
 
-  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
+  const handleFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    // const { files } = e.target;
     const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
+    reader.readAsDataURL(e.currentTarget.files![0]);
     return (reader.onloadend = () => {
       setmainImages([...mainImages, reader.result as string]);
     });
   };
 
-  
-    
-  
-    const handleChange = async (event:any) => {
-      setValue(event.target.value);
-      
-      try {
-        const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${event.target.value}.json?access_token=pk.eyJ1Ijoiam9zZW5pcXVlbiIsImEiOiJjbDlocmZlOWUwMDQwM3hxb3d5NDJndndrIn0.tzVLXGD36Y3dY79CBg8HMQ&autocomplete=true`;
-        const response = await fetch(endpoint);
-        const results = await response.json();
-        setSuggestions(results?.features);
-        console.log(results)
-      } catch (error) {
-        console.log("Error fetching data, ", error);
-      }
-    };
-  
-
-  
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    setSelected(false);
+    try {
+      const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${
+        event.target.value
+      }.json?access_token=${
+        import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
+      }&autocomplete=true&country=PE,AR&language=es&types=region,district,place,locality,address`;
+      const response = await fetch(endpoint);
+      const results = await response.json();
+      setSuggestions(results?.features);
+      // console.log(results);
+    } catch (error) {
+      console.log("Error fetching data, ", error);
+    }
+  };
 
   return (
     <>
@@ -291,27 +290,80 @@ function ModalPostTour() {
                     type="text"
                   />
 
-                  <Input
-                    onChange={(e) => {
-                      setStop((prev: any) => {
-                        return {
-                          ...prev,
-                          direction: e.target.value,
-                          coords: [e.target.value],
-                        };
-                      });
-                      handleChange(e);
-                    }}
-
-                    variant="filled"
-                    placeholder={`Dirección`}
-                    marginY={[3, 3, 0]}
-                    focusBorderColor="#4ED972"
-                    colorScheme={"#EBEEF1"}
-                    bg="#EBEEF1"
-                    type="text"
-                  />
-
+                  <Box position="relative">
+                    <Input
+                      onChange={(e) => {
+                        // setStop((prev: any) => {
+                        //   return {
+                        //     ...prev,
+                        //     direction: e.target.value,
+                        //     coords: [e.target.value],
+                        //   };
+                        // });
+                        handleChange(e);
+                      }}
+                      variant="filled"
+                      placeholder={`Dirección`}
+                      marginY={[3, 3, 0]}
+                      focusBorderColor="#4ED972"
+                      colorScheme={"#EBEEF1"}
+                      bg="#EBEEF1"
+                      type="text"
+                      value={value}
+                    />
+                    {suggestions.length > 0 && !selected && (
+                      <VStack
+                        position="absolute"
+                        zIndex="10000"
+                        background="white"
+                        w="full"
+                        top="2.8rem"
+                        paddingY="0.4rem"
+                        paddingX="0.6rem"
+                        rounded="md"
+                        boxShadow="lg"
+                      >
+                        {suggestions.map(
+                          (suggestion: {
+                            id: string;
+                            place_name: string;
+                            geometry: { coordinates: number[] };
+                          }) => (
+                            <Box
+                              border="1px solid"
+                              borderColor="gray.200"
+                              paddingX="0.8rem"
+                              paddingY="0.3rem"
+                              rounded="md"
+                              w="full"
+                              key={suggestion.id}
+                              cursor="pointer"
+                              _hover={{
+                                background: "brand.500",
+                                color: "white",
+                                borderColor: "transparent",
+                              }}
+                              onClick={() => {
+                                setValue(suggestion.place_name);
+                                setSelected(true);
+                                setStop((prev: any) => ({
+                                  ...prev,
+                                  direction: suggestion.place_name,
+                                  coords: [
+                                    suggestion.geometry.coordinates[0],
+                                    suggestion.geometry.coordinates[1],
+                                  ],
+                                }));
+                              }}
+                            >
+                              <Text>{suggestion.place_name}</Text>
+                            </Box>
+                          )
+                        )}
+                        )
+                      </VStack>
+                    )}
+                  </Box>
                   <Stack spacing={5} direction="row" marginY="10px">
                     <Checkbox
                       colorScheme="whatsapp"
@@ -366,7 +418,9 @@ function ModalPostTour() {
                   onClick={() => {
                     setNumberStops((prev) => prev + 1);
                     if (numberStops === 0) return;
-                    setStops((prev: any) => (prev ? [...prev, stop] : stop));
+                    setStops((prev: IStop[]) =>
+                      prev ? [...prev, stop] : [stop]
+                    );
                     setStop({
                       name: null,
                       number: null,
@@ -546,6 +600,5 @@ function ModalPostTour() {
     </>
   );
 }
-
 
 export default ModalPostTour;
