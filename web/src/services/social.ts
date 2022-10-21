@@ -55,7 +55,7 @@ export const socialApi = createApi({
 
       invalidatesTags: ["Post"],
     }),
-    
+
     setPost: builder.mutation<IMessage<IPost<[IUser]>>, SetPost>({
       query: (obj) => {
         return {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const useInput = (initialValue:any) => {
+const useInput = (initialValue: any) => {
   const [value, setValue] = useState(initialValue);
   const [suggestions, setSuggestions] = useState([]);
 
-  const handleChange = async (event:any) => {
+  const handleChange = async (event: any) => {
     setValue(event.target.value);
 
     try {

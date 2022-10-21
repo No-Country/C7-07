@@ -30,14 +30,17 @@ function SearchTours() {
         .then((response) => response.json())
         .then((json) => {
           setTours(json.data);
-          
         });
     }
   }, [search]);
 
   return (
     <>
-      <InputGroup mx={["10px", "20px", "50px"]} w={["full", "full", "400px"]} marginBottom='2px' >
+      <InputGroup
+        mx={["10px", "20px", "50px"]}
+        w={["full", "full", "400px"]}
+        marginBottom="2px"
+      >
         <InputLeftElement
           mx="4px"
           pointerEvents="none"

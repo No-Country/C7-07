@@ -1,12 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
-
 const token = localStorage.getItem("token") || "";
 
 export const loadTours = createAsyncThunk("tours/loadTours", async () => {
-  
-   const response = await fetch("http://localhost:3001/tours/", {
+  const response = await fetch("http://localhost:3001/tours/", {
     headers: {
       Authorization: "Bearer " + token,
     },
@@ -40,8 +38,8 @@ export const toursSlice = createSlice({
   },
 });
 
-export const selectTours = (state: RootState ) => state.tours.toursArray;
-export const selectIsLoadingTours = (state: RootState ) => state.tours.isLoading;
+export const selectTours = (state: RootState) => state.tours.toursArray;
+export const selectIsLoadingTours = (state: RootState) => state.tours.isLoading;
 export const selectHasErrorTours = (state: RootState) => state.tours.hasError;
 
 export default toursSlice.reducer;
