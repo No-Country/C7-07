@@ -4,15 +4,10 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   Button,
   Image,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
 import perfil from "../../assets/img/perfil.png";
 import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";

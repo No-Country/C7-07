@@ -126,7 +126,8 @@ export const Register = ({ userType }: Props) => {
       const dataResponse = await response.json();
       if (dataResponse.code == 200) {
         setIsLoading(false);
-        localStorage.setItem("token", dataResponse.data);
+        localStorage.setItem("token", dataResponse.data.token);
+        localStorage.setItem("user", dataResponse.data.user);
         navigate("/home", { replace: true });
       } else if (dataResponse.code == 500) {
         setIsLoading(false);
@@ -156,6 +157,7 @@ export const Register = ({ userType }: Props) => {
           ]);
         });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -339,6 +341,7 @@ export const Register = ({ userType }: Props) => {
                 <Controller<IFormData>
                   control={control}
                   name="country"
+                  // eslint-disable-next-line
                   render={({ field: { onChange, value, name, ref } }) => (
                     <AsyncSelect<
                       ISelectCountries,
@@ -348,18 +351,22 @@ export const Register = ({ userType }: Props) => {
                       name="countries"
                       ref={ref}
                       value={countries.find((c) => c.value == value)}
+                      // eslint-disable-next-line
                       onChange={(val, actionMeta) => onChange(val?.value)}
                       placeholder="País"
                       chakraStyles={{
+                        // eslint-disable-next-line
                         menuList: (provided, state) => ({
                           ...provided,
                           maxH: "8rem",
                         }),
+                        // eslint-disable-next-line
                         placeholder: (provided, state) => ({
                           ...provided,
                           fontSize: "sm",
                           color: "gray.500",
                         }),
+                        // eslint-disable-next-line
                         singleValue: (provided, state) => ({
                           ...provided,
                           fontSize: "sm",

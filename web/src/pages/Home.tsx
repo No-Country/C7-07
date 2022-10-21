@@ -12,10 +12,10 @@ export const Home = React.memo(function HomeMemo() {
     isFetching,
   } = useGetAllPostsQuery(undefined);
   return (
-    <Box paddingBlock={"12px"} marginInline={["12px"]} textAlign="center">
+    <Box paddingY="1.5rem" marginInline={["12px"]} textAlign="center">
       <Flex
         as="main"
-        w={["full", "677px"]}
+        maxW="2xl"
         flexDir="column"
         marginInline="auto"
         gap="18px"

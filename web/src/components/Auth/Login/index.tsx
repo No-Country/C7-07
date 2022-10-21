@@ -49,7 +49,8 @@ export const Login = () => {
       const dataResponse = await response.json();
       if (dataResponse.code == 200) {
         setIsLoading(false);
-        localStorage.setItem("token", dataResponse.data);
+        localStorage.setItem("token", dataResponse.data.token);
+        localStorage.setItem("user", dataResponse.data.user);
         navigate("/home", { replace: true });
       } else if (dataResponse.code == 404) {
         setIsLoading(false);
@@ -65,6 +66,7 @@ export const Login = () => {
     if (localStorage.getItem("token")) {
       navigate("/home", { replace: true });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
