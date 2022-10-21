@@ -30,7 +30,10 @@ export interface ITour {
   days: number;
   country: string;
   experience: Array<Experience>;
-  agencies: Array<IAgency | string>;
+  agency: {
+    name: IAgency["name"];
+    description: IAgency["description"];
+  };
   personPriceUsd: string;
   mainImages: Array<string>;
   stops: Array<Stop>;

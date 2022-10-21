@@ -53,10 +53,13 @@ export const login = async (
 
     res.status(200).json({
       code: 200,
-      data: newToken ?? null,
+      data: {
+        newToken,
+        user,
+      },
       message: "User succesfully logged!",
       status: "OK",
-    } as IMessage<string>);
+    } as IMessage<{ newToken: string } | typeof user>);
   } catch (error) {
     res.status(500).json({
       message: error,

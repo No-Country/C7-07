@@ -35,7 +35,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: createPost in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw err;
     }
   }
   async getAll<Ref, Props extends keyof Ref, Ret = Pick<Ref, Props>>(): Promise<
@@ -45,7 +45,7 @@ class PostReposiory implements IPostsRepository {
       const posts = (await this.post.find().populate([
         {
           path: "owner",
-          select: ["name", "alias", "userType", "reactions"],
+          select: ["name", "alias", "userType", "reactions", "profile"],
         },
         {
           path: "reactions",
@@ -60,7 +60,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: getAllByUserId in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw err;
     }
   }
 
@@ -75,7 +75,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: getAllByUserId in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw err;
     }
   }
 
@@ -91,7 +91,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: getByPostId in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw err;
     }
   }
 
@@ -113,7 +113,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: editPost in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw err;
     }
   }
 
@@ -131,7 +131,7 @@ class PostReposiory implements IPostsRepository {
           10
         )} Method: deleteOne in PostRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw error;
     }
   }
 

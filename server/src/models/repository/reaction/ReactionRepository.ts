@@ -12,7 +12,7 @@ export class ReactionRepository implements IReactionRepository {
       await reaction.save();
       return reaction;
     } catch (error) {
-      return null;
+      throw error;
     }
   }
 
@@ -29,7 +29,7 @@ export class ReactionRepository implements IReactionRepository {
       });
       return reaction;
     } catch (error) {
-      return null;
+      throw error;
     }
   }
 
@@ -38,7 +38,7 @@ export class ReactionRepository implements IReactionRepository {
       const _reaction = await this._repository.findByIdAndDelete(reaction);
       return _reaction;
     } catch (error) {
-      return null;
+      throw error;
     }
   }
 }

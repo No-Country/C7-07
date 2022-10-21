@@ -17,7 +17,6 @@ function SearchTours() {
   const [search, setSearch] = useState("");
 
   const [tours, setTours] = useState<ITour[]>([]);
-  
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWduYWNpbyBGZWRvcmVuY28iLCJlbWFpbCI6ImlnbmFjaW9mZWRvcmVuY28yMzE3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJHBhc3MxMjMiLCJhbGlhcyI6IklnbkZlZCIsInVzZXJUeXBlIjoiQWdlbmN5IiwiZGVzY3JpcHRpb24iOiJUcmF2ZWwgQWdlbmN5IiwiY29udGFjdHMiOnsid2hhdHNhcHAiOiIzMjE5MTMxOTgyNzM4In0sImlkIjoiNjM0Y2U0ZDhlYjFiYmQyZjlmMjkwZWFhIiwiaWF0IjoxNjY1OTgzNzA0fQ.rNcqm39rhKh5ViM24TRqyzYFRdfvUnCZbfW-A3Kc6Dw";
@@ -32,7 +31,10 @@ function SearchTours() {
         .then((response) => response.json())
         .then((json) => {
           setTours(json.data);
-          console.log("🚀 ~ file: SearchTours.tsx ~ line 35 ~ .then ~ json.data", json.data)
+          console.log(
+            "🚀 ~ file: SearchTours.tsx ~ line 35 ~ .then ~ json.data",
+            json.data
+          );
         });
     }
   }, [search]);
@@ -40,12 +42,8 @@ function SearchTours() {
   return (
     <>
       <InputGroup mx={["10px", "20px", "50px"]} w={["full", "full", "400px"]}>
-        <InputLeftElement
-          mx="4px"
-          pointerEvents="none"
-          children={<SearchIcon color="gray.700" />}
-        />
-
+        <InputLeftElement mx="4px" pointerEvents="none" />
+        <SearchIcon color="gray.700" />
         <Input
           variant="filled"
           placeholder="¿A dónde viajas?"
@@ -68,26 +66,21 @@ function SearchTours() {
             }
           }}
         />
-        <InputRightElement
-          w={"65px"}
-          mr="7px"
-          children={
-            <Button
-              bg="#4ED972"
-              h="29px"
-              color="white"
-              fontWeight={600}
-              borderRadius="15px"
-              fontSize={"sm"}
-              onClick={(e) => {
-                e.preventDefault();
-                setSearch("");
-              }}
-            >
-              Buscar
-            </Button>
-          }
-        />
+        <InputRightElement w={"65px"} mr="7px" />
+        <Button
+          bg="#4ED972"
+          h="29px"
+          color="white"
+          fontWeight={600}
+          borderRadius="15px"
+          fontSize={"sm"}
+          onClick={(e) => {
+            e.preventDefault();
+            setSearch("");
+          }}
+        >
+          Buscar
+        </Button>
         {search && tours && tours.length > 0 ? (
           <Box
             backgroundColor={"white"}
@@ -120,7 +113,7 @@ function SearchTours() {
             paddingY="10px"
           >
             {tours.map((tour, i) => (
-              <Link to={ tour.id} key={i}>
+              <Link to={tour.id} key={i}>
                 <Box
                   _hover={{
                     background: "#4ED972",

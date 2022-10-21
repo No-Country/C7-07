@@ -40,7 +40,7 @@ function MenuNavBar() {
         </Link>
 
         <MenuItem fontWeight={"medium"}>Mis tours</MenuItem>
-        
+
         <MenuItem fontWeight={"medium"}>Cerrar Sesión</MenuItem>
       </MenuList>
     </Menu>

@@ -23,7 +23,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
           10
         )} Method: getAllUsers in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
   async getById(userId: string): Promise<ITraveler> {
@@ -38,7 +38,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -54,7 +54,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
           10
         )} Method: getUserById in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
   async create<NewEntity = ITraveler>(data: NewEntity): Promise<ITraveler> {
@@ -71,7 +71,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
         )} Method: createUser in UserRepository ${print.repeat("-", 10)}\n`
       );
       if (e) throw e;
-      return null;
+      throw e;
     }
   }
   async edit<NewEntity = ITraveler>(
@@ -92,7 +92,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
           10
         )} Method: editUser in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 
@@ -107,7 +107,7 @@ class TravelerRepository implements IUserRepository<ITraveler> {
           10
         )} Method: deleteOne in UserRepository ${print.repeat("-", 10)}\n`
       );
-      return null;
+      throw e;
     }
   }
 

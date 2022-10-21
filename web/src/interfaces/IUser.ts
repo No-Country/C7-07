@@ -1,7 +1,7 @@
 import { IReaction } from "./IReaction";
 import { ITour } from "./ITour";
 export interface IUser {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
@@ -9,11 +9,15 @@ export interface IUser {
   posts: Array<string>;
   reactions: Array<IReaction | string>;
   userType: string;
+  profile: string;
+  country: string;
 }
-
+type Genre = "M" | "F" | "U";
 export interface ITraveler extends IUser {
   userType: "Traveler";
   countriesILike: Array<string>;
+  birthDate: string;
+  genre: Genre;
 }
 
 export interface IAgency extends IUser {

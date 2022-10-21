@@ -26,50 +26,28 @@ export const createTour = async (
     personPriceUsd,
     stops,
     title,
-    agencies,
   } = req.body as PickedBody;
   try {
-    const agenciesArr = [] as IAgency[];
-    let tour: ITour;
-    Promise.all([
-      AgencyRepository.getById(id),
-      ...agencies.map((agency: IAgency) =>
-        AgencyRepository.getOne({ name: agency.name })
-      ),
-    ])
-      .then(async (agencies) => {
-        agenciesArr.push(...agencies);
-        return (tour = await Tour.create({
-          days,
-          region,
-          country,
-          description,
-          experience,
-          mainImages,
-          personPriceUsd,
-          stops,
-          title,
-          agencies: [
-            ...(agencies.map((agency) => ({
-              name: agency.name,
-              description: agency.description,
-            })) as unknown as IAgency[]),
-          ],
-        }));
-      })
-      .then((tour) =>
-        Promise.all(
-          agenciesArr.map(({ id }) => AgencyRepository.setTour({ id }, tour))
-        )
-      )
-      .then(() => {
-        res.status(200).json({
-          message: "Created",
-          code: 200,
-          status: "OK",
-          data: tour,
-        } as IMessage);
-      });
+    const agency = await AgencyRepository.getById(id);
+    const tour = await Tour.create({
+      days,
+      region,
+      country,
+      description,
+      experience,
+      mainImages,
+      personPriceUsd,
+      stops,
+      title,
+      agency: { name: agency.name, description: agency.description },
+    });
+    await AgencyRepository.setTour({ id }, tour);
+    res.status(200).json({
+      message: "Created",
+      code: 200,
+      status: "OK",
+      data: tour,
+    } as IMessage);
   } catch (error) {
     res.status(404).json({
       message: error,

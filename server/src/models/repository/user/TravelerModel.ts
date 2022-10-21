@@ -25,7 +25,7 @@ const TravelerSchema = new Schema<ITraveler>(
       },
       unique: true,
     },
-
+    profile: String,
     posts: [{ ref: "Post", type: Schema.Types.ObjectId, default: [] }],
     reactions: [{ ref: "Reaction", type: Schema.Types.ObjectId, default: [] }],
     userType: {
@@ -33,12 +33,17 @@ const TravelerSchema = new Schema<ITraveler>(
       enum: ["Traveler", "Agency"],
       required: true,
     },
-
+    genre: {
+      type: String,
+      required: true,
+      enum: ["F", "M", "U"],
+    },
     password: {
       type: String,
       required: true,
     },
-
+    birthDate: Schema.Types.String,
+    country: Schema.Types.String,
     countriesILike: [{ type: Schema.Types.String }],
   },
   {
