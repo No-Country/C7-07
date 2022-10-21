@@ -1,9 +1,4 @@
-import { Box, Button, Image, Input, Text } from "@chakra-ui/react";
-import React from "react";
-import perfil from "../../assets/img/perfil.png";
-import candado from "../../assets/img/candado.svg";
-import { wrap } from "popmotion";
-import { Link } from "react-router-dom";
+import { Box, Button, Input, Text } from "@chakra-ui/react";
 
 function Password() {
   return (

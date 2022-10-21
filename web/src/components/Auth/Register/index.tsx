@@ -13,6 +13,7 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
+  useToast,
 } from "@chakra-ui/react";
 import {
   AsyncSelect,
@@ -73,6 +74,8 @@ export const Register = ({ userType }: Props) => {
   const [error, setError] = useState<IError>({ status: false, message: "" });
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const toast = useToast();
+
   const {
     register,
     formState: { errors },
@@ -126,8 +129,17 @@ export const Register = ({ userType }: Props) => {
       const dataResponse = await response.json();
       if (dataResponse.code == 200) {
         setIsLoading(false);
-        localStorage.setItem("token", dataResponse.data);
-        navigate("/home", { replace: true });
+        toast({
+          title: "Cuenta creada exitosamente.",
+          description: "Inicia sesión para poder acceder :)",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom-left",
+        });
+        setTimeout(() => {
+          navigate("/login", { replace: true });
+        }, 3000);
       } else if (dataResponse.code == 500) {
         setIsLoading(false);
         setError({ status: true, message: "Error en el registro" });
@@ -156,6 +168,7 @@ export const Register = ({ userType }: Props) => {
           ]);
         });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -339,6 +352,7 @@ export const Register = ({ userType }: Props) => {
                 <Controller<IFormData>
                   control={control}
                   name="country"
+                  // eslint-disable-next-line
                   render={({ field: { onChange, value, name, ref } }) => (
                     <AsyncSelect<
                       ISelectCountries,
@@ -348,18 +362,22 @@ export const Register = ({ userType }: Props) => {
                       name="countries"
                       ref={ref}
                       value={countries.find((c) => c.value == value)}
+                      // eslint-disable-next-line
                       onChange={(val, actionMeta) => onChange(val?.value)}
                       placeholder="País"
                       chakraStyles={{
+                        // eslint-disable-next-line
                         menuList: (provided, state) => ({
                           ...provided,
                           maxH: "8rem",
                         }),
+                        // eslint-disable-next-line
                         placeholder: (provided, state) => ({
                           ...provided,
                           fontSize: "sm",
                           color: "gray.500",
                         }),
+                        // eslint-disable-next-line
                         singleValue: (provided, state) => ({
                           ...provided,
                           fontSize: "sm",

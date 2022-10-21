@@ -5,6 +5,8 @@ import {
   Image,
   Input,
   FormLabel,
+  VStack,
+  HStack,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import fileImage from "../../assets/img/File_Photo.svg";
@@ -54,50 +56,60 @@ export const PostForm = React.memo(function FormMemo() {
       padding="15px 13px 10px 13px"
       w="auto"
     >
-      <FormControl
+      <VStack
         as="form"
         onSubmit={handleSubmit as (e: unknown) => void}
-        w="inherit"
-        display="grid"
-        gridTemplateColumns={["45px 1fr .5fr", "45px 1fr .2fr"]}
         alignItems="center"
-        gridTemplateRows="1fr"
-        gap="8px 6px"
+        spacing="1rem"
       >
-        <Box borderRadius="full" w="35px" h="35px" bgColor="#796E6E"></Box>
-        <Input
-          borderRadius="full"
-          ref={contentRef}
-          outline="none"
-          border="none"
-          _focus={{ outline: "3px solid #4ED972" }}
-          name="content"
-          bgColor="#EAEAEA"
-          placeholder="¿Qué tienes en mente Usuario?"
-          _placeholder={{ fontSize: "10px", marginInline: "12px" }}
-        />
-        <FormControl variant="floating">
-          <Input type="file" name="file" display="none" onChange={handleFile} />
-          <FormLabel
-            display="flex"
-            id="file"
-            justifySelf="flex-start"
-            gap="5px"
-            color="#796E6E"
-            cursor="pointer"
-          >
-            <Image w="35px" h="35px" src={fileImage} />
-            Photo
-          </FormLabel>
-        </FormControl>
+        <HStack w="full" spacing="0.8rem">
+          <Box
+            borderRadius="full"
+            w="2rem"
+            h="2rem"
+            bgColor="#796E6E"
+            flex="none"
+          ></Box>
+          <Input
+            borderRadius="full"
+            ref={contentRef}
+            outline="none"
+            border="none"
+            _focus={{ outline: "2px solid #4ED972" }}
+            name="content"
+            bgColor="#EAEAEA"
+            placeholder="¿Qué tienes en mente Usuario?"
+            _placeholder={{ fontSize: "0.85rem" }}
+            w="full"
+          />
+          <FormControl variant="floating" flex="none" w="auto">
+            <Input
+              type="file"
+              name="file"
+              display="none"
+              onChange={handleFile}
+            />
+            <FormLabel
+              display="flex"
+              id="file"
+              justifySelf="flex-start"
+              alignItems="center"
+              gap="5px"
+              color="#796E6E"
+              cursor="pointer"
+            >
+              <Image h="1.8rem" src={fileImage} />
+              Photo
+            </FormLabel>
+          </FormControl>
+        </HStack>
         <Button
           borderRadius="10px"
-          h="45px"
           type="submit"
           color="white"
           background="#4ED972"
           _hover={{ background: "#2BA84C" }}
-          gridColumn={"1/4"}
+          w="full"
         >
           Publicar
         </Button>
@@ -111,7 +123,7 @@ export const PostForm = React.memo(function FormMemo() {
             height="400px"
           />
         )}
-      </FormControl>
+      </VStack>
     </Box>
   );
 });

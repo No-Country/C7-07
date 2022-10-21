@@ -12,6 +12,7 @@ export const PreRegister = () => {
     if (localStorage.getItem("token")) {
       navigate("/home", { replace: true });
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -48,7 +49,7 @@ export const PreRegister = () => {
               cursor="pointer"
               border="2px solid #ddd"
               rounded="lg"
-              onClick={() => navigate("/register/turista")}
+              onClick={() => navigate("/register/traveler")}
               mb={{ base: 8, sm: 0 }}
             >
               <VStack
@@ -72,7 +73,7 @@ export const PreRegister = () => {
               cursor="pointer"
               border="2px solid #ddd"
               rounded="lg"
-              onClick={() => navigate("/register/agencia")}
+              onClick={() => navigate("/register/agency")}
             >
               <VStack
                 h={{ base: "36", sm: "48" }}
