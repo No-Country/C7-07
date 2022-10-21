@@ -28,8 +28,10 @@ function TourCard({
   days,
   city,
 }: Props) {
+
   return (
-    <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom="15px">
+    <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom={"15px"}
+    >
       <Box
         role={"group"}
         p={3}

@@ -10,6 +10,8 @@ import Password from "./components/Perfil/Password";
 import InputProfile from "./components/Perfil/InputProfile";
 import { PreRegister } from "./components/Auth/Register/PreRegister";
 import { Private } from "./components/Auth/Private/Private";
+import NotFound from "./components/NotFound/NotFound";
+import Tour from "./components/Tour/Tour";
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           >
             <Route path="/home" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/tours/:tourId" element={<Tour />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<InputProfile />} />
               <Route path="/profile/password" element={<Password />} />
@@ -44,6 +47,7 @@ function App() {
               element={<RegisterPage userType="agencia" />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
