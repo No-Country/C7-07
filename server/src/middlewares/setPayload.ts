@@ -8,10 +8,12 @@ export const setPayload = (
   next: NextFunction
 ) => {
   const { token } = req;
+  console.log(token);
+  if (!token) next();
   if (typeof token === "string" && token.trim()) {
     const verifiedToken = verify(token, process.env.PRIVATE_KEY) as IUser;
 
     req.payload = verifiedToken;
+    next();
   }
-  next();
 };

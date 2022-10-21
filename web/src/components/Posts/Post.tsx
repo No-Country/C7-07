@@ -179,9 +179,7 @@ export const Post = React.memo(function Post({
   reactions = [],
 }: PostProps) {
   const userLikeIt = reactions?.some(
-    (value) =>
-      "634cc858eb1bbd2f9f290c57" === value.owner ||
-      "634cc682eb1bbd2f9f290b5d" === value.owner
+    (value) => window.localStorage.getItem("user_id") === value.owner
   );
 
   return (

@@ -13,7 +13,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import ModalPostTour from "../ModalPostTour/ModalPostTour";
 
 function Tours() {
-  const dispatch = useAppDispatch();
+  const dispatch: any = useAppDispatch();
   const toursData = useAppSelector<ITour[] | null>(selectTours);
   const isLoadingTours = useAppSelector<boolean | null>(selectIsLoadingTours);
 
