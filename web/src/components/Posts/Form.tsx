@@ -1,15 +1,52 @@
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   Image,
   Input,
-  Text,
+  FormLabel,
 } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
 import fileImage from "../../assets/img/File_Photo.svg";
+import { useSetPostMutation } from "../../services/social";
 
 export const PostForm = () => {
+  const [setPost] = useSetPostMutation();
+  const [imgRef, setImgRef] = useState<{
+    url: string | ArrayBuffer | null;
+    alt: string;
+  }>();
+
+  const contentRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!files) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      const image: typeof imgRef = {
+        url: reader.result ?? "",
+        alt: files[0].name,
+      };
+      setImgRef(image);
+    };
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!imgRef?.url && !contentRef?.current) return;
+    await setPost({
+      description: contentRef?.current?.value ?? "",
+      media: imgRef?.url ?? "",
+    }).then(() => {
+      if (contentRef?.current) contentRef.current.value = "";
+      setImgRef({ url: null, alt: "" });
+    });
+  };
+
   return (
     <Box
       as="section"
@@ -19,8 +56,9 @@ export const PostForm = () => {
       w="auto"
     >
       <FormControl
-        w="inherit"
         as="form"
+        onSubmit={handleSubmit as (e: unknown) => void}
+        w="inherit"
         display="grid"
         gridTemplateColumns={["45px 1fr .5fr", "45px 1fr .2fr"]}
         alignItems="center"
@@ -30,13 +68,27 @@ export const PostForm = () => {
         <Box borderRadius="full" w="35px" h="35px" bgColor="#796E6E"></Box>
         <Input
           borderRadius="full"
+          // onChange={handleChange}
+          ref={contentRef}
+          name="content"
           bgColor="#EAEAEA"
           placeholder="¿Qué tienes en mente Usuario?"
           _placeholder={{ fontSize: "10px", marginInline: "12px" }}
         />
-        <Flex justifySelf="flex-start" gap="8px" color="#796E6E">
-          <Image w="35px" h="35px" src={fileImage} /> <Text>Foto</Text>
-        </Flex>
+        <FormControl variant="floating">
+          <Input type="file" name="file" display="none" onChange={handleFile} />
+          <FormLabel
+            display="flex"
+            id="file"
+            justifySelf="flex-start"
+            gap="5px"
+            color="#796E6E"
+            cursor="pointer"
+          >
+            <Image w="35px" h="35px" src={fileImage} />
+            Photo
+          </FormLabel>
+        </FormControl>
         <Button
           borderRadius="10px"
           h="45px"
@@ -48,6 +100,16 @@ export const PostForm = () => {
         >
           Publicar
         </Button>
+        {imgRef?.url && (
+          <Image
+            gridColumn="1/4"
+            src={(imgRef.url as string) ?? undefined}
+            alt={imgRef.alt}
+            width="100%"
+            objectFit="contain"
+            height="400px"
+          />
+        )}
       </FormControl>
     </Box>
   );

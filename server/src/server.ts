@@ -1,6 +1,7 @@
 import express, { Application, Router } from "express";
 import cors from "cors";
-import { config as dotenvConfig, DotenvConfigOutput } from "dotenv";
+import compression from "compression";
+import { config as dotenvConfig } from "dotenv";
 import Print from "./utils/Print";
 
 const print = new Print();
@@ -13,7 +14,6 @@ export interface IRoutes {
 interface IServerProps {
   envDir?: string;
   port?: number;
-  host?: string;
 }
 
 export class Server {
@@ -22,18 +22,18 @@ export class Server {
   host?: string;
   envDir?: string;
 
-  constructor({ envDir, host, port }: IServerProps) {
+  constructor({ envDir, port }: IServerProps) {
     this.app = express();
     this.envDir = envDir;
     this.port = port;
-    this.host = host;
     this.middlewares();
   }
 
   private middlewares(): void {
     dotenvConfig({ path: this.envDir });
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(compression());
+    this.app.use(express.json({ limit: "50mb" }));
     this.app.use(express.urlencoded({ extended: true }));
   }
 
@@ -44,8 +44,8 @@ export class Server {
   }
 
   listen(): void {
-    this.app.listen(this.port ?? 0, this.host ?? "localhost", () => {
-      print.green(`Connected on http://${this.host}:${this.port}/`);
+    this.app.listen(this.port ?? 0, () => {
+      print.green(`Connected!`);
     });
   }
 }

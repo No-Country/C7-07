@@ -13,6 +13,7 @@ import { wrap } from "popmotion";
 import { Link as RouterLink, Outlet, useLocation } from "react-router-dom";
 import PerfilIconGreen from "../../icons/PerfilIconGreen";
 import PhotoPerfilXL from "../../icons/PhotoPerfilXL";
+import PerfilIconBlack from "../../icons/PerfilIconBlack";
 
 function Profile() {
   const location = useLocation();
@@ -58,7 +59,8 @@ function Profile() {
               borderBottom="none"
             >
               <Box marginX={"12px"}>
-                <PerfilIconGreen />
+                {location.pathname.includes("password") ?  <PerfilIconBlack/> : <PerfilIconGreen />   }
+
               </Box>
               {/* <Image src={LogoIcon} w="30px" marginX={"12px"} /> */}
               <Text display={"flex"} fontWeight="bold" fontSize="medium">

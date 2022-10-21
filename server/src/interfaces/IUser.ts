@@ -10,11 +10,14 @@ export interface IUser {
   posts: Array<Token>;
   reactions: Array<IReaction | string>;
   userType: string;
+  country: string;
 }
-
+type Genre = "M" | "F" | "U";
 export interface ITraveler extends IUser {
   userType: "Traveler";
   countriesILike: Array<string>;
+  birthDate: string;
+  genre: Genre;
 }
 
 export interface IAgency extends IUser {
