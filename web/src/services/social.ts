@@ -10,8 +10,7 @@ export type SetPost = {
 
 type GetAllPostsResponse = IMessage<Omit<IPost<[IUser]>, "comments">[]>;
 
-const TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWFkIE1heCIsImVtYWlsIjoiTWFkd2VsbEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRwYXNzMTIzIiwiZ2VucmUiOiJNIiwiYWxpYXMiOiJNYXgiLCJ1c2VyVHlwZSI6IlRyYXZlbGVyIiwicHJvZmlsZSI6IiIsImlkIjoiNjM1MWI4NGMyNjliNTJiZDdkNjAyZmVlIiwiaWF0IjoxNjY2Mjk5OTgwfQ.1GiBKqtBzxCEm80LVpuih6n9xVMEvtZGMZ5SKAPw67U";
+const TOKEN = import.meta.env.VITE_SERVER_URI;
 export const socialApi = createApi({
   reducerPath: "socialApi",
   baseQuery: fetchBaseQuery({
