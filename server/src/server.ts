@@ -14,7 +14,6 @@ export interface IRoutes {
 interface IServerProps {
   envDir?: string;
   port?: number;
-  host?: string;
 }
 
 export class Server {
@@ -23,11 +22,10 @@ export class Server {
   host?: string;
   envDir?: string;
 
-  constructor({ envDir, host, port }: IServerProps) {
+  constructor({ envDir, port }: IServerProps) {
     this.app = express();
     this.envDir = envDir;
     this.port = port;
-    this.host = host;
     this.middlewares();
   }
 
@@ -46,8 +44,8 @@ export class Server {
   }
 
   listen(): void {
-    this.app.listen(this.port ?? 0, this.host ?? "localhost", () => {
-      print.green(`Connected on http://${this.host}:${this.port}/`);
+    this.app.listen(this.port ?? 0, () => {
+      print.green(`Connected!`);
     });
   }
 }

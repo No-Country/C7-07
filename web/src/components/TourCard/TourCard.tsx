@@ -5,10 +5,6 @@ import {
   Heading,
   Text,
   Stack,
-  Image,
-  Flex,
-  Spacer,
-  Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Carousel } from "../Carousel/Carousel";
@@ -32,7 +28,6 @@ function TourCard({
   days,
   city,
 }: Props) {
-  console.log("🚀 ~ file: TourCard.tsx ~ line 35 ~ id", id);
   return (
     <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom="15px">
       <Box

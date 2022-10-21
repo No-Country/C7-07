@@ -6,7 +6,7 @@ const TourSchema = new Schema<ITour>(
     title: {
       type: Schema.Types.String,
     },
-    agencies: [{ description: Schema.Types.String, name: Schema.Types.String }],
+    agency: { description: Schema.Types.String, name: Schema.Types.String },
     experience: [
       {
         whatYouWillDo: [{ type: Schema.Types.String }],

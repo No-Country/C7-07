@@ -3,7 +3,6 @@ import { TourRepository } from "../../models/repository/tours/TourRepository";
 import { IMessage } from "../../interfaces/IMessage";
 import { ITour } from "../../interfaces/ITour";
 import { IAgency } from "../../interfaces/IUser";
-import { AgencyRepository } from "../../models/repository/user";
 
 const Tour = new TourRepository();
 
@@ -13,11 +12,10 @@ export const editTour = async (
   req: Request & { token: string; payload: IAgency },
   res: Response
 ) => {
-  const { id, userType } = req.payload;
+  const { userType } = req.payload;
   if (userType.toLowerCase() !== "agency") throw "Authentication Error.";
   const { tourId } = req.params;
   const {
-    apartament,
     country,
     description,
     experience,
@@ -25,20 +23,14 @@ export const editTour = async (
     personPriceUsd,
     stops,
     title,
-    agencies: $agencies,
+    days,
+    region,
+    agency,
   } = req.body as PickedBody;
   try {
-    const agencies = await AgencyRepository.getManyByTourId(tourId);
-    let _agencies = ($agencies as IAgency[]).map(
-      (agency, idx) =>
-        agency.name === agencies[idx].name &&
-        agency.email !== agencies[idx].email &&
-        agencies[idx]
-    );
-
-    _agencies = _agencies.filter((agency) => agency !== undefined);
     const tour = await Tour.edit(tourId, {
-      apartament,
+      days,
+      region,
       country,
       description,
       experience,
@@ -46,7 +38,7 @@ export const editTour = async (
       personPriceUsd,
       stops,
       title,
-      agencies: _agencies,
+      agency,
     });
     res.status(200).json({
       message: `Tours edited!`,

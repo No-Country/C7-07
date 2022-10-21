@@ -47,7 +47,7 @@ export const createPost = async (
       ? TravelerRepository
       : AgencyRepository
     ).setPost(id, newPost);
-    res.status(200).json({
+    return res.status(200).json({
       code: 200,
       message: "Post created!",
       data: {
@@ -66,7 +66,7 @@ export const createPost = async (
         10
       )}`
     );
-    res.status(500).json({
+    return res.status(500).json({
       message: error,
       code: 500,
       data: null,

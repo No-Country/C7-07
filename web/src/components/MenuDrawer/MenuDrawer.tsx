@@ -23,7 +23,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 function MenuDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  const btnRef = React.useRef<any>();
 
   const menuDrawItems = ["Perfil", "Mis tours"];
 

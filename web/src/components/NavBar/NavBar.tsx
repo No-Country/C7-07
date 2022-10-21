@@ -7,7 +7,12 @@ import {
   Link as ChakraLink,
   LinkProps,
 } from "@chakra-ui/react";
-import { Link as RouterLink, Outlet, useLocation } from "react-router-dom";
+import {
+  Link as RouterLink,
+  Outlet,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import noActiveHouse from "../../assets/img/casa_desactivado.png";
 import activeHouse from "../../assets/img/casa_activado.png";
 import activeMountain from "../../assets/img/montana_activado.png";
@@ -57,9 +62,9 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
-
   return (
     <Box h="80px" borderBottom="1px solid gray">
+      {m.pathname === "/" && <Navigate to="/home" replace={true} />}
       <List
         as="nav"
         display="flex"

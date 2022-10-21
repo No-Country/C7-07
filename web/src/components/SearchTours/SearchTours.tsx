@@ -80,7 +80,7 @@ function SearchTours() {
           }}
         >
           Buscar
-        </Button>{" "}
+        </Button>
         {search && tours && tours.length > 0 ? (
           <Box
             backgroundColor={"white"}
