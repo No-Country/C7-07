@@ -13,13 +13,19 @@ import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import PhotoPerfilSmall from "../../icons/PhotoPerfilSmall";
 
-function MenuNavBar() {
+interface Props {
+  name: string;
+}
+
+function MenuNavBar({ name }: Props) {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-        <Box display={"flex"}>
+        <Box display={"flex"} maxW="10rem" minW={0}>
           <Image src={perfil} w="20px" marginRight={2} />
-          <Text>JHOMAR</Text>
+          <Text w="full" noOfLines={1}>
+            {name}
+          </Text>
         </Box>
       </MenuButton>
 

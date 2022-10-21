@@ -13,6 +13,7 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
+  useToast,
 } from "@chakra-ui/react";
 import {
   AsyncSelect,
@@ -73,6 +74,8 @@ export const Register = ({ userType }: Props) => {
   const [error, setError] = useState<IError>({ status: false, message: "" });
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const toast = useToast();
+
   const {
     register,
     formState: { errors },
@@ -126,9 +129,17 @@ export const Register = ({ userType }: Props) => {
       const dataResponse = await response.json();
       if (dataResponse.code == 200) {
         setIsLoading(false);
-        localStorage.setItem("token", dataResponse.data.token);
-        localStorage.setItem("user", dataResponse.data.user);
-        navigate("/home", { replace: true });
+        toast({
+          title: "Cuenta creada exitosamente.",
+          description: "Inicia sesión para poder acceder :)",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom-left",
+        });
+        setTimeout(() => {
+          navigate("/login", { replace: true });
+        }, 3000);
       } else if (dataResponse.code == 500) {
         setIsLoading(false);
         setError({ status: true, message: "Error en el registro" });

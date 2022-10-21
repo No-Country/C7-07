@@ -49,8 +49,9 @@ export const Login = () => {
       const dataResponse = await response.json();
       if (dataResponse.code == 200) {
         setIsLoading(false);
-        localStorage.setItem("token", dataResponse.data.token);
-        localStorage.setItem("user", dataResponse.data.user);
+        localStorage.setItem("token", dataResponse.data.newToken);
+        localStorage.setItem("user_id", dataResponse.data.user.id);
+        localStorage.setItem("user_type", dataResponse.data.user.userType);
         navigate("/home", { replace: true });
       } else if (dataResponse.code == 404) {
         setIsLoading(false);

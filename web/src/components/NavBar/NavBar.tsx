@@ -22,6 +22,7 @@ import logoTravis from "../../assets/img/Logo_Travis.svg";
 import MenuNavBar from "../MenuNavBar/MenuNavBar";
 import MenuDrawer from "../MenuDrawer/MenuDrawer";
 import logo from "../../assets/img/logoTravis.svg";
+import { useEffect, useState } from "react";
 
 const LIST_ITEMS = [
   {
@@ -61,6 +62,23 @@ const LIST_ITEMS = [
 
 function NavBar() {
   const m = useLocation();
+
+  const [name, setName] = useState<string>("Cargando");
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_SERVER_URI}/users/me`, {
+      headers: {
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.data);
+        setName(data.data.name);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box>
       {m.pathname === "/" && <Navigate to="/home" replace={true} />}
@@ -144,7 +162,7 @@ function NavBar() {
             _hover={{ bg: "none" }}
             h="100%"
           >
-            <MenuNavBar />
+            <MenuNavBar name={name} />
           </ListItem>
           <ListItem
             bg="none"

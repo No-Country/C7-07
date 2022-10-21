@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Input,
   InputLeftElement,
@@ -18,12 +18,11 @@ function SearchTours() {
 
   const [tours, setTours] = useState<ITour[]>([]);
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWduYWNpbyBGZWRvcmVuY28iLCJlbWFpbCI6ImlnbmFjaW9mZWRvcmVuY28yMzE3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJHBhc3MxMjMiLCJhbGlhcyI6IklnbkZlZCIsInVzZXJUeXBlIjoiQWdlbmN5IiwiZGVzY3JpcHRpb24iOiJUcmF2ZWwgQWdlbmN5IiwiY29udGFjdHMiOnsid2hhdHNhcHAiOiIzMjE5MTMxOTgyNzM4In0sImlkIjoiNjM0Y2U0ZDhlYjFiYmQyZjlmMjkwZWFhIiwiaWF0IjoxNjY1OTgzNzA0fQ.rNcqm39rhKh5ViM24TRqyzYFRdfvUnCZbfW-A3Kc6Dw";
+  const token = window.localStorage.getItem("token");
 
   useEffect(() => {
     if (search) {
-      fetch(`http://localhost:3001/tours/search/?value=${search}`, {
+      fetch(`${import.meta.env.VITE_SERVER_URI}/tours/search?value=${search}`, {
         headers: {
           Authorization: "bearer " + token,
         },
@@ -31,19 +30,22 @@ function SearchTours() {
         .then((response) => response.json())
         .then((json) => {
           setTours(json.data);
-          console.log(
-            "🚀 ~ file: SearchTours.tsx ~ line 35 ~ .then ~ json.data",
-            json.data
-          );
         });
     }
+    // eslint-disable-next-line
   }, [search]);
 
   return (
     <>
-      <InputGroup mx={["10px", "20px", "50px"]} w={["full", "full", "400px"]}>
-        <InputLeftElement mx="4px" pointerEvents="none" />
-        <SearchIcon color="gray.700" />
+      <InputGroup
+        mx={["10px", "20px", "50px"]}
+        w={["full", "full", "400px"]}
+        marginBottom="2px"
+      >
+        <InputLeftElement mx="4px" pointerEvents="none">
+          <SearchIcon color="gray.700" />
+        </InputLeftElement>
+
         <Input
           variant="filled"
           placeholder="¿A dónde viajas?"
@@ -51,7 +53,7 @@ function SearchTours() {
             opacity: 1,
             color: "#5C5454",
             fontWeight: "600",
-            paddingLeft: "7px",
+            paddingLeft: "2px",
           }}
           rounded="full"
           focusBorderColor="#4ED972"
@@ -66,21 +68,22 @@ function SearchTours() {
             }
           }}
         />
-        <InputRightElement w={"65px"} mr="7px" />
-        <Button
-          bg="#4ED972"
-          h="29px"
-          color="white"
-          fontWeight={600}
-          borderRadius="15px"
-          fontSize={"sm"}
-          onClick={(e) => {
-            e.preventDefault();
-            setSearch("");
-          }}
-        >
-          Buscar
-        </Button>
+        <InputRightElement w={"65px"} mr="7px">
+          <Button
+            bg="#4ED972"
+            h="29px"
+            color="white"
+            fontWeight={600}
+            borderRadius="15px"
+            fontSize={"sm"}
+            onClick={(e) => {
+              e.preventDefault();
+              setSearch("");
+            }}
+          >
+            Buscar
+          </Button>
+        </InputRightElement>
         {search && tours && tours.length > 0 ? (
           <Box
             backgroundColor={"white"}

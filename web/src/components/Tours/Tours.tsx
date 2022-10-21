@@ -1,99 +1,73 @@
+import { useEffect } from "react";
+import { Box, Spinner } from "@chakra-ui/react";
+import TourCard from "../TourCard/TourCard";
 import {
-  Box,
-  Center,
-  useColorModeValue,
-  Heading,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { Carousel } from "../Carousel/Carousel";
+  selectTours,
+  selectIsLoadingTours,
+  loadTours,
+} from "../../features/tours/toursSlice.js";
+import { ITour } from "../../interfaces/ITour";
+import SearchTours from "../SearchTours/SearchTours";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
-export interface Props {
-  id: string;
-  country: string;
-  title: string;
-  personPriceUsd: string;
-  mainImages: Array<string>;
-  days: number;
-  city: string;
-}
+import ModalPostTour from "../ModalPostTour/ModalPostTour";
 
-function TourCard({
-  id,
-  country,
-  title,
-  personPriceUsd,
-  mainImages,
-  days,
-  city,
-}: Props) {
+function Tours() {
+  const dispatch = useAppDispatch();
+  const toursData = useAppSelector<ITour[] | null>(selectTours);
+  const isLoadingTours = useAppSelector<boolean | null>(selectIsLoadingTours);
+
+  useEffect(() => {
+    dispatch(loadTours());
+  }, [dispatch]);
+
+  const userData = {
+    userType: localStorage.getItem("user_type"),
+    token: localStorage.getItem("token"),
+  };
+
   return (
-    <Center bg="gray.100" w={["full", "full", "320px"]} marginBottom={"15px"}>
+    <Box bg="" py={5}>
       <Box
-        role={"group"}
-        p={3}
-        maxW={"100%"}
-        w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
-        rounded={"lg"}
-        pos={"relative"}
-        zIndex={1}
-        overflow="hide"
+        h={["60px", "60px", "120px"]}
+        marginBottom={["40px", "40px", "20px"]}
+        display={"flex"}
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent={["space-between"]}
       >
-        <Box
-          rounded={"lg"}
-          pos={"relative"}
-          height={"230px"}
-          /* _after={{
-            transition: "all .3s ease",
-            content: '""',
-            w: "full",
-            h: "full",
-            pos: "absolute",
-            top: 5,
-            left: 0,
-            // backgroundImage: `url(${I]MAGE})`,
-            filter: "blur(15px)",
-            zIndex: -1,
-          }} */
-          position="relative"
-          w="full"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Carousel fotosPrincipales={mainImages} />
-        </Box>
+        <SearchTours />
 
-        <Link to={`/tours/${id}`}>
-          <Stack pt={3} align={"left"}>
-            <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-              {title}
-            </Heading>
-            <Text color={"gray.500"} fontSize={"xl"}>
-              {city}, {country}
-            </Text>
-            <Text color={"gray.500"} fontSize={"xl"}>
-              {days} Día{days > 1 ? "s" : ""}
-            </Text>
-            <Stack direction={"row"} align={"center"}>
-              <Text color={"gray.500"} fontSize={"xl"}>
-                Desde
-              </Text>
-              <Text fontWeight={700} fontSize={"xl"}>
-                ${personPriceUsd}
-              </Text>
-              <Text color={"gray.500"} fontSize={"xl"}>
-                por persona
-              </Text>
-            </Stack>
-          </Stack>
-        </Link>
+        {userData?.userType === "Agency" && <ModalPostTour />}
       </Box>
-    </Center>
+
+      <Box display="flex" flexWrap="wrap" justifyContent={"space-around"}>
+        {isLoadingTours ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="brand.500"
+            size="xl"
+            marginTop={"100px"}
+          />
+        ) : (
+          toursData?.map((tour: ITour, i: number) => (
+            <TourCard
+              key={i}
+              id={tour.id}
+              days={tour.days}
+              city={tour.region}
+              country={tour.country}
+              title={tour.title}
+              personPriceUsd={tour.personPriceUsd}
+              mainImages={tour.mainImages}
+            />
+          ))
+        )}
+      </Box>
+    </Box>
   );
 }
 
-export default TourCard;
+export default Tours;
